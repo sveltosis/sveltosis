@@ -7,7 +7,7 @@ export function parseGetContext(json: SveltosisComponent, node: any) {
       ? node.declarations[0].init.arguments[0].value
       : null;
     json.context.get[name] = {
-      name: generate(node.declarations[0].init.arguments[0]),
+      name: node.declarations[0].init.arguments[0].value,
       path: "",
     };
   }
@@ -39,7 +39,7 @@ export function parseSetContext(
         let value = node.expression.arguments[1];
         json.context.set[key.value] = {
           name: generate(key),
-          ref: generate(value),
+          ref: value.value,
         };
       } else if (parent?.type === "BlockStatement") {
         ctx.skip();

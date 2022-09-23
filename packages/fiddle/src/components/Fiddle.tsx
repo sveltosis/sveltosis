@@ -376,8 +376,6 @@ export default function Fiddle() {
                 component: json,
                 path: "",
               });
-
-        const newBuilderData = componentToBuilder()({ component: json });
       } catch (err) {
         if (debug) {
           throw err;

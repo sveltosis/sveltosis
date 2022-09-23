@@ -68,6 +68,7 @@
     "svelte": "^3.50.0"
   },
   "dependencies": {
+    "@builder.io/mitosis": "^0.0.62",
     "css-tree": "^2.2.1"
   }
 }

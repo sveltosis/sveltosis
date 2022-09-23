@@ -11,15 +11,15 @@ export function parseElement(json: SveltosisComponent, node: any) {
   if (node.attributes?.length) {
     node.attributes.forEach((attr: any) => {
       if (attr.type === "Attribute") {
-        if (attr.value[0].type === "Text") {
-          mitosisNode.properties[attr.name] = generate(attr.value[0].raw);
-        } else if (attr.value[0].type === "MustacheTag") {
+        if (attr.value[0]?.type === "Text") {
+          mitosisNode.properties[attr.name] = attr.value[0].data;
+        } else if (attr.value[0]?.type === "MustacheTag") {
           const binding = attr.value[0].expression.name;
 
           mitosisNode.bindings[attr.name] = {
             code: possiblyAppendPropsOrState(json, binding),
           };
-        } else if (attr.value[0].type === "AttributeShorthand") {
+        } else if (attr.value[0]?.type === "AttributeShorthand") {
           // e.g. <input {value}/>
           let binding = attr.value[0].expression.name;
           mitosisNode.bindings[binding] = {

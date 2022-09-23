@@ -23,8 +23,8 @@ function mapAstToMitosisJson(ast: any, name: string): MitosisComponent {
   };
 
   parseInstance(ast, json);
-  parseCss(ast, json);
   parseHtml(ast, json);
+  parseCss(ast, json);
 
   return omit(json, ["props"]);
 }

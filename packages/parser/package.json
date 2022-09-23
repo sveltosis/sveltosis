@@ -59,9 +59,7 @@
       "esm",
       "cjs"
     ],
-    "dts": {
-      "resolve": true
-    },
+    "dts": true,
     "splitting": true,
     "clean": true
   },

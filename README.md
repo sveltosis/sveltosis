@@ -12,7 +12,7 @@
 
 <p align="center">
   <p align="center">
-    Try our  <a href="https://try.sveltosis.dev/"><b>interactive fiddle</b></a> (soon)
+    Try our  <a href="https://try.sveltosis.dev/"><b>interactive fiddle</b></a>
   </p>
 </p>
 

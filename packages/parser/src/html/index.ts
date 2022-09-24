@@ -46,7 +46,7 @@ export function parseHtmlNode(
     properties: {},
   };
 
-  if (node.type === "Element") {
+  if (node.type === "Element" || node.type === "InlineComponent") {
     return parseElement(json, node);
   } else if (node.type === "MustacheTag") {
     return parseMustacheTag(json, node);

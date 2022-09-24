@@ -57,6 +57,17 @@ export const templates: { [key: string]: string } = {
     {/each}
   </ul>
   `,
+  imports: dedent`
+  <script>
+    import Button from './Button.svelte';
+
+    let disabled = false;
+  </script>
+
+  <div>
+    <Button type="button" disabled={disabled}><slot/></Button>
+  </div>
+  `,
   "context (not working yet)": dedent`
   <script>
     import { getContext, setContext } from 'svelte';

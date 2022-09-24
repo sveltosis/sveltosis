@@ -41,7 +41,6 @@ import {
 import { Alert } from "@material-ui/lab";
 import { useLocalObservable, useObserver } from "mobx-react-lite";
 import { useRef, useState } from "react";
-import Image from "next/image";
 
 import { breakpoints } from "../constants/breakpoints";
 import { colors } from "../constants/colors";
@@ -581,11 +580,11 @@ export default function Fiddle() {
                 color: "white",
               }}
             >
-              <Image
+              <img
                 alt="Mitosis Logo"
                 src={"/mitosis-logo-white.png"}
-                width={80}
-                height={25}
+                width="80px"
+                height="25px"
               />
             </a>
             <div
@@ -607,12 +606,12 @@ export default function Fiddle() {
               }}
               href="https://github.com/sveltosis/sveltosis"
             >
-              <Image
-                width={30}
-                height={30}
-                src={"/github-logo.png"}
+              <img
+                width="30px"
+                height="30px"
+                src="/github-logo.png"
                 css={{ marginLeft: 10 }}
-                alt="Github Mark"
+                alt="Github Logo"
               />
             </a>
           </div>

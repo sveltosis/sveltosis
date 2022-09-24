@@ -57,4 +57,19 @@ export const templates: { [key: string]: string } = {
     {/each}
   </ul>
   `,
+  "context (not working yet)": dedent`
+  <script>
+    import { getContext, setContext } from 'svelte';
+
+    let activeTab = 0;
+
+    let disabled = getContext('disabled');
+
+    setContext('activeTab', activeTab)
+  </script>
+
+  <div>
+    {activeTab}
+  </div>
+  `,
 };

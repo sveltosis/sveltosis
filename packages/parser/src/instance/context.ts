@@ -1,4 +1,5 @@
 import { generate } from "astring";
+import { possiblyAppendPropsOrState } from "../helpers/bindings";
 
 export function parseGetContext(json: SveltosisComponent, node: any) {
   if (node.declarations.length) {
@@ -38,8 +39,8 @@ export function parseSetContext(
         let key = node.expression.arguments[0];
         let value = node.expression.arguments[1];
         json.context.set[key.value] = {
-          name: generate(key),
-          ref: value.value,
+          name: key.value,
+          ref: possiblyAppendPropsOrState(json, value.value),
         };
       } else if (parent?.type === "BlockStatement") {
         ctx.skip();

@@ -26,7 +26,7 @@ export function parseMustacheTag(json: SveltosisComponent, node: any) {
 export function parseRawMustacheTag(json: SveltosisComponent, node: any) {
   let mitosisNode = createMitosisNode();
   mitosisNode.name = "div";
-  mitosisNode.bindings["innerHTML"] = {
+  mitosisNode.bindings.innerHTML = {
     code: possiblyAppendPropsOrState(json, generate(node.expression)),
   };
   return mitosisNode;

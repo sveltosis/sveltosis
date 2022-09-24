@@ -2,7 +2,7 @@ import { generate } from "astring";
 import { upperFirst } from "lodash";
 import { possiblyAppendPropsOrState } from "../helpers/bindings";
 import { createMitosisNode } from "../helpers/mitosis-node";
-import { parseChildren } from "../helpers/parse-children";
+import { filterChildren, parseChildren } from "../helpers/children";
 
 export function parseElement(json: SveltosisComponent, node: any) {
   let mitosisNode = createMitosisNode();
@@ -61,6 +61,23 @@ export function parseElement(json: SveltosisComponent, node: any) {
       }
     });
   }
-  mitosisNode.children = parseChildren(node, json);
+
+  const filteredChildren = filterChildren(node.children);
+
+  if (
+    filteredChildren.length === 1 &&
+    filteredChildren[0].type === "RawMustacheTag"
+  ) {
+    mitosisNode.children = [];
+    mitosisNode.bindings.innerHTML = {
+      code: possiblyAppendPropsOrState(
+        json,
+        generate(filteredChildren[0].expression)
+      ),
+    };
+  } else {
+    mitosisNode.children = parseChildren(json, node);
+  }
+
   return mitosisNode;
 }

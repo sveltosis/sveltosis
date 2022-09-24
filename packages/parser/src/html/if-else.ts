@@ -1,7 +1,7 @@
 import { parseHtmlNode } from ".";
 import { possiblyAppendPropsOrState } from "../helpers/bindings";
 import { createMitosisNode } from "../helpers/mitosis-node";
-import { parseChildren } from "../helpers/parse-children";
+import { parseChildren } from "../helpers/children";
 
 export function parseIfElse(json: SveltosisComponent, node: any) {
   let mitosisNode = createMitosisNode();
@@ -15,17 +15,17 @@ export function parseIfElse(json: SveltosisComponent, node: any) {
     },
   };
 
-  mitosisNode.children = parseChildren(node, json);
+  mitosisNode.children = parseChildren(json, node);
 
   if (node.else) {
     if (node.else.children?.length === 1) {
-      mitosisNode.meta.else = parseHtmlNode(node.else.children[0], json);
+      mitosisNode.meta.else = parseHtmlNode(json, node.else.children[0]);
     } else {
       mitosisNode.meta.else = {
         ...createMitosisNode(),
         name: "div",
         children:
-          node.else.children?.map((n: any) => parseHtmlNode(n, json)) ?? [],
+          node.else.children?.map((n: any) => parseHtmlNode(json, n)) ?? [],
       };
     }
   }

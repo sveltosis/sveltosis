@@ -16,8 +16,6 @@ export function parseImports(json: SveltosisComponent, node: any) {
       return a;
     }, {});
 
-  console.log({ imports });
-
   // only add imports which are actually used
   if (Object.keys(imports).length) {
     json.imports = [...json.imports, { imports, path: source }];

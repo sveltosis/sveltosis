@@ -23,7 +23,7 @@ export function parseHtml(ast: any, json: SveltosisComponent) {
         return;
       }
 
-      const mitosisNode = parseHtmlNode(node, json);
+      const mitosisNode = parseHtmlNode(json, node);
 
       if (mitosisNode) {
         json.children.push(mitosisNode);
@@ -33,8 +33,8 @@ export function parseHtml(ast: any, json: SveltosisComponent) {
 }
 
 export function parseHtmlNode(
-  node: any,
-  json: SveltosisComponent
+  json: SveltosisComponent,
+  node: any
 ): MitosisNode | undefined {
   let mitosisNode: MitosisNode = {
     "@type": "@builder.io/mitosis/node",

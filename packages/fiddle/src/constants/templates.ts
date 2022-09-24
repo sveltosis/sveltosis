@@ -68,6 +68,15 @@ export const templates: { [key: string]: string } = {
     <Button type="button" disabled={disabled}><slot/></Button>
   </div>
   `,
+  "@html": dedent`
+  <script>
+    let html = '<b>bold</b>'
+  </script>
+
+  <div>
+    {@html html}
+  </div>
+  `,
   "context (not working yet)": dedent`
   <script>
     import { getContext, setContext } from 'svelte';

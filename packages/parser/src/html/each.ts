@@ -1,5 +1,5 @@
 import { createMitosisNode } from "../helpers/mitosis-node";
-import { parseChildren } from "../helpers/parse-children";
+import { parseChildren } from "../helpers/children";
 
 export function parseEach(json: SveltosisComponent, node: any) {
   return {
@@ -11,6 +11,6 @@ export function parseEach(json: SveltosisComponent, node: any) {
         code: node.expression.name,
       },
     },
-    children: parseChildren(node, json),
+    children: parseChildren(json, node),
   };
 }

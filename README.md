@@ -1,6 +1,11 @@
 # Sveltosis
 
 <p align="center">
+<b>
+  Still in development
+  </b>
+</p>
+<p align="center">
   A Svelte parser that compiles to Mitosis JSON, allowing you to write Svelte components once and compile to every framework. 
 </p>
 <p align="center">

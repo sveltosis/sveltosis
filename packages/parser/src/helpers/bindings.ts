@@ -12,14 +12,14 @@ export function possiblyAppendPropsOrState(
   const stateKeys = Object.keys(json.state);
 
   propKeys.forEach((prop) => {
-    let regex = new RegExp(`(?<!props.)(${prop})\\b`, "g");
+    let regex = new RegExp(`(props\.)?${prop}\\b`, "g");
     if (regex.test(output)) {
       output = output.replace(regex, `props.${prop}`);
     }
   });
 
   stateKeys.forEach((state) => {
-    let regex = new RegExp(`(?<!state.)(${state})\\b`, "g");
+    let regex = new RegExp(`(state\.)?${state}\\b`, "g");
     if (regex.test(output)) {
       output = output.replace(regex, `state.${state}`);
     }

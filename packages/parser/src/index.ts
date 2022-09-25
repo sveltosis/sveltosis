@@ -7,7 +7,7 @@ import { MitosisComponent } from '@builder.io/mitosis';
 import { omit } from 'lodash';
 
 function mapAstToMitosisJson(ast: any, name: string): MitosisComponent {
-  let json: SveltosisComponent = {
+  const json: SveltosisComponent = {
     '@type': '@builder.io/mitosis/component',
     inputs: [],
     state: {},
@@ -29,8 +29,8 @@ function mapAstToMitosisJson(ast: any, name: string): MitosisComponent {
   return omit(json, ['props']);
 }
 
-export const sveltosis = function (str: string, path: string): MitosisComponent | undefined {
-  const ast = parse(str);
+export const sveltosis = function (string_: string, path: string): MitosisComponent | undefined {
+  const ast = parse(string_);
   const componentName = path.split('/').pop()?.split('.')[0] ?? 'MyComponent';
   return mapAstToMitosisJson(ast, componentName);
 };

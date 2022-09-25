@@ -1,12 +1,10 @@
 import { generate } from 'astring';
-import { possiblyAppendPropsOrState } from '../helpers/bindings';
+import { possiblyAppendPropsOrState as possiblyAppendPropertiesOrState } from '../helpers/bindings';
 
-function getParsedValue(json: SveltosisComponent, el: any) {
-  if (el.type === "Identifier") {
-    return possiblyAppendPropsOrState(json, el.name);
-  } else {
-    return possiblyAppendPropsOrState(json, el.value);
-  }
+function getParsedValue(json: SveltosisComponent, element: any) {
+  return element.type === 'Identifier'
+    ? possiblyAppendPropertiesOrState(json, element.name)
+    : possiblyAppendPropertiesOrState(json, element.value);
 }
 
 export function parseRefs(json: SveltosisComponent, node: any) {
@@ -14,22 +12,22 @@ export function parseRefs(json: SveltosisComponent, node: any) {
 
   let code;
 
-  if (declaration.init.type === "ArrayExpression") {
-    code = declaration.init.elements.map((el: any) => {
-      return getParsedValue(json, el);
+  if (declaration.init.type === 'ArrayExpression') {
+    code = declaration.init.elements.map((element: any) => {
+      return getParsedValue(json, element);
     });
-  } else if (declaration.init.type === "ObjectExpression") {
+  } else if (declaration.init.type === 'ObjectExpression') {
     code = declaration.init.properties
-      .map((el: any) => {
+      .map((element: any) => {
         return {
-          [generate(el.key)]: getParsedValue(json, el.value),
+          [generate(element.key)]: getParsedValue(json, element.value),
         };
       })
-      .reduce((obj: any, item: any) => {
-        return ((obj[item.key] = item.value), obj), {};
+      .reduce((object: any, item: any) => {
+        return ((object[item.key] = item.value), object), {};
       });
   } else {
-    code = possiblyAppendPropsOrState(json, declaration.init.value);
+    code = possiblyAppendPropertiesOrState(json, declaration.init.value);
   }
 
   json.state[declaration.id.name] = {

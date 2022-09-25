@@ -5,9 +5,9 @@ export function parseImports(json: SveltosisComponent, node: any) {
   // as you can't import any other svelte specific libraries either...Or can we?
 
   const imports = Object.values(node.specifiers)
-    .map((i: any) => {
+    .map((index: any) => {
       return {
-        [i.local.name]: i.type === 'ImportDefaultSpecifier' ? 'default' : i.local.name,
+        [index.local.name]: index.type === 'ImportDefaultSpecifier' ? 'default' : index.local.name,
       };
     })
     .reduce((a, v) => {
@@ -16,7 +16,7 @@ export function parseImports(json: SveltosisComponent, node: any) {
     }, {});
 
   // only add imports which are actually used
-  if (Object.keys(imports).length) {
+  if (Object.keys(imports).length > 0) {
     json.imports = [...json.imports, { imports, path: source }];
     // TODO: if import source already exist, combine them
     // e.g. import { lowercase } from 'lodash';

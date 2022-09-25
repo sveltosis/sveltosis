@@ -23,7 +23,7 @@ function bindClassSelectorToNode(node: MitosisNode, block: string) {
 }
 
 function bindTypeSelector(children: MitosisNode[], selector: string, block: string) {
-  children.forEach((node: MitosisNode) => {
+  for (const node of children) {
     if (node.name === selector) {
       bindTypeSelectorToNode(node, block);
     }
@@ -31,11 +31,11 @@ function bindTypeSelector(children: MitosisNode[], selector: string, block: stri
     if (node.children?.length) {
       bindTypeSelector(node.children, selector, block);
     }
-  });
+  }
 }
 
 function bindClassSelector(children: MitosisNode[], selector: string, block: string) {
-  children.forEach((node: MitosisNode) => {
+  for (const node of children) {
     if (node.properties?.class?.split(' ').includes(selector.slice(1))) {
       bindClassSelectorToNode(node, block);
     }
@@ -43,7 +43,17 @@ function bindClassSelector(children: MitosisNode[], selector: string, block: str
     if (node.children?.length) {
       bindClassSelector(node.children, selector, block);
     }
-  });
+  }
+}
+
+function objectToString(object: any) {
+  let string_ = '';
+
+  for (const [p, value] of Object.entries(object)) {
+    string_ = `${string_}${p}: "${value}",\n `;
+  }
+
+  return `{\n ${string_} \n}`;
 }
 
 export const parseCss = (ast: any, json: SveltosisComponent) => {
@@ -64,12 +74,6 @@ export const parseCss = (ast: any, json: SveltosisComponent) => {
             parent = node;
           },
         });
-
-        function objectToString(object: any) {
-          return `{\n ${Object.entries(object).reduce((string_, [p, value]) => {
-            return `${string_}${p}: "${value}",\n `;
-          }, '')} \n}`;
-        }
 
         block = objectToString(block);
 

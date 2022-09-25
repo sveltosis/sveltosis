@@ -80,7 +80,7 @@ export function parseElement(json: SveltosisComponent, node: any) {
         }
         // No default
       }
-    };
+    }
   }
 
   const filteredChildren = filterChildren(node.children);

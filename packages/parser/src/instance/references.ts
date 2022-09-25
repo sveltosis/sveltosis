@@ -17,16 +17,15 @@ export function parseReferences(json: SveltosisComponent, node: any) {
       return getParsedValue(json, element);
     });
   } else if (declaration.init.type === 'ObjectExpression') {
-    const properties = declaration.init.properties
-      .map((element: any) => {
-        return {
-          [generate(element.key)]: getParsedValue(json, element.value),
-        };
-      })
-    
-    code = {}
+    const properties = declaration.init.properties.map((element: any) => {
+      return {
+        [generate(element.key)]: getParsedValue(json, element.value),
+      };
+    });
+
+    code = {};
     for (const item of properties) {
-      Object.assign(code, {[item.key]: item.value})
+      Object.assign(code, { [item.key]: item.value });
     }
   } else {
     code = possiblyAppendPropertiesOrState(json, declaration.init.value);

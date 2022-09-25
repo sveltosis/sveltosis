@@ -8,11 +8,9 @@
   "scripts": {
     "build:fiddle": "yarn workspace @sveltosis/fiddle run build",
     "build:parser": "yarn workspace @sveltosis/parser run build",
-    "build:vite": "yarn workspace vite-plugin-sveltosis run build",
     "dev": "run-p -c dev:*",
     "dev:fiddle": "yarn workspace @sveltosis/fiddle run dev",
     "dev:parser": "yarn workspace @sveltosis/parser run dev",
-    "dev:vite": "yarn workspace vite-plugin-sveltosis run dev",
     "format": "yarn format:prettier",
     "format:prettier": "yarn lint:prettier --write",
     "lint": "yarn lint:prettier",

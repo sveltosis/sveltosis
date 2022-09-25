@@ -3,7 +3,9 @@ import { isString, some } from 'lodash';
 import { possiblyAppendPropertiesOrState } from '../helpers/bindings';
 
 function getParsedValue(json: SveltosisComponent, element: any) {
-  return element.type === 'Identifier' ? possiblyAppendPropertiesOrState(json, element.name) : possiblyAppendPropertiesOrState(json, element.value);
+  return element.type === 'Identifier'
+    ? possiblyAppendPropertiesOrState(json, element.name)
+    : possiblyAppendPropertiesOrState(json, element.value);
 }
 
 function isPropertyOrStateReference(index: any) {

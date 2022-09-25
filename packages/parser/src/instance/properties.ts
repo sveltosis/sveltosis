@@ -1,4 +1,4 @@
-export function parseProps(json: SveltosisComponent, node: any) {
+export function parseProperties(json: SveltosisComponent, node: any) {
   const declarations = node.declaration.declarations;
 
   if (declarations?.length) {

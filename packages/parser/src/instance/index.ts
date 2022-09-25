@@ -1,7 +1,7 @@
 import { walk } from 'svelte/compiler';
 
 import { parseImports } from './imports';
-import { parseProps as parseProperties } from './props';
+import { parseProperties } from './properties';
 import { parseFunctions } from './functions';
 import { parseGetContext, parseSetContext } from './context';
 import { parseRefs as parseReferences } from './refs';

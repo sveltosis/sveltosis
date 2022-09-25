@@ -3,6 +3,7 @@ import { upperFirst } from 'lodash';
 import { possiblyAppendPropertiesOrState as possiblyAppendPropertiesOrState } from '../helpers/bindings';
 import { createMitosisNode } from '../helpers/mitosis-node';
 import { filterChildren, parseChildren } from '../helpers/children';
+import { insertAt } from '../helpers/string';
 
 export function parseElement(json: SveltosisComponent, node: any) {
   const mitosisNode = createMitosisNode();
@@ -14,7 +15,17 @@ export function parseElement(json: SveltosisComponent, node: any) {
         case 'Attribute': {
           switch (attribute.value[0]?.type) {
             case 'Text': {
-              mitosisNode.properties[attribute.name] = attribute.value[0].data;
+              // if there are already conditional class declarations
+              // add class names defined here to the bindings code as well
+              if (mitosisNode.bindings.class?.code?.length) {
+                mitosisNode.bindings.class.code = insertAt(
+                  mitosisNode.bindings.class.code,
+                  `${attribute.value[0].data} `,
+                  1,
+                );
+              } else {
+                mitosisNode.properties[attribute.name] = attribute.value[0].data;
+              }
 
               break;
             }
@@ -77,6 +88,46 @@ export function parseElement(json: SveltosisComponent, node: any) {
           };
 
           break;
+        }
+        case 'Class': {
+          // conditional classes (e.g. class:disabled or class:disabled={disabled})
+          const binding = possiblyAppendPropertiesOrState(
+            json,
+            `${attribute.name} ? '${generate(attribute.expression)}' : ''`,
+          );
+
+          let code = '';
+
+          // if there are existing class declarations
+          // add them here instead and remove them from properties
+          // to avoid duplicate class declarations in certain frameworks
+          if (mitosisNode.properties?.class?.length) {
+            code = `${mitosisNode.properties.class} `;
+            delete mitosisNode.properties.class;
+          }
+
+          // if class code is already defined (meaning there is more than 1 conditional class declaration)
+          // append it to the string instead instead of assigning it
+          if (
+            mitosisNode.bindings.class &&
+            Object.prototype.hasOwnProperty.call(mitosisNode.bindings.class, 'code') &&
+            mitosisNode.bindings.class?.code.length
+          ) {
+            code = insertAt(
+              mitosisNode.bindings.class.code,
+              ' ${' + binding + '}',
+              mitosisNode.bindings.class.code.length - 1,
+            );
+            mitosisNode.bindings.class = {
+              code,
+            };
+          } else {
+            // otherwise just assign
+            code = '`' + code + '${' + binding + '}`';
+            mitosisNode.bindings.class = {
+              code,
+            };
+          }
         }
         // No default
       }

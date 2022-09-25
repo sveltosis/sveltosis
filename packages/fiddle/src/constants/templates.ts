@@ -106,6 +106,14 @@ export const templates: { [key: string]: string } = {
     {activeTab}
   </div>
   `,
+  'class directive': dedent`
+  <script>
+    export let disabled = false;
+    let focus = true;
+  </script>
+  
+  <input class="form-input" class:disabled class:focus"/>
+  `,
   style: dedent`
   <script>
   </script>

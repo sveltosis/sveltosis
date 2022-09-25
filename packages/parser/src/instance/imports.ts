@@ -10,7 +10,7 @@ export function parseImports(json: SveltosisComponent, node: any) {
     };
   });
 
-  let imports = {};
+  const imports = {};
 
   for (const specifier of importSpecifiers) {
     Object.assign(imports, specifier);

@@ -6,7 +6,7 @@ export function parseGetContext(json: SveltosisComponent, node: any) {
     const name = node.declarations[0].id.name;
     const key = node.declarations[0].init.arguments?.length
       ? node.declarations[0].init.arguments[0].value
-      : null;
+      : undefined;
     json.context.get[name] = {
       name: node.declarations[0].init.arguments[0].value,
       path: '',

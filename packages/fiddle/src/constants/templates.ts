@@ -17,7 +17,6 @@ export const templates: { [key: string]: string } = {
   <script>
     let a = 5;
     let b = 12;
-
   </script>
 
   <div>
@@ -63,7 +62,7 @@ export const templates: { [key: string]: string } = {
   `,
   loop: dedent`
   <script>
-    let numberse = ['one', 'two', 'three'];
+    let numbers = ['one', 'two', 'three'];
   </script>
 
   <ul>
@@ -106,5 +105,18 @@ export const templates: { [key: string]: string } = {
   <div>
     {activeTab}
   </div>
+  `,
+  style: dedent`
+  <script>
+  </script>
+  
+  <input class="form-input"/>
+  
+  <style>
+    input {
+      color: red;
+      font-size: 12px;
+    }
+  </style>
   `,
 };

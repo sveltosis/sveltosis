@@ -7,7 +7,7 @@ function getParsedValue(json: SveltosisComponent, element: any) {
     : possiblyAppendPropertiesOrState(json, element.value);
 }
 
-export function parseRefs(json: SveltosisComponent, node: any) {
+export function parseReferences(json: SveltosisComponent, node: any) {
   const declaration = node.declarations[0];
 
   let code;
@@ -17,15 +17,17 @@ export function parseRefs(json: SveltosisComponent, node: any) {
       return getParsedValue(json, element);
     });
   } else if (declaration.init.type === 'ObjectExpression') {
-    code = declaration.init.properties
+    const properties = declaration.init.properties
       .map((element: any) => {
         return {
           [generate(element.key)]: getParsedValue(json, element.value),
         };
       })
-      .reduce((object: any, item: any) => {
-        return ((object[item.key] = item.value), object), {};
-      });
+    
+    code = {}
+    for (const item of properties) {
+      Object.assign(code, {[item.key]: item.value})
+    }
   } else {
     code = possiblyAppendPropertiesOrState(json, declaration.init.value);
   }

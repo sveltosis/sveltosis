@@ -4,7 +4,7 @@ import { parseImports } from './imports';
 import { parseProperties } from './properties';
 import { parseFunctions } from './functions';
 import { parseGetContext, parseSetContext } from './context';
-import { parseRefs as parseReferences } from './refs';
+import { parseReferences } from './references';
 import { parseReactive } from './reactive';
 
 export function parseInstance(ast: any, json: SveltosisComponent) {

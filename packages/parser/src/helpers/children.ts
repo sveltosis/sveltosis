@@ -9,6 +9,6 @@ export function filterChildren(children: any) {
 }
 
 export function parseChildren(json: SveltosisComponent, node: any) {
-  let children = filterChildren(node.children).map((n: any) => parseHtmlNode(json, n)) ?? [];
+  const children = filterChildren(node.children).map((n: any) => parseHtmlNode(json, n)) ?? [];
   return children;
 }

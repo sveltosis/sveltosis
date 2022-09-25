@@ -12,7 +12,7 @@ import { MitosisNode } from '@builder.io/mitosis';
 export function parseHtml(ast: any, json: SveltosisComponent) {
   // todo: should filter children and check if just 1 has length
   const html =
-    ast.html.children.length === 2 && !ast.html.children[0].raw.trim().length
+    ast.html.children.length === 2 && ast.html.children[0].raw.trim().length === 0
       ? ast.html.children[1]
       : ast.html;
 
@@ -33,7 +33,7 @@ export function parseHtml(ast: any, json: SveltosisComponent) {
 }
 
 export function parseHtmlNode(json: SveltosisComponent, node: any): MitosisNode | undefined {
-  let mitosisNode: MitosisNode = {
+  const mitosisNode: MitosisNode = {
     '@type': '@builder.io/mitosis/node',
     name: '',
     meta: {},
@@ -43,25 +43,39 @@ export function parseHtmlNode(json: SveltosisComponent, node: any): MitosisNode 
     properties: {},
   };
 
-  if (node.type === 'Element' || node.type === 'InlineComponent') {
-    return parseElement(json, node);
-  } else if (node.type === 'MustacheTag') {
-    return parseMustacheTag(json, node);
-  } else if (node.type === 'RawMustacheTag') {
-    return parseRawMustacheTag(json, node);
-  } else if (node.type === 'IfBlock') {
-    return parseIfElse(json, node);
-  } else if (node.type === 'EachBlock') {
-    return parseEach(json, node);
-  } else if (node.type === 'Text') {
-    return parseText(node);
-  } else if (node.type === 'Fragment') {
-    return parseFragment(json, node);
-  } else if (node.type === 'Slot') {
-    return parseSlot(json, node);
-  } else if (node.type === 'Comment') {
-    // do nothing :) probably skip?
-  } else {
-    mitosisNode.name = 'div';
+  switch (node.type) {
+    case 'Element':
+    case 'InlineComponent': {
+      return parseElement(json, node);
+    }
+    case 'MustacheTag': {
+      return parseMustacheTag(json, node);
+    }
+    case 'RawMustacheTag': {
+      return parseRawMustacheTag(json, node);
+    }
+    case 'IfBlock': {
+      return parseIfElse(json, node);
+    }
+    case 'EachBlock': {
+      return parseEach(json, node);
+    }
+    case 'Text': {
+      return parseText(node);
+    }
+    case 'Fragment': {
+      return parseFragment(json, node);
+    }
+    case 'Slot': {
+      return parseSlot(json, node);
+    }
+    case 'Comment': {
+      // do nothing :) probably skip?
+
+      break;
+    }
+    default: {
+      mitosisNode.name = 'div';
+    }
   }
 }

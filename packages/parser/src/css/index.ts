@@ -12,7 +12,8 @@ function bindTypeSelectorToNode(node: MitosisNode, block: string) {
 function bindClassSelectorToNode(node: MitosisNode, block: string) {
   function appendToExisting(block: string) {
     return (
-      node.bindings.css?.code.substring(0, node.bindings.css?.code.length - 1) + block.substring(1)
+      node.bindings.css?.code.slice(0, Math.max(0, node.bindings.css?.code.length - 1)) +
+      block.slice(1)
     );
   }
 
@@ -22,7 +23,7 @@ function bindClassSelectorToNode(node: MitosisNode, block: string) {
 }
 
 function bindTypeSelector(children: MitosisNode[], selector: string, block: string) {
-  children.forEach((node: MitosisNode) => {
+  for (const node of children) {
     if (node.name === selector) {
       bindTypeSelectorToNode(node, block);
     }
@@ -30,32 +31,42 @@ function bindTypeSelector(children: MitosisNode[], selector: string, block: stri
     if (node.children?.length) {
       bindTypeSelector(node.children, selector, block);
     }
-  });
+  }
 }
 
 function bindClassSelector(children: MitosisNode[], selector: string, block: string) {
-  children.forEach((node: MitosisNode) => {
-    if (node.properties?.class?.split(' ').includes(selector.substring(1))) {
+  for (const node of children) {
+    if (node.properties?.class?.split(' ').includes(selector.slice(1))) {
       bindClassSelectorToNode(node, block);
     }
 
     if (node.children?.length) {
       bindClassSelector(node.children, selector, block);
     }
-  });
+  }
+}
+
+function objectToString(object: any) {
+  let string_ = '';
+
+  for (const [p, value] of Object.entries(object)) {
+    string_ = `${string_}${p}: "${value}",\n `;
+  }
+
+  return `{\n ${string_} \n}`;
 }
 
 export const parseCss = (ast: any, json: SveltosisComponent) => {
   walk(ast.css, {
     enter(node: any, parent: any) {
       if (node.type === 'Rule') {
-        let selector = csstree.generate(node.prelude);
+        const selector = csstree.generate(node.prelude);
         let block: any = {};
 
         csstree.walk(node.block, {
           enter(node: any) {
             if (node.type === 'Value') {
-              let firstChildNode = node.children[0];
+              const firstChildNode = node.children[0];
               block[camelCase(parent.property)] = node.children
                 .map((c: any) => csstree.generate(c))
                 .join(' ');
@@ -64,13 +75,7 @@ export const parseCss = (ast: any, json: SveltosisComponent) => {
           },
         });
 
-        function objToString(obj: any) {
-          return `{\n ${Object.entries(obj).reduce((str, [p, val]) => {
-            return `${str}${p}: "${val}",\n `;
-          }, '')} \n}`;
-        }
-
-        block = objToString(block);
+        block = objectToString(block);
 
         if (node.prelude.children[0]?.children[0]?.type === 'TypeSelector') {
           bindTypeSelector(json.children, selector, block);

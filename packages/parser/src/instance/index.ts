@@ -1,10 +1,10 @@
 import { walk } from 'svelte/compiler';
 
 import { parseImports } from './imports';
-import { parseProps } from './props';
+import { parseProperties } from './properties';
 import { parseFunctions } from './functions';
 import { parseGetContext, parseSetContext } from './context';
-import { parseRefs } from './refs';
+import { parseReferences } from './references';
 import { parseReactive } from './reactive';
 
 export function parseInstance(ast: any, json: SveltosisComponent) {
@@ -13,7 +13,7 @@ export function parseInstance(ast: any, json: SveltosisComponent) {
       if (node.type === 'ImportDeclaration') {
         parseImports(json, node);
       } else if (node.type === 'ExportNamedDeclaration') {
-        parseProps(json, node);
+        parseProperties(json, node);
       } else if (node.type === 'ExpressionStatement' && node.expression.type === 'CallExpression') {
         parseSetContext(json, node, parent, this);
       } else if (node.type === 'FunctionDeclaration') {
@@ -21,7 +21,7 @@ export function parseInstance(ast: any, json: SveltosisComponent) {
       } else if (
         node.type === 'VariableDeclaration' &&
         parent.type === 'Program' &&
-        node.declarations.length
+        node.declarations.length > 0
       ) {
         if (
           node.declarations[0]?.init?.type === 'CallExpression' &&
@@ -29,7 +29,7 @@ export function parseInstance(ast: any, json: SveltosisComponent) {
         ) {
           parseGetContext(json, node);
         } else {
-          parseRefs(json, node);
+          parseReferences(json, node);
         }
       } else if (node.type === 'LabeledStatement' && node.label.name === '$') {
         parseReactive(json, node);

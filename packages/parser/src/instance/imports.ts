@@ -4,19 +4,20 @@ export function parseImports(json: SveltosisComponent, node: any) {
   // ^ Maybe this should even be stricter and only allow relative imports and alias ones
   // as you can't import any other svelte specific libraries either...Or can we?
 
-  const imports = Object.values(node.specifiers)
-    .map((i: any) => {
-      return {
-        [i.local.name]: i.type === 'ImportDefaultSpecifier' ? 'default' : i.local.name,
-      };
-    })
-    .reduce((a, v) => {
-      Object.assign(a, v);
-      return a;
-    }, {});
+  const importSpecifiers = Object.values(node.specifiers).map((index: any) => {
+    return {
+      [index.local.name]: index.type === 'ImportDefaultSpecifier' ? 'default' : index.local.name,
+    };
+  });
+
+  const imports = {};
+
+  for (const specifier of importSpecifiers) {
+    Object.assign(imports, specifier);
+  }
 
   // only add imports which are actually used
-  if (Object.keys(imports).length) {
+  if (Object.keys(imports).length > 0) {
     json.imports = [...json.imports, { imports, path: source }];
     // TODO: if import source already exist, combine them
     // e.g. import { lowercase } from 'lodash';

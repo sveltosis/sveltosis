@@ -5,6 +5,9 @@
   "description": "Write svelte components once and compile to any framework",
   "main": "dist/index.js",
   "module": "dist/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "exports": {
     "./package.json": "./package.json",
     ".": {

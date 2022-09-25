@@ -1,6 +1,6 @@
 import { generate } from 'astring';
 import { upperFirst } from 'lodash';
-import { possiblyAppendPropsOrState as possiblyAppendPropertiesOrState } from '../helpers/bindings';
+import { possiblyAppendPropertiesOrState as possiblyAppendPropertiesOrState } from '../helpers/bindings';
 import { createMitosisNode } from '../helpers/mitosis-node';
 import { filterChildren, parseChildren } from '../helpers/children';
 

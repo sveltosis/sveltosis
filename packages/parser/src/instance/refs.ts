@@ -1,5 +1,5 @@
 import { generate } from 'astring';
-import { possiblyAppendPropsOrState as possiblyAppendPropertiesOrState } from '../helpers/bindings';
+import { possiblyAppendPropertiesOrState as possiblyAppendPropertiesOrState } from '../helpers/bindings';
 
 function getParsedValue(json: SveltosisComponent, element: any) {
   return element.type === 'Identifier'

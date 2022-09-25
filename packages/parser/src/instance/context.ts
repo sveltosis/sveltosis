@@ -1,5 +1,5 @@
 import { generate } from 'astring';
-import { possiblyAppendPropsOrState as possiblyAppendPropertiesOrState } from '../helpers/bindings';
+import { possiblyAppendPropertiesOrState as possiblyAppendPropertiesOrState } from '../helpers/bindings';
 
 export function parseGetContext(json: SveltosisComponent, node: any) {
   if (node.declarations.length > 0) {

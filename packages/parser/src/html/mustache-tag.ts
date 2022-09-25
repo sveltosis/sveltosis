@@ -1,5 +1,5 @@
 import { generate } from 'astring';
-import { possiblyAppendPropsOrState as possiblyAppendPropertiesOrState } from '../helpers/bindings';
+import { possiblyAppendPropertiesOrState as possiblyAppendPropertiesOrState } from '../helpers/bindings';
 import { createMitosisNode } from '../helpers/mitosis-node';
 
 export function parseMustacheTag(json: SveltosisComponent, node: any) {

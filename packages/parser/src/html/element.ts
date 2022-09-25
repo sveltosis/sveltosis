@@ -17,7 +17,7 @@ export function parseElement(json: SveltosisComponent, node: any) {
             case 'Text': {
               // if there are already conditional class declarations
               // add class names defined here to the bindings code as well
-              if (mitosisNode.bindings.class?.code?.length) {
+              if (attribute.name === 'class' && mitosisNode.bindings.class?.code?.length) {
                 mitosisNode.bindings.class.code = insertAt(
                   mitosisNode.bindings.class.code,
                   `${attribute.value[0].data} `,

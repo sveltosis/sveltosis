@@ -112,7 +112,7 @@ export const templates: { [key: string]: string } = {
     let focus = true;
   </script>
   
-  <input class="form-input" class:disabled class:focus"/>
+  <input class="form-input" class:disabled class:focus />
   `,
   style: dedent`
   <script>

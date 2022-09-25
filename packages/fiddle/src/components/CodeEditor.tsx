@@ -1,12 +1,9 @@
-import { useEffect, useState } from "react";
-import { useDebounce } from "react-use";
+import { useEffect, useState } from 'react';
+import { useDebounce } from 'react-use';
 const prettierPluginSvelte = require('prettier-plugin-svelte');
-import MonacoEditor, {
-  EditorProps as MonacoEditorProps,
-  useMonaco,
-} from "@monaco-editor/react";
+import MonacoEditor, { EditorProps as MonacoEditorProps, useMonaco } from '@monaco-editor/react';
 
-type EditorRefArgs = Parameters<NonNullable<MonacoEditorProps["onMount"]>>;
+type EditorRefArgs = Parameters<NonNullable<MonacoEditorProps['onMount']>>;
 type Editor = EditorRefArgs[0];
 
 export function CodeEditor(props: MonacoEditorProps) {
@@ -17,11 +14,11 @@ export function CodeEditor(props: MonacoEditorProps) {
       return;
     }
 
-    monaco.languages.registerDocumentFormattingEditProvider("html", {
+    monaco.languages.registerDocumentFormattingEditProvider('html', {
       async provideDocumentFormattingEdits(model) {
-        const prettier = await import("prettier/standalone");
+        const prettier = await import('prettier/standalone');
         const text = prettier.format(model.getValue(), {
-          parser: "html",
+          parser: 'html',
           plugins: [prettierPluginSvelte],
           singleQuote: true,
         });
@@ -39,7 +36,7 @@ export function CodeEditor(props: MonacoEditorProps) {
   const [editor, setEditor] = useState<Editor | null>(null);
   useDebounce(
     () => {
-      if (typeof props.value !== "string") {
+      if (typeof props.value !== 'string') {
         return;
       }
       if (!editor || !monaco) {
@@ -50,11 +47,11 @@ export function CodeEditor(props: MonacoEditorProps) {
         return;
       }
       setTimeout(() => {
-        editor?.getAction("editor.action.formatDocument").run();
+        editor?.getAction('editor.action.formatDocument').run();
       }, 1000);
     },
     2000,
-    [props.value]
+    [props.value],
   );
 
   return (
@@ -71,7 +68,7 @@ export function CodeEditor(props: MonacoEditorProps) {
         formatOnPaste: true,
         formatOnType: true,
         minimap: { enabled: false },
-        scrollbar: { vertical: "hidden" },
+        scrollbar: { vertical: 'hidden' },
         ...props.options,
       }}
       {...props}

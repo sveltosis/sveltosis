@@ -1,13 +1,13 @@
-import { walk } from "svelte/compiler";
-import { parseEach } from "./each";
-import { parseElement } from "./element";
-import { parseFragment } from "./fragment";
-import { parseIfElse } from "./if-else";
-import { parseMustacheTag, parseRawMustacheTag } from "./mustache-tag";
-import { parseSlot } from "./slot";
-import { parseText } from "./text";
+import { walk } from 'svelte/compiler';
+import { parseEach } from './each';
+import { parseElement } from './element';
+import { parseFragment } from './fragment';
+import { parseIfElse } from './if-else';
+import { parseMustacheTag, parseRawMustacheTag } from './mustache-tag';
+import { parseSlot } from './slot';
+import { parseText } from './text';
 
-import { MitosisNode } from "@builder.io/mitosis";
+import { MitosisNode } from '@builder.io/mitosis';
 
 export function parseHtml(ast: any, json: SveltosisComponent) {
   // todo: should filter children and check if just 1 has length
@@ -18,7 +18,7 @@ export function parseHtml(ast: any, json: SveltosisComponent) {
 
   walk(html, {
     enter(node: any, parent: any) {
-      if (parent?.children || node.data === "\n\n") {
+      if (parent?.children || node.data === '\n\n') {
         this.skip();
         return;
       }
@@ -32,13 +32,10 @@ export function parseHtml(ast: any, json: SveltosisComponent) {
   });
 }
 
-export function parseHtmlNode(
-  json: SveltosisComponent,
-  node: any
-): MitosisNode | undefined {
+export function parseHtmlNode(json: SveltosisComponent, node: any): MitosisNode | undefined {
   let mitosisNode: MitosisNode = {
-    "@type": "@builder.io/mitosis/node",
-    name: "",
+    '@type': '@builder.io/mitosis/node',
+    name: '',
     meta: {},
     scope: {},
     children: [],
@@ -46,25 +43,25 @@ export function parseHtmlNode(
     properties: {},
   };
 
-  if (node.type === "Element" || node.type === "InlineComponent") {
+  if (node.type === 'Element' || node.type === 'InlineComponent') {
     return parseElement(json, node);
-  } else if (node.type === "MustacheTag") {
+  } else if (node.type === 'MustacheTag') {
     return parseMustacheTag(json, node);
-  } else if (node.type === "RawMustacheTag") {
+  } else if (node.type === 'RawMustacheTag') {
     return parseRawMustacheTag(json, node);
-  } else if (node.type === "IfBlock") {
+  } else if (node.type === 'IfBlock') {
     return parseIfElse(json, node);
-  } else if (node.type === "EachBlock") {
+  } else if (node.type === 'EachBlock') {
     return parseEach(json, node);
-  } else if (node.type === "Text") {
+  } else if (node.type === 'Text') {
     return parseText(node);
-  } else if (node.type === "Fragment") {
+  } else if (node.type === 'Fragment') {
     return parseFragment(json, node);
-  } else if (node.type === "Slot") {
+  } else if (node.type === 'Slot') {
     return parseSlot(json, node);
-  } else if (node.type === "Comment") {
+  } else if (node.type === 'Comment') {
     // do nothing :) probably skip?
   } else {
-    mitosisNode.name = "div";
+    mitosisNode.name = 'div';
   }
 }

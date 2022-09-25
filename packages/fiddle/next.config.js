@@ -1,5 +1,5 @@
-const withTM = require("next-transpile-modules")(["@builder.io/mitosis"]);
-const TsconfigPathsPlugin = require("tsconfig-paths-webpack-plugin");
+const withTM = require('next-transpile-modules')(['@builder.io/mitosis']);
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 /**
  * @type {import('next').NextConfig}
  */
@@ -12,10 +12,7 @@ const nextConfig = {
       fs: false,
     };
 
-    config.resolve.plugins = [
-      ...config.resolve.plugins,
-      new TsconfigPathsPlugin(),
-    ];
+    config.resolve.plugins = [...config.resolve.plugins, new TsconfigPathsPlugin()];
 
     return config;
   },

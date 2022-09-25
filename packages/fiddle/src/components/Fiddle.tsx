@@ -20,9 +20,9 @@ import {
   mapStyles,
   componentToVue2,
   componentToVue3,
-} from "@builder.io/mitosis";
+} from '@builder.io/mitosis';
 
-const { sveltosis } = require("@sveltosis/parser");
+const { sveltosis } = require('@sveltosis/parser');
 
 import {
   createTheme,
@@ -37,27 +37,27 @@ import {
   ThemeProvider,
   Tooltip,
   Typography,
-} from "@material-ui/core";
-import { Alert } from "@material-ui/lab";
-import { useLocalObservable, useObserver } from "mobx-react-lite";
-import { useRef, useState } from "react";
+} from '@material-ui/core';
+import { Alert } from '@material-ui/lab';
+import { useLocalObservable, useObserver } from 'mobx-react-lite';
+import { useRef, useState } from 'react';
 
-import { breakpoints } from "../constants/breakpoints";
-import { colors } from "../constants/colors";
-import { defaultCode, templates } from "../constants/templates";
-import { theme } from "../constants/theme";
-import { deleteQueryParam } from "../functions/delete-query-param";
-import { getQueryParam } from "../functions/get-query-param";
-import { localStorageGet } from "../functions/local-storage-get";
-import { localStorageSet } from "../functions/local-storage-set";
-import { setQueryParam } from "../functions/set-query-param";
-import { useEventListener } from "../hooks/use-event-listener";
-import { useReaction } from "../hooks/use-reaction";
-import { Show } from "./Show";
-import { TextLink } from "./TextLink";
+import { breakpoints } from '../constants/breakpoints';
+import { colors } from '../constants/colors';
+import { defaultCode, templates } from '../constants/templates';
+import { theme } from '../constants/theme';
+import { deleteQueryParam } from '../functions/delete-query-param';
+import { getQueryParam } from '../functions/get-query-param';
+import { localStorageGet } from '../functions/local-storage-get';
+import { localStorageSet } from '../functions/local-storage-set';
+import { setQueryParam } from '../functions/set-query-param';
+import { useEventListener } from '../hooks/use-event-listener';
+import { useReaction } from '../hooks/use-reaction';
+import { Show } from './Show';
+import { TextLink } from './TextLink';
 
-import MonacoEditor, { EditorProps, useMonaco } from "@monaco-editor/react/";
-import { CodeEditor } from "./CodeEditor";
+import MonacoEditor, { EditorProps, useMonaco } from '@monaco-editor/react/';
+import { CodeEditor } from './CodeEditor';
 
 type Position = { row: number; column: number };
 
@@ -67,7 +67,7 @@ const openTagRe = /(<[a-z]+[^>]*)/gi;
 const SYNC_SELECTIONS = false;
 
 const indexToRowAndColumn = (str: string, index: number): Position => {
-  const rows = str.split("\n");
+  const rows = str.split('\n');
   let row = 0;
   let column = 0;
   let cursor = 0;
@@ -89,7 +89,7 @@ const indexToRowAndColumn = (str: string, index: number): Position => {
 };
 
 const rowColumnToIndex = (str: string, position: Position): number => {
-  const rows = str.split("\n");
+  const rows = str.split('\n');
   let row = 0;
   let column = 0;
   let cursor = 0;
@@ -112,13 +112,13 @@ const rowColumnToIndex = (str: string, position: Position): number => {
   }
 };
 
-const debug = getQueryParam("debug") === "true";
+const debug = getQueryParam('debug') === 'true';
 
 const AlphaPreviewMessage = () => (
   <ThemeProvider
     theme={createTheme({
       palette: {
-        type: "dark",
+        type: 'dark',
         primary: { main: colors.primary },
       },
     })}
@@ -126,13 +126,13 @@ const AlphaPreviewMessage = () => (
     <Alert
       severity="info"
       css={{
-        background: "none",
+        background: 'none',
         fontSize: 15,
       }}
     >
-      Sveltosis is in development, please{" "}
+      Sveltosis is in development, please{' '}
       <TextLink
-        css={{ color: "inherit", textDecoration: "underline" }}
+        css={{ color: 'inherit', textDecoration: 'underline' }}
         href="https://github.com/sveltosis/sveltosis/issues"
         target="_blank"
       >
@@ -143,7 +143,7 @@ const AlphaPreviewMessage = () => (
 );
 
 const smallBreakpoint = breakpoints.mediaQueries.small;
-const responsiveColHeight = "calc(50vh - 30px)";
+const responsiveColHeight = 'calc(50vh - 30px)';
 
 const TabLogo = (props: { src: string }) => {
   const size = 12;
@@ -153,14 +153,14 @@ const TabLogo = (props: { src: string }) => {
       src={`${props.src}?width=${size * 2}`}
       css={{
         marginRight: 7,
-        objectFit: "contain",
-        objectPosition: "center",
+        objectFit: 'contain',
+        objectPosition: 'center',
         height: size,
         width: size,
-        filter: "grayscale(100%)",
+        filter: 'grayscale(100%)',
         opacity: 0.6,
-        ".Mui-selected.MuiButtonBase-root &": {
-          filter: "none",
+        '.Mui-selected.MuiButtonBase-root &': {
+          filter: 'none',
           opacity: 1,
         },
       }}
@@ -171,7 +171,7 @@ const TabLogo = (props: { src: string }) => {
 const TabLabelWithIcon = (props: { icon?: string; label: string }) => {
   const useIcon = false;
   return (
-    <div css={{ display: "flex", alignItems: "center" }}>
+    <div css={{ display: 'flex', alignItems: 'center' }}>
       {useIcon && props.icon && <TabLogo src={props.icon} />} {props.label}
     </div>
   );
@@ -205,17 +205,16 @@ const plugins = [
       ...styles,
       boxSizing: undefined,
       flexShrink: undefined,
-      alignItems:
-        styles.alignItems === "stretch" ? undefined : styles.alignItems,
+      alignItems: styles.alignItems === 'stretch' ? undefined : styles.alignItems,
     }),
   }),
 ];
 
-type EditorRefArgs = Parameters<NonNullable<EditorProps["onMount"]>>;
+type EditorRefArgs = Parameters<NonNullable<EditorProps['onMount']>>;
 type Editor = EditorRefArgs[0];
 
 const hasBothTsAndJsSupport = (outputTab: string) => {
-  return ["svelte", "vue"].includes(outputTab);
+  return ['svelte', 'vue'].includes(outputTab);
 };
 
 export default function Fiddle() {
@@ -225,15 +224,15 @@ export default function Fiddle() {
     ignoreNextBuilderUpdate: false,
   }));
   const state = useLocalObservable(() => ({
-    code: getQueryParam("code") || defaultCode,
+    code: getQueryParam('code') || defaultCode,
     inputCode: defaultInputCode,
-    output: "",
-    outputTab: getQueryParam("outputTab") || "vue",
+    output: '',
+    outputTab: getQueryParam('outputTab') || 'vue',
     pendingBuilderChange: null as any,
-    inputTab: getQueryParam("inputTab") || "sveltosis",
+    inputTab: getQueryParam('inputTab') || 'sveltosis',
     isDraggingBuilderCodeBar: false,
     isDraggingJSXCodeBar: false,
-    jsxCodeTabWidth: Number(localStorageGet("jsxCodeTabWidth")) || 45,
+    jsxCodeTabWidth: Number(localStorageGet('jsxCodeTabWidth')) || 45,
     setEditorRef(editor: Editor, monaco: EditorRefArgs[1]) {
       monacoEditorRef.current = editor;
       if (editor) {
@@ -251,8 +250,7 @@ export default function Fiddle() {
             });
 
             const elementIndex =
-              Array.from(state.code.substring(0, index).matchAll(openTagRe))
-                .length - 1;
+              Array.from(state.code.substring(0, index).matchAll(openTagRe)).length - 1;
 
             if (elementIndex === -1) {
               return;
@@ -262,118 +260,110 @@ export default function Fiddle() {
       }
     },
     options: {
-      typescript:
-        localStorageGet("options.typescript") || ("false" as "true" | "false"),
+      typescript: localStorageGet('options.typescript') || ('false' as 'true' | 'false'),
       reactStyleType:
-        localStorageGet("options.reactStyleType") ||
-        ("styled-jsx" as "emotion" | "styled-jsx"),
+        localStorageGet('options.reactStyleType') || ('styled-jsx' as 'emotion' | 'styled-jsx'),
       reactStateType:
-        localStorageGet("options.reactStateType") ||
-        ("useState" as "useState" | "mobx" | "solid"),
+        localStorageGet('options.reactStateType') || ('useState' as 'useState' | 'mobx' | 'solid'),
       svelteStateType:
-        localStorageGet("options.svelteStateType") ||
-        ("variables" as "variables" | "proxies"),
-      vueApi:
-        localStorageGet("options.vueApi") ||
-        ("options" as "options" | "composition"),
-      vueVersion: localStorageGet("options.vueVersion") || ("2" as "2" | "3"),
+        localStorageGet('options.svelteStateType') || ('variables' as 'variables' | 'proxies'),
+      vueApi: localStorageGet('options.vueApi') || ('options' as 'options' | 'composition'),
+      vueVersion: localStorageGet('options.vueVersion') || ('2' as '2' | '3'),
     },
 
     async updateOutput() {
       try {
         staticState.ignoreNextBuilderUpdate = true;
-        const json = await sveltosis(state.code, "./Mitosis.svelte");
+        const json = await sveltosis(state.code, './Mitosis.svelte');
 
         let commonOptions: { typescript: boolean } = {
-          typescript:
-            hasBothTsAndJsSupport(state.outputTab) &&
-            state.options.typescript === "true",
+          typescript: hasBothTsAndJsSupport(state.outputTab) && state.options.typescript === 'true',
         };
 
         state.output =
-          state.outputTab === "liquid"
+          state.outputTab === 'liquid'
             ? componentToLiquid({ plugins, ...commonOptions })({
                 component: json,
               })
-            : state.outputTab === "html"
+            : state.outputTab === 'html'
             ? componentToHtml({ plugins, ...commonOptions })({
                 component: json,
               })
-            : state.outputTab === "webcomponents"
+            : state.outputTab === 'webcomponents'
             ? componentToCustomElement({ plugins, ...commonOptions })({
                 component: json,
               })
-            : state.outputTab === "preact"
+            : state.outputTab === 'preact'
             ? componentToPreact({ plugins, ...commonOptions })({
                 component: json,
               })
-            : state.outputTab === "lit"
+            : state.outputTab === 'lit'
             ? componentToLit({ plugins, ...commonOptions })({ component: json })
-            : state.outputTab === "qwik"
+            : state.outputTab === 'qwik'
             ? componentToQwik({ plugins, ...commonOptions })({
                 component: json,
               })
                 // Remove the comment at the
-                .replace("// GENERATED BY MITOSIS", "")
+                .replace('// GENERATED BY MITOSIS', '')
                 .trim()
-            : state.outputTab === "react"
+            : state.outputTab === 'react'
             ? componentToReact({
                 stylesType: state.options.reactStyleType,
                 stateType: state.options.reactStateType,
                 plugins,
                 ...commonOptions,
               })({ component: json })
-            : state.outputTab === "stencil"
+            : state.outputTab === 'stencil'
             ? componentToStencil({
                 plugins,
                 ...commonOptions,
               })({ component: json })
-            : state.outputTab === "marko"
+            : state.outputTab === 'marko'
             ? componentToMarko({
                 plugins,
                 ...commonOptions,
               })({ component: json })
-            : state.outputTab === "swift"
+            : state.outputTab === 'swift'
             ? componentToSwift()({ component: json })
-            : state.outputTab === "reactNative"
+            : state.outputTab === 'reactNative'
             ? componentToReactNative({
                 stateType: state.options.reactStateType,
                 plugins,
                 ...commonOptions,
               })({ component: json })
-            : state.outputTab === "template"
+            : state.outputTab === 'template'
             ? componentToTemplate({
                 plugins,
                 ...commonOptions,
               })({ component: json })
-            : state.outputTab === "solid"
+            : state.outputTab === 'solid'
             ? componentToSolid({ plugins, ...commonOptions })({
                 component: json,
               })
-            : state.outputTab === "angular"
+            : state.outputTab === 'angular'
             ? componentToAngular({ plugins, ...commonOptions })({
                 component: json,
               })
-            : state.outputTab === "svelte"
+            : state.outputTab === 'svelte'
             ? componentToSvelte({
                 stateType: state.options.svelteStateType,
                 plugins,
                 ...commonOptions,
               })({ component: json })
-            : state.outputTab === "mitosis"
+            : state.outputTab === 'mitosis'
             ? componentToMitosis()({ component: json })
-            : state.outputTab === "json"
+            : state.outputTab === 'json'
             ? JSON.stringify(json, null, 2)
-            : state.outputTab === "builder"
+            : state.outputTab === 'builder'
             ? JSON.stringify(componentToBuilder()({ component: json }), null, 2)
-            : state.options.vueVersion === "2"
+            : state.options.vueVersion === '2'
             ? componentToVue2({ plugins, api: state.options.vueApi })({
                 component: json,
-                path: "",
+                path: '',
               })
             : componentToVue3({ plugins, api: state.options.vueApi })({
                 component: json,
-                path: "",
+                path: '',
               });
       } catch (err) {
         if (debug) {
@@ -385,15 +375,15 @@ export default function Fiddle() {
     },
   }));
 
-  useEventListener<KeyboardEvent>(document.body, "keydown", (e) => {
+  useEventListener<KeyboardEvent>(document.body, 'keydown', (e) => {
     // Cancel cmd+s, sometimes people hit it instinctively when editing code and the browser
     // "save webpage" dialog is unwanted and annoying
-    if ((e.metaKey || e.ctrlKey) && e.key === "s") {
+    if ((e.metaKey || e.ctrlKey) && e.key === 's') {
       e.preventDefault();
     }
   });
 
-  useEventListener<MouseEvent>(document.body, "mousemove", (e) => {
+  useEventListener<MouseEvent>(document.body, 'mousemove', (e) => {
     if (state.isDraggingJSXCodeBar) {
       const windowWidth = window.innerWidth;
       const pointerRelativeXpos = e.clientX;
@@ -405,26 +395,26 @@ export default function Fiddle() {
       const pointerRelativeYPos = e.clientY;
       const newHeight = Math.max(
         (1 - (pointerRelativeYPos + bannerHeight) / windowHeight) * 100,
-        5
+        5,
       );
     }
   });
 
-  useEventListener<MouseEvent>(document.body, "mouseup", (e) => {
+  useEventListener<MouseEvent>(document.body, 'mouseup', (e) => {
     state.isDraggingJSXCodeBar = false;
     state.isDraggingBuilderCodeBar = false;
   });
-  useEventListener<MessageEvent>(window, "message", (e) => {
-    if (e.data?.type === "builder.saveCommand") {
+  useEventListener<MessageEvent>(window, 'message', (e) => {
+    if (e.data?.type === 'builder.saveCommand') {
       if (e.data.data || state.pendingBuilderChange) {
       }
-    } else if (e.data?.type === "builder.selectionChange") {
+    } else if (e.data?.type === 'builder.selectionChange') {
       if (SYNC_SELECTIONS) {
         // TODO: only do this when this editor does *not* have focus
         const { selectionIndices } = e.data.data;
         if (Array.isArray(selectionIndices)) {
           const index = selectionIndices[0];
-          if (typeof index === "number") {
+          if (typeof index === 'number') {
             const code = state.code;
             let match: RegExpExecArray | null;
 
@@ -439,17 +429,11 @@ export default function Fiddle() {
                 if (monaco) {
                   const start = indexToRowAndColumn(code, index - 1);
                   const end = indexToRowAndColumn(code, index + length + 1);
-                  const startPosition = new monaco.Position(
-                    start.row + 1,
-                    start.column + 1
-                  );
-                  const endPosition = new monaco.Position(
-                    end.row + 1,
-                    end.column + 1
-                  );
+                  const startPosition = new monaco.Position(start.row + 1, start.column + 1);
+                  const endPosition = new monaco.Position(end.row + 1, end.column + 1);
 
                   monacoEditorRef.current?.setSelection(
-                    monaco.Selection.fromPositions(startPosition, endPosition)
+                    monaco.Selection.fromPositions(startPosition, endPosition),
                   );
                 }
                 break;
@@ -465,41 +449,41 @@ export default function Fiddle() {
 
   useReaction(
     () => state.jsxCodeTabWidth,
-    (width) => localStorageSet("jsxCodeTabWidth", width),
-    { fireImmediately: false, delay: 1000 }
+    (width) => localStorageSet('jsxCodeTabWidth', width),
+    { fireImmediately: false, delay: 1000 },
   );
 
   useReaction(
     () => state.options.reactStyleType,
-    (type) => localStorageSet("options.reactStyleType", type)
+    (type) => localStorageSet('options.reactStyleType', type),
   );
   useReaction(
     () => state.options.reactStateType,
-    (type) => localStorageSet("options.reactStateType", type)
+    (type) => localStorageSet('options.reactStateType', type),
   );
   useReaction(
     () => state.options.svelteStateType,
-    (type) => localStorageSet("options.svelteStateType", type)
+    (type) => localStorageSet('options.svelteStateType', type),
   );
   useReaction(
     () => state.options.vueApi,
-    (type) => localStorageSet("options.vueApi", type)
+    (type) => localStorageSet('options.vueApi', type),
   );
   useReaction(
     () => state.code,
-    (code) => setQueryParam("code", code),
-    { fireImmediately: false }
+    (code) => setQueryParam('code', code),
+    { fireImmediately: false },
   );
   useReaction(
     () => state.outputTab,
     (tab) => {
       if (state.code) {
-        setQueryParam("outputTab", tab);
+        setQueryParam('outputTab', tab);
       } else {
-        deleteQueryParam("outputTab");
+        deleteQueryParam('outputTab');
       }
       state.updateOutput();
-    }
+    },
   );
 
   useReaction(
@@ -507,7 +491,7 @@ export default function Fiddle() {
     (code) => {
       state.updateOutput();
     },
-    { delay: 1000 }
+    { delay: 1000 },
   );
 
   useReaction(
@@ -515,56 +499,56 @@ export default function Fiddle() {
     (code) => {
       state.updateOutput();
     },
-    { delay: 1000 }
+    { delay: 1000 },
   );
 
   return useObserver(() => {
-    const monacoTheme = theme.darkMode ? "vs-dark" : "vs";
+    const monacoTheme = theme.darkMode ? 'vs-dark' : 'vs';
     const barStyle: any = {
-      overflow: "auto",
-      whiteSpace: "nowrap",
-      ...(theme.darkMode ? null : { backgroundColor: "white" }),
+      overflow: 'auto',
+      whiteSpace: 'nowrap',
+      ...(theme.darkMode ? null : { backgroundColor: 'white' }),
     };
 
     return (
       <div
         css={{
-          display: "flex",
-          flexDirection: "column",
-          height: "100vh",
-          "& .monaco-editor .margin, & .monaco-editor, & .monaco-editor-background, .monaco-editor .inputarea.ime-input":
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100vh',
+          '& .monaco-editor .margin, & .monaco-editor, & .monaco-editor-background, .monaco-editor .inputarea.ime-input':
             {
-              backgroundColor: "transparent !important",
+              backgroundColor: 'transparent !important',
             },
 
-          "a > span": {
-            color: "white",
-            textDecoration: "none",
+          'a > span': {
+            color: 'white',
+            textDecoration: 'none',
           },
         }}
       >
         <div
           css={{
-            backgroundColor: "#1e1e1e",
+            backgroundColor: '#1e1e1e',
           }}
         >
           <div
             css={{
-              display: "flex",
-              position: "relative",
+              display: 'flex',
+              position: 'relative',
               flexShrink: 0,
-              alignItems: "center",
-              justifyContent: "center",
-              color: "white",
-              paddingTop: "5px",
-              paddingBottom: "5px",
-              paddingLeft: "12px",
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: 'white',
+              paddingTop: '5px',
+              paddingBottom: '5px',
+              paddingLeft: '12px',
             }}
           >
             <a
               rel="noreferrer"
               href="https://github.com/sveltosis/sveltosis"
-              css={{ color: "white", textDecoration: "none", fontSize: 16 }}
+              css={{ color: 'white', textDecoration: 'none', fontSize: 16 }}
             >
               Sveltosis
             </a>
@@ -575,22 +559,17 @@ export default function Fiddle() {
               rel="noreferrer"
               href="https://github.com/BuilderIO/mitosis"
               css={{
-                marginRight: "auto",
+                marginRight: 'auto',
                 marginLeft: 10,
-                color: "white",
+                color: 'white',
               }}
             >
-              <img
-                alt="Mitosis Logo"
-                src={"/mitosis-logo-white.png"}
-                width="80px"
-                height="25px"
-              />
+              <img alt="Mitosis Logo" src={'/mitosis-logo-white.png'} width="80px" height="25px" />
             </a>
             <div
               css={{
-                marginRight: "auto",
-                [smallBreakpoint]: { display: "none" },
+                marginRight: 'auto',
+                [smallBreakpoint]: { display: 'none' },
               }}
             >
               <AlphaPreviewMessage />
@@ -599,10 +578,10 @@ export default function Fiddle() {
               target="_blank"
               rel="noreferrer"
               css={{
-                alignItems: "center",
-                display: "flex",
+                alignItems: 'center',
+                display: 'flex',
                 marginRight: 25,
-                textDecoration: "none",
+                textDecoration: 'none',
               }}
               href="https://github.com/sveltosis/sveltosis"
             >
@@ -617,10 +596,10 @@ export default function Fiddle() {
           </div>
           <div
             css={{
-              display: "none",
-              textAlign: "center",
-              borderTop: "1px solid rgba(255, 255, 255, 0.1)",
-              [smallBreakpoint]: { display: "block" },
+              display: 'none',
+              textAlign: 'center',
+              borderTop: '1px solid rgba(255, 255, 255, 0.1)',
+              [smallBreakpoint]: { display: 'block' },
             }}
           >
             <AlphaPreviewMessage />
@@ -628,31 +607,31 @@ export default function Fiddle() {
         </div>
         <div
           css={{
-            display: "flex",
+            display: 'flex',
             flexGrow: 1,
-            overflow: "hidden",
-            [smallBreakpoint]: { flexDirection: "column" },
+            overflow: 'hidden',
+            [smallBreakpoint]: { flexDirection: 'column' },
           }}
         >
           <div
             css={{
               width: `${state.jsxCodeTabWidth}%`,
-              height: "100%",
-              display: "flex",
-              flexDirection: "column",
+              height: '100%',
+              display: 'flex',
+              flexDirection: 'column',
               borderRight: `1px solid ${colors.contrast}`,
               [smallBreakpoint]: {
-                width: "100%",
+                width: '100%',
                 height: responsiveColHeight,
-                overflow: "hidden",
+                overflow: 'hidden',
               },
             }}
           >
             <div
               css={{
                 borderBottom: `1px solid ${colors.contrast}`,
-                alignItems: "center",
-                display: "flex",
+                alignItems: 'center',
+                display: 'flex',
                 flexShrink: 0,
                 height: 40,
                 ...barStyle,
@@ -662,13 +641,11 @@ export default function Fiddle() {
                 variant="body2"
                 css={{
                   flexGrow: 1,
-                  textAlign: "left",
-                  padding: "0 15px",
-                  marginTop: "auto",
-                  marginBottom: "auto",
-                  color: theme.darkMode
-                    ? "rgba(255, 255, 255, 0.7)"
-                    : "rgba(0, 0, 0, 0.7)",
+                  textAlign: 'left',
+                  padding: '0 15px',
+                  marginTop: 'auto',
+                  marginBottom: 'auto',
+                  color: theme.darkMode ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.7)',
                 }}
               >
                 Inputs:
@@ -676,9 +653,9 @@ export default function Fiddle() {
               <Tabs
                 css={{
                   minHeight: 0,
-                  marginLeft: "auto",
+                  marginLeft: 'auto',
                   // borderBottom: `1px solid ${colors.contrast}`,
-                  "& button": {
+                  '& button': {
                     minHeight: 0,
                     minWidth: 100,
                   },
@@ -703,21 +680,19 @@ export default function Fiddle() {
                 /> */}
               </Tabs>
             </div>
-            <Show when={state.inputTab === "sveltosis"}>
-              <div css={{ paddingTop: 15, flexGrow: 1, position: "relative" }}>
+            <Show when={state.inputTab === 'sveltosis'}>
+              <div css={{ paddingTop: 15, flexGrow: 1, position: 'relative' }}>
                 <Select
                   disableUnderline
                   css={{
                     top: 10,
-                    position: "absolute",
+                    position: 'absolute',
                     right: 10,
                     zIndex: 10,
                   }}
                   renderValue={(value) => (
-                    <span css={{ textTransform: "capitalize" }}>
-                      {value === "_none"
-                        ? "Choose template"
-                        : (value as string)}
+                    <span css={{ textTransform: 'capitalize' }}>
+                      {value === '_none' ? 'Choose template' : (value as string)}
                     </span>
                   )}
                   defaultValue="_none"
@@ -736,7 +711,7 @@ export default function Fiddle() {
                       key={key}
                       value={key}
                       css={{
-                        textTransform: "capitalize",
+                        textTransform: 'capitalize',
                       }}
                     >
                       {key}
@@ -750,21 +725,19 @@ export default function Fiddle() {
                     hideCursorInOverviewRuler: true,
                     automaticLayout: true,
                     minimap: { enabled: false },
-                    scrollbar: { vertical: "hidden" },
+                    scrollbar: { vertical: 'hidden' },
                   }}
-                  onMount={(editor, monaco) =>
-                    state.setEditorRef(editor, monaco)
-                  }
+                  onMount={(editor, monaco) => state.setEditorRef(editor, monaco)}
                   theme={monacoTheme}
                   height="calc(100vh - 105px)"
                   language="html"
                   value={state.code}
-                  onChange={(val = "") => (state.code = val)}
+                  onChange={(val = '') => (state.code = val)}
                 />
               </div>
             </Show>
 
-            <Show when={state.inputTab === "liquid"}>
+            <Show when={state.inputTab === 'liquid'}>
               <MonacoEditor
                 height="100%"
                 options={{
@@ -774,11 +747,11 @@ export default function Fiddle() {
                   renderLineHighlightOnlyWhenFocus: true,
                   occurrencesHighlight: false,
                   minimap: { enabled: false },
-                  renderLineHighlight: "none",
+                  renderLineHighlight: 'none',
                   selectionHighlight: false,
-                  scrollbar: { vertical: "hidden" },
+                  scrollbar: { vertical: 'hidden' },
                 }}
-                onChange={(value = "") => {
+                onChange={(value = '') => {
                   state.inputCode = value;
                 }}
                 theme={monacoTheme}
@@ -786,7 +759,7 @@ export default function Fiddle() {
                 value={state.inputCode}
               />
             </Show>
-            <Show when={state.inputTab === "angular"}>
+            <Show when={state.inputTab === 'angular'}>
               <MonacoEditor
                 height="100%"
                 options={{
@@ -796,11 +769,11 @@ export default function Fiddle() {
                   renderLineHighlightOnlyWhenFocus: true,
                   occurrencesHighlight: false,
                   minimap: { enabled: false },
-                  renderLineHighlight: "none",
+                  renderLineHighlight: 'none',
                   selectionHighlight: false,
-                  scrollbar: { vertical: "hidden" },
+                  scrollbar: { vertical: 'hidden' },
                 }}
-                onChange={(value = "") => {
+                onChange={(value = '') => {
                   state.inputCode = value;
                 }}
                 theme={monacoTheme}
@@ -811,12 +784,12 @@ export default function Fiddle() {
           </div>
           <div
             css={{
-              cursor: "col-resize",
-              position: "relative",
+              cursor: 'col-resize',
+              position: 'relative',
               zIndex: 100,
-              "&::before": {
+              '&::before': {
                 content: '""',
-                position: "absolute",
+                position: 'absolute',
                 top: 0,
                 bottom: 0,
                 left: -5,
@@ -831,20 +804,20 @@ export default function Fiddle() {
           <div
             css={{
               width: `${100 - state.jsxCodeTabWidth}%`,
-              height: "100%",
-              display: "flex",
-              flexDirection: "column",
+              height: '100%',
+              display: 'flex',
+              flexDirection: 'column',
               [smallBreakpoint]: {
-                width: "100%",
+                width: '100%',
                 height: responsiveColHeight,
-                overflow: "hidden",
+                overflow: 'hidden',
               },
             }}
           >
             <div
               css={{
-                display: "flex",
-                alignItems: "center",
+                display: 'flex',
+                alignItems: 'center',
                 padding: 5,
                 flexShrink: 0,
                 height: 40,
@@ -859,7 +832,7 @@ export default function Fiddle() {
                 variant="body2"
                 css={{
                   flexGrow: 1,
-                  textAlign: "left",
+                  textAlign: 'left',
                   opacity: 0.7,
                   paddingLeft: 10,
                 }}
@@ -870,9 +843,9 @@ export default function Fiddle() {
                 variant="scrollable"
                 css={{
                   minHeight: 0,
-                  marginLeft: "auto",
+                  marginLeft: 'auto',
                   // borderBottom: `1px solid ${colors.contrast}`,
-                  "& button": {
+                  '& button': {
                     minHeight: 0,
                     minWidth: 100,
                   },
@@ -901,14 +874,8 @@ export default function Fiddle() {
                   value="react"
                 />
                 <Tab label={<TabLabelWithIcon label="Qwik" />} value="qwik" />
-                <Tab
-                  label={<TabLabelWithIcon label="Angular" />}
-                  value="angular"
-                />
-                <Tab
-                  label={<TabLabelWithIcon label="React Native" />}
-                  value="reactNative"
-                />
+                <Tab label={<TabLabelWithIcon label="Angular" />} value="angular" />
+                <Tab label={<TabLabelWithIcon label="React Native" />} value="reactNative" />
                 <Tab label={<TabLabelWithIcon label="Swift" />} value="swift" />
                 <Tab
                   label={
@@ -919,20 +886,11 @@ export default function Fiddle() {
                   }
                   value="solid"
                 />
-                <Tab
-                  label={<TabLabelWithIcon label="Stencil" />}
-                  value="stencil"
-                />
+                <Tab label={<TabLabelWithIcon label="Stencil" />} value="stencil" />
                 <Tab label={<TabLabelWithIcon label="Marko" />} value="marko" />
-                <Tab
-                  label={<TabLabelWithIcon label="Preact" />}
-                  value="preact"
-                />
+                <Tab label={<TabLabelWithIcon label="Preact" />} value="preact" />
                 <Tab label={<TabLabelWithIcon label="Lit" />} value="lit" />
-                <Tab
-                  label={<TabLabelWithIcon label="Webcomponents" />}
-                  value="webcomponents"
-                />
+                <Tab label={<TabLabelWithIcon label="Webcomponents" />} value="webcomponents" />
                 <Tab label={<TabLabelWithIcon label="HTML" />} value="html" />
                 <Tab
                   label={
@@ -943,14 +901,8 @@ export default function Fiddle() {
                   }
                   value="liquid"
                 />
-                <Tab
-                  label={<TabLabelWithIcon label="Template" />}
-                  value="template"
-                />
-                <Tab
-                  label={<TabLabelWithIcon label="Mitosis" />}
-                  value="mitosis"
-                />
+                <Tab label={<TabLabelWithIcon label="Template" />} value="template" />
+                <Tab label={<TabLabelWithIcon label="Mitosis" />} value="mitosis" />
                 <Tab
                   label={
                     <TabLabelWithIcon
@@ -971,11 +923,11 @@ export default function Fiddle() {
                 />
               </Tabs>
             </div>
-            <Show when={state.outputTab === "swift"}>
+            <Show when={state.outputTab === 'swift'}>
               <Alert
                 css={{
-                  border: "1px solid rgb(128 182 224)",
-                  margin: "10px 10px 0 10px",
+                  border: '1px solid rgb(128 182 224)',
+                  margin: '10px 10px 0 10px',
                 }}
                 severity="info"
               >
@@ -985,22 +937,19 @@ export default function Fiddle() {
             <Show when={hasBothTsAndJsSupport(state.outputTab)}>
               <div
                 css={{
-                  display: "flex",
-                  alignItems: "center",
-                  backgroundColor: "rgba(0, 0, 0, 0.03)",
+                  display: 'flex',
+                  alignItems: 'center',
+                  backgroundColor: 'rgba(0, 0, 0, 0.03)',
                 }}
               >
-                <Typography
-                  variant="body2"
-                  css={{ marginRight: "auto", marginLeft: 10 }}
-                >
+                <Typography variant="body2" css={{ marginRight: 'auto', marginLeft: 10 }}>
                   Typescript:
                 </Typography>
                 <RadioGroup
                   css={{
-                    flexDirection: "row",
+                    flexDirection: 'row',
                     marginRight: 10,
-                    "& .MuiFormControlLabel-label": {
+                    '& .MuiFormControlLabel-label': {
                       fontSize: 12,
                     },
                   }}
@@ -1028,25 +977,22 @@ export default function Fiddle() {
               </div>
               <Divider css={{ opacity: 0.6 }} />
             </Show>
-            <Show when={state.outputTab === "vue"}>
+            <Show when={state.outputTab === 'vue'}>
               <div
                 css={{
-                  display: "flex",
-                  alignItems: "center",
-                  backgroundColor: "rgba(0, 0, 0, 0.03)",
+                  display: 'flex',
+                  alignItems: 'center',
+                  backgroundColor: 'rgba(0, 0, 0, 0.03)',
                 }}
               >
-                <Typography
-                  variant="body2"
-                  css={{ marginRight: "auto", marginLeft: 10 }}
-                >
+                <Typography variant="body2" css={{ marginRight: 'auto', marginLeft: 10 }}>
                   Version:
                 </Typography>
                 <RadioGroup
                   css={{
-                    flexDirection: "row",
+                    flexDirection: 'row',
                     marginRight: 10,
-                    "& .MuiFormControlLabel-label": {
+                    '& .MuiFormControlLabel-label': {
                       fontSize: 12,
                     },
                   }}
@@ -1075,22 +1021,19 @@ export default function Fiddle() {
               <Divider css={{ opacity: 0.6 }} />
               <div
                 css={{
-                  display: "flex",
-                  alignItems: "center",
-                  backgroundColor: "rgba(0, 0, 0, 0.03)",
+                  display: 'flex',
+                  alignItems: 'center',
+                  backgroundColor: 'rgba(0, 0, 0, 0.03)',
                 }}
               >
-                <Typography
-                  variant="body2"
-                  css={{ marginRight: "auto", marginLeft: 10 }}
-                >
+                <Typography variant="body2" css={{ marginRight: 'auto', marginLeft: 10 }}>
                   API:
                 </Typography>
                 <RadioGroup
                   css={{
-                    flexDirection: "row",
+                    flexDirection: 'row',
                     marginRight: 10,
-                    "& .MuiFormControlLabel-label": {
+                    '& .MuiFormControlLabel-label': {
                       fontSize: 12,
                     },
                   }}
@@ -1118,25 +1061,22 @@ export default function Fiddle() {
               </div>
               <Divider css={{ opacity: 0.6 }} />
             </Show>
-            <Show when={state.outputTab === "react"}>
+            <Show when={state.outputTab === 'react'}>
               <div
                 css={{
-                  display: "flex",
-                  alignItems: "center",
-                  backgroundColor: "rgba(0, 0, 0, 0.03)",
+                  display: 'flex',
+                  alignItems: 'center',
+                  backgroundColor: 'rgba(0, 0, 0, 0.03)',
                 }}
               >
-                <Typography
-                  variant="body2"
-                  css={{ marginRight: "auto", marginLeft: 10 }}
-                >
+                <Typography variant="body2" css={{ marginRight: 'auto', marginLeft: 10 }}>
                   Style library:
                 </Typography>
                 <RadioGroup
                   css={{
-                    flexDirection: "row",
+                    flexDirection: 'row',
                     marginRight: 10,
-                    "& .MuiFormControlLabel-label": {
+                    '& .MuiFormControlLabel-label': {
                       fontSize: 12,
                     },
                   }}
@@ -1170,29 +1110,22 @@ export default function Fiddle() {
               </div>
               <Divider css={{ opacity: 0.6 }} />
             </Show>
-            <Show
-              when={
-                state.outputTab === "react" || state.outputTab === "reactNative"
-              }
-            >
+            <Show when={state.outputTab === 'react' || state.outputTab === 'reactNative'}>
               <div
                 css={{
-                  display: "flex",
-                  alignItems: "center",
-                  backgroundColor: "rgba(0, 0, 0, 0.03)",
+                  display: 'flex',
+                  alignItems: 'center',
+                  backgroundColor: 'rgba(0, 0, 0, 0.03)',
                 }}
               >
-                <Typography
-                  variant="body2"
-                  css={{ marginRight: "auto", marginLeft: 10 }}
-                >
+                <Typography variant="body2" css={{ marginRight: 'auto', marginLeft: 10 }}>
                   State library:
                 </Typography>
                 <RadioGroup
                   css={{
-                    flexDirection: "row",
+                    flexDirection: 'row',
                     marginRight: 10,
-                    "& .MuiFormControlLabel-label": {
+                    '& .MuiFormControlLabel-label': {
                       fontSize: 12,
                     },
                   }}
@@ -1232,25 +1165,22 @@ export default function Fiddle() {
               </div>
               <Divider />
             </Show>
-            <Show when={state.outputTab === "svelte"}>
+            <Show when={state.outputTab === 'svelte'}>
               <div
                 css={{
-                  display: "flex",
-                  alignItems: "center",
-                  backgroundColor: "rgba(0, 0, 0, 0.03)",
+                  display: 'flex',
+                  alignItems: 'center',
+                  backgroundColor: 'rgba(0, 0, 0, 0.03)',
                 }}
               >
-                <Typography
-                  variant="body2"
-                  css={{ marginRight: "auto", marginLeft: 10 }}
-                >
+                <Typography variant="body2" css={{ marginRight: 'auto', marginLeft: 10 }}>
                   State handling:
                 </Typography>
                 <RadioGroup
                   css={{
-                    flexDirection: "row",
+                    flexDirection: 'row',
                     marginRight: 10,
-                    "& .MuiFormControlLabel-label": {
+                    '& .MuiFormControlLabel-label': {
                       fontSize: 12,
                     },
                   }}
@@ -1283,7 +1213,7 @@ export default function Fiddle() {
               <Divider />
             </Show>
             <div css={{ flexGrow: 1 }}>
-              <div css={{ paddingTop: 15, height: "100%" }}>
+              <div css={{ paddingTop: 15, height: '100%' }}>
                 <MonacoEditor
                   height="100%"
                   options={{
@@ -1292,33 +1222,32 @@ export default function Fiddle() {
                     foldingHighlight: false,
                     renderLineHighlightOnlyWhenFocus: true,
                     occurrencesHighlight: false,
-                    readOnly: getQueryParam("readOnly") !== "false",
+                    readOnly: getQueryParam('readOnly') !== 'false',
                     minimap: { enabled: false },
-                    renderLineHighlight: "none",
+                    renderLineHighlight: 'none',
                     selectionHighlight: false,
-                    scrollbar: { vertical: "hidden" },
+                    scrollbar: { vertical: 'hidden' },
                   }}
                   theme={monacoTheme}
                   language={
-                    state.outputTab === "swift"
-                      ? "swift"
-                      : state.outputTab === "json" ||
-                        state.outputTab === "builder"
-                      ? "json"
-                      : state.outputTab === "react" ||
-                        state.outputTab === "preact" ||
-                        state.outputTab === "qwik" ||
-                        state.outputTab === "lit" ||
-                        state.outputTab === "reactNative" ||
-                        state.outputTab === "mitosis" ||
-                        state.outputTab === "template" ||
-                        state.outputTab === "angular" ||
-                        state.outputTab === "webcomponents" ||
-                        state.outputTab === "qwik" ||
-                        state.outputTab === "stencil" ||
-                        state.outputTab === "solid"
-                      ? "typescript"
-                      : "html"
+                    state.outputTab === 'swift'
+                      ? 'swift'
+                      : state.outputTab === 'json' || state.outputTab === 'builder'
+                      ? 'json'
+                      : state.outputTab === 'react' ||
+                        state.outputTab === 'preact' ||
+                        state.outputTab === 'qwik' ||
+                        state.outputTab === 'lit' ||
+                        state.outputTab === 'reactNative' ||
+                        state.outputTab === 'mitosis' ||
+                        state.outputTab === 'template' ||
+                        state.outputTab === 'angular' ||
+                        state.outputTab === 'webcomponents' ||
+                        state.outputTab === 'qwik' ||
+                        state.outputTab === 'stencil' ||
+                        state.outputTab === 'solid'
+                      ? 'typescript'
+                      : 'html'
                   }
                   value={state.output}
                 />

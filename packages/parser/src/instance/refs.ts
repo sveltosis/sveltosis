@@ -1,5 +1,5 @@
-import { generate } from "astring";
-import { possiblyAppendPropsOrState } from "../helpers/bindings";
+import { generate } from 'astring';
+import { possiblyAppendPropsOrState } from '../helpers/bindings';
 
 export function parseRefs(json: SveltosisComponent, node: any) {
   const declaration = node.declarations[0];
@@ -8,6 +8,6 @@ export function parseRefs(json: SveltosisComponent, node: any) {
 
   json.state[declaration.id.name] = {
     code,
-    type: "property",
+    type: 'property',
   };
 }

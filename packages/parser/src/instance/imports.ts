@@ -1,14 +1,13 @@
 export function parseImports(json: SveltosisComponent, node: any) {
   const source = node.source?.value;
-  if (source === "svelte") return; // Do not import anything from svelte
+  if (source === 'svelte') return; // Do not import anything from svelte
   // ^ Maybe this should even be stricter and only allow relative imports and alias ones
   // as you can't import any other svelte specific libraries either...Or can we?
 
   const imports = Object.values(node.specifiers)
     .map((i: any) => {
       return {
-        [i.local.name]:
-          i.type === "ImportDefaultSpecifier" ? "default" : i.local.name,
+        [i.local.name]: i.type === 'ImportDefaultSpecifier' ? 'default' : i.local.name,
       };
     })
     .reduce((a, v) => {

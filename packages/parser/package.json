@@ -31,7 +31,7 @@
     "test": "vitest"
   },
   "devDependencies": {
-    "@builder.io/mitosis": "^0.0.56-111",
+    "@builder.io/mitosis": "^0.0.62",
     "@sachinraja/eslint-config": "0.1.1",
     "@types/css-tree": "^1.0.7",
     "@types/lodash": "^4.14.185",
@@ -71,7 +71,6 @@
     "svelte": "^3.50.0"
   },
   "dependencies": {
-    "@builder.io/mitosis": "^0.0.62",
     "css-tree": "^2.2.1"
   }
 }

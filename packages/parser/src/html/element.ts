@@ -9,7 +9,7 @@ export function parseElement(json: SveltosisComponent, node: any) {
   mitosisNode.name = node.name;
 
   if (node.attributes?.length) {
-    node.attributes.forEach((attribute: any) => {
+    for (const attribute of node.attributes) {
       switch (attribute.type) {
         case 'Attribute': {
           switch (attribute.value[0]?.type) {
@@ -80,7 +80,7 @@ export function parseElement(json: SveltosisComponent, node: any) {
         }
         // No default
       }
-    });
+    };
   }
 
   const filteredChildren = filterChildren(node.children);

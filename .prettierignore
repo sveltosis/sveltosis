@@ -7,4 +7,5 @@ packages/fiddle/build/**
 **/playwright-report/
 **/playwright/.cache/
 **/tsconfig.json
+**/README.md
 **/CHANGELOG.md

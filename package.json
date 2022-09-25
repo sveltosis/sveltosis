@@ -10,10 +10,16 @@
     "build:parser": "yarn workspace @sveltosis/parser run build",
     "dev": "run-p -c dev:*",
     "dev:fiddle": "yarn workspace @sveltosis/fiddle run dev",
-    "dev:parser": "yarn workspace @sveltosis/parser run dev"
+    "dev:parser": "yarn workspace @sveltosis/parser run dev",
+    "format": "yarn format:prettier",
+    "format:prettier": "yarn lint:prettier --write",
+    "lint": "yarn lint:prettier",
+    "lint:prettier": "yarn run prettier --check",
+    "prettier": "prettier --loglevel warn '{packages,docs}/**/*.{js,jsx,ts,tsx,json,md,html}'"
   },
   "devDependencies": {
     "lerna": "^5.5.2",
-    "npm-run-all": "^4.1.5"
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.7.1"
   }
 }

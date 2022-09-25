@@ -1,13 +1,13 @@
-import { configure } from "mobx";
-import dynamic from "next/dynamic";
-import Head from "next/head";
-import Script from "next/script";
-import { theme } from "../src/constants/theme";
+import { configure } from 'mobx';
+import dynamic from 'next/dynamic';
+import Head from 'next/head';
+import Script from 'next/script';
+import { theme } from '../src/constants/theme';
 
-const App = dynamic(() => import("../src/components/App"), { ssr: false });
+const App = dynamic(() => import('../src/components/App'), { ssr: false });
 
 configure({
-  enforceActions: "never",
+  enforceActions: 'never',
 });
 
 export default () => {
@@ -15,10 +15,7 @@ export default () => {
     <>
       <Head>
         <meta charSet="utf-8" />
-        <link
-          rel="icon"
-          href={theme.darkMode ? "/favicon-dark.ico" : "/favicon.ico"}
-        />
+        <link rel="icon" href={theme.darkMode ? '/favicon-dark.ico' : '/favicon.ico'} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#000000" />
         <meta

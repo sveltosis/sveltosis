@@ -13,7 +13,7 @@ export function parseProps(json: SveltosisComponent, node: any) {
     json.defaultProps = Object.fromEntries(
       Object.keys(json.props)
         .filter((key) => json.props[key].default)
-        .map((key) => [key, json.props[key].default])
+        .map((key) => [key, json.props[key].default]),
     );
   }
 }

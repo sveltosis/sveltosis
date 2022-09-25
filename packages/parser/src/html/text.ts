@@ -1,9 +1,9 @@
-import { createMitosisNode } from "../helpers/mitosis-node";
+import { createMitosisNode } from '../helpers/mitosis-node';
 
 export function parseText(node: any) {
   return {
     ...createMitosisNode(),
-    name: "div",
+    name: 'div',
     properties: {
       _text: node.data,
     },

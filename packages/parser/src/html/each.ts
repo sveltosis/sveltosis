@@ -1,10 +1,10 @@
-import { createMitosisNode } from "../helpers/mitosis-node";
-import { parseChildren } from "../helpers/children";
+import { createMitosisNode } from '../helpers/mitosis-node';
+import { parseChildren } from '../helpers/children';
 
 export function parseEach(json: SveltosisComponent, node: any) {
   return {
     ...createMitosisNode(),
-    name: "For",
+    name: 'For',
     scope: { forName: node.context.name },
     bindings: {
       each: {

@@ -1,5 +1,5 @@
-import { generate } from "astring";
-import { possiblyAppendPropsOrState } from "../helpers/bindings";
+import { generate } from 'astring';
+import { possiblyAppendPropsOrState } from '../helpers/bindings';
 
 function getParsedValue(json: SveltosisComponent, el: any) {
   if (el.type === "Identifier") {
@@ -34,6 +34,6 @@ export function parseRefs(json: SveltosisComponent, node: any) {
 
   json.state[declaration.id.name] = {
     code,
-    type: "property",
+    type: 'property',
   };
 }

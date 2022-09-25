@@ -1,0 +1,10 @@
+node_modules
+dist
+examples
+.*
+packages/fiddle/build/**
+.yarn
+**/playwright-report/
+**/playwright/.cache/
+**/tsconfig.json
+**/CHANGELOG.md

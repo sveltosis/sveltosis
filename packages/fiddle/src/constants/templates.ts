@@ -1,4 +1,4 @@
-import dedent from "dedent";
+import dedent from 'dedent';
 
 export const defaultCode = dedent`
   <script>
@@ -41,7 +41,7 @@ export const templates: { [key: string]: string } = {
 
   `,
 
-  "if / else": dedent`
+  'if / else': dedent`
     <script>
       let show = true;
 
@@ -82,7 +82,7 @@ export const templates: { [key: string]: string } = {
     <Button type="button" disabled={disabled}><slot/></Button>
   </div>
   `,
-  "@html": dedent`
+  '@html': dedent`
   <script>
     let html = '<b>bold</b>'
   </script>
@@ -91,7 +91,7 @@ export const templates: { [key: string]: string } = {
     {@html html}
   </div>
   `,
-  "context (not working yet)": dedent`
+  'context (not working yet)': dedent`
   <script>
     import { getContext, setContext } from 'svelte';
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/sveltosis/sveltosis/compare/@sveltosis/parser@0.2.0...@sveltosis/parser@0.2.1) (2022-09-26)
+
+
+### Bug Fixes
+
+* **parser:** improve class directive ([7c608b6](https://github.com/sveltosis/sveltosis/commit/7c608b61a0b4f0f679c54f591ddf0e7079515572))
+
+
+
+
+
 # [0.2.0](https://github.com/sveltosis/sveltosis/compare/@sveltosis/parser@0.1.0...@sveltosis/parser@0.2.0) (2022-09-26)
 
 

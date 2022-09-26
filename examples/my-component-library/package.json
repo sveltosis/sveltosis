@@ -1,5 +1,6 @@
 {
-	"name": "example",
+	"name": "@sveltosis/example-component-library",
+	"private": true,
 	"version": "0.0.1",
 	"scripts": {
 		"dev": "vite dev",
@@ -36,7 +37,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@builder.io/mitosis": "^0.0.59",
-		"@builder.io/mitosis-cli": "^0.0.20"
+		"@builder.io/mitosis": "^0.0.64",
+		"@builder.io/mitosis-cli": "^0.0.25"
 	}
 }

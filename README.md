@@ -40,8 +40,7 @@ The goal is to support as much of Svelte's syntax as possible, but features list
 
 | Feature | Status | Preview |
 | - | - | - |
-| 
-[typescript]() | todo | - 
+| typescript | todo | - 
 | [props](https://svelte.dev/docs#component-format-script-1-export-creates-a-component-prop) | `ready` | - 
 | [assignments](https://svelte.dev/docs#component-format-script-2-assignments-are-reactive) | `ready` | -
 | [reactive statements](https://svelte.dev/docs#component-format-script-3-$-marks-a-statement-as-reactive) | `ready`| -
@@ -62,7 +61,7 @@ The goal is to support as much of Svelte's syntax as possible, but features list
  [bind:property](https://svelte.dev/docs#template-syntax-element-directives-bind-property) | `ready` | -
  [bind:group](https://svelte.dev/docs#template-syntax-element-directives-bind-group) | todo | -
  [bind:this](https://svelte.dev/docs#template-syntax-element-directives-bind-this) | todo | -
- [class:name](https://svelte.dev/docs#template-syntax-element-directives-class-name) | [waiting to be merged](https://github.com/sveltosis/sveltosis/pull/5) | -
+ [class:name](https://svelte.dev/docs#template-syntax-element-directives-class-name) | `ready` | -
  [style:property](https://svelte.dev/docs#template-syntax-element-directives-style-property) | `ready` | -
  | [use:action](https://svelte.dev/docs#template-syntax-element-directives-use-action) | todo | -
  | [transition:fn](https://svelte.dev/docs#template-syntax-element-directives-transition-fn) | todo | -

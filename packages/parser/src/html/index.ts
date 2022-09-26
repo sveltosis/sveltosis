@@ -7,14 +7,14 @@ import { parseMustacheTag, parseRawMustacheTag } from './mustache-tag';
 import { parseSlot } from './slot';
 import { parseText } from './text';
 
-import { MitosisNode } from '@builder.io/mitosis';
+import type { MitosisNode } from '@builder.io/mitosis';
+import type { TemplateNode } from 'svelte/types/compiler/interfaces';
 
-export function parseHtml(ast: any, json: SveltosisComponent) {
-  // todo: should filter children and check if just 1 has length
+export function parseHtml(template: TemplateNode, json: SveltosisComponent) {
   const html =
-    ast.html.children.length === 2 && ast.html.children[0].raw.trim().length === 0
-      ? ast.html.children[1]
-      : ast.html;
+    template.children?.length === 2 && template.children[0].raw.trim().length === 0
+      ? template.children[1]
+      : template;
 
   walk(html, {
     enter(node: any, parent: any) {
@@ -32,7 +32,10 @@ export function parseHtml(ast: any, json: SveltosisComponent) {
   });
 }
 
-export function parseHtmlNode(json: SveltosisComponent, node: any): MitosisNode | undefined {
+export function parseHtmlNode(
+  json: SveltosisComponent,
+  node: TemplateNode,
+): MitosisNode | undefined {
   const mitosisNode: MitosisNode = {
     '@type': '@builder.io/mitosis/node',
     name: '',

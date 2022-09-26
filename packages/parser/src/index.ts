@@ -1,12 +1,13 @@
 import { parse } from 'svelte/compiler';
-
+import { omit } from 'lodash';
 import { parseInstance } from './instance';
 import { parseCss } from './css';
 import { parseHtml } from './html';
-import { MitosisComponent } from '@builder.io/mitosis';
-import { omit } from 'lodash';
 
-function mapAstToMitosisJson(ast: any, name: string): MitosisComponent {
+import type { Ast } from 'svelte/types/compiler/interfaces';
+import type { MitosisComponent } from '@builder.io/mitosis';
+
+function mapAstToMitosisJson(ast: Ast, name: string): MitosisComponent {
   const json: SveltosisComponent = {
     '@type': '@builder.io/mitosis/component',
     inputs: [],
@@ -22,9 +23,15 @@ function mapAstToMitosisJson(ast: any, name: string): MitosisComponent {
     name,
   };
 
-  parseInstance(ast, json);
-  parseHtml(ast, json);
-  parseCss(ast, json);
+  if (ast.instance) {
+    parseInstance(ast.instance, json);
+  }
+  if (ast.html) {
+    parseHtml(ast.html, json);
+  }
+  if (ast.css) {
+    parseCss(ast.css, json);
+  }
 
   return omit(json, ['props']);
 }

@@ -8,8 +8,10 @@ import { parseReferences } from './references';
 import { parseReactive } from './reactive';
 import { parseAfterUpdate, parseOnDestroy, parseOnMount } from './hooks';
 
-export function parseInstance(ast: any, json: SveltosisComponent) {
-  walk(ast.instance, {
+import type { Script } from 'svelte/types/compiler/interfaces';
+
+export function parseInstance(instance: Script, json: SveltosisComponent) {
+  walk(instance, {
     enter(node: any, parent: any) {
       if (node.type === 'ImportDeclaration') {
         parseImports(json, node);

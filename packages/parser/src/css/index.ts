@@ -3,6 +3,8 @@ import * as csstree from 'css-tree';
 import { camelCase } from 'lodash';
 import { MitosisNode } from '@builder.io/mitosis';
 
+import type { Style } from 'svelte/types/compiler/interfaces';
+
 function bindTypeSelectorToNode(node: MitosisNode, block: string) {
   node.bindings.css = {
     code: block,
@@ -56,8 +58,8 @@ function objectToString(object: any) {
   return `{\n ${string_} \n}`;
 }
 
-export const parseCss = (ast: any, json: SveltosisComponent) => {
-  walk(ast.css, {
+export function parseCss(style: Style, json: SveltosisComponent) {
+  walk(style, {
     enter(node: any, parent: any) {
       if (node.type === 'Rule') {
         const selector = csstree.generate(node.prelude);
@@ -87,4 +89,4 @@ export const parseCss = (ast: any, json: SveltosisComponent) => {
       }
     },
   });
-};
+}

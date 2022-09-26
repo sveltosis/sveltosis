@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/sveltosis/sveltosis/compare/@sveltosis/parser@0.1.0...@sveltosis/parser@0.2.0) (2022-09-26)
+
+
+### Bug Fixes
+
+* **parser:** [#1](https://github.com/sveltosis/sveltosis/issues/1) update regex because lookbehind doesn't work in Safari ([1eca811](https://github.com/sveltosis/sveltosis/commit/1eca811ff69a381deaa3844006a2aced19d07bf7))
+* **parser:** add logic to convert more complex refs (containing other refs) ([05c876c](https://github.com/sveltosis/sveltosis/commit/05c876c2467b210fdc2a7ad48b25b030d8f79e5e))
+* **parser:** check for attribute name ([05d65b2](https://github.com/sveltosis/sveltosis/commit/05d65b2612e04cbeb12b521ba08fe99721ad3203))
+* **parser:** improve refs logic ([fcacd8a](https://github.com/sveltosis/sveltosis/commit/fcacd8a44736e02f5998879341822042bb81e01a))
+
+
+### Features
+
+* **parser:** class directive implementation ([69b013e](https://github.com/sveltosis/sveltosis/commit/69b013e9d62b6386f7f5a6e4e604194005c3c477))
+* **parser:** lifecycle hooks (onMount, onDestroy, afterUpdate) ([45cf94f](https://github.com/sveltosis/sveltosis/commit/45cf94f899675a5f0bfb31819b706b86ada46b1d))
+
+
+
+
+
 # 0.1.0 (2022-09-25)
 
 

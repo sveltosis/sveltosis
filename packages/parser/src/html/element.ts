@@ -93,7 +93,7 @@ export function parseElement(json: SveltosisComponent, node: any) {
           // conditional classes (e.g. class:disabled or class:disabled={disabled})
           const binding = possiblyAppendPropertiesOrState(
             json,
-            `${attribute.name} ? '${generate(attribute.expression)}' : ''`,
+            `${generate(attribute.expression)} ? '${attribute.name}'  : ''`,
           );
 
           let code = '';

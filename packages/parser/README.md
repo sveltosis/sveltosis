@@ -34,7 +34,7 @@
 <br>
 
 Features listed in the following table are the ones listed in the [Svelte docs](https://svelte.dev/docs).
-The goal is to support as much of Svelte's syntax as possible, but features listed on the table below might or might not be feasible to implement and are pending investigation.
+The goal is to support as much of Svelte's syntax as possible, but features listed in the table below might or might not be feasible to implement and are pending investigation.
 
 <br>
 

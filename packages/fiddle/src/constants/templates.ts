@@ -60,7 +60,7 @@ export const templates: { [key: string]: string } = {
       </button>
     {/if}
   `,
-  loop: dedent`
+  each: dedent`
   <script>
     let numbers = ['one', 'two', 'three'];
   </script>
@@ -70,6 +70,25 @@ export const templates: { [key: string]: string } = {
       <li>{num}</li>
     {/each}
   </ul>
+  `,
+  'lifecycle hooks': dedent`
+  <script>
+    import { onMount, onDestroy, onAfterUpdate } from 'svelte';
+
+    onMount(() => {
+      console.log('onMount');
+    });
+    
+    onDestroy(() => {
+      console.log('onDestroy');
+    });
+
+    onAfterUpdate(() => {
+      console.log('onAfterUpdate');
+    });
+  </script>
+
+  <div></div>
   `,
   imports: dedent`
   <script>

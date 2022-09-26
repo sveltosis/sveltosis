@@ -73,10 +73,10 @@ The goal is to support as much of Svelte's syntax as possible, but features list
  | [\<svelte:body>](https://svelte.dev/docs#template-syntax-svelte-body) | todo | -
  | [\<svelte:head>](https://svelte.dev/docs#template-syntax-svelte-head) | todo | -
  | [\<svelte:fragment>](https://svelte.dev/docs#template-syntax-svelte-fragment) | todo | -
-| [onMount](https://svelte.dev/docs#run-time-svelte-onmount) | todo | -
+| [onMount](https://svelte.dev/docs#run-time-svelte-onmount) | `ready` | -
 | [beforeUpdate](https://svelte.dev/docs#run-time-svelte-beforeupdate) | todo | -
-| [afterUpdate](https://svelte.dev/docs#run-time-svelte-afterupdate) | todo | -
-| [onDestroy](https://svelte.dev/docs#run-time-svelte-ondestroy) | todo | -
+| [afterUpdate](https://svelte.dev/docs#run-time-svelte-afterupdate) | `ready` | -
+| [onDestroy](https://svelte.dev/docs#run-time-svelte-ondestroy) | `ready` | -
 | [tick](https://svelte.dev/docs#run-time-svelte-tick) | todo | -
 | [setContext](https://svelte.dev/docs#run-time-svelte-setcontext) | [waiting for PR @ Mitosis](https://github.com/BuilderIO/mitosis/pull/760) | -
 | [getContext](https://svelte.dev/docs#run-time-svelte-getcontext) | `ready` | -

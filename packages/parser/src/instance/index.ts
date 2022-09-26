@@ -6,6 +6,7 @@ import { parseFunctions } from './functions';
 import { parseGetContext, parseSetContext } from './context';
 import { parseReferences } from './references';
 import { parseReactive } from './reactive';
+import { parseAfterUpdate, parseOnDestroy, parseOnMount } from './hooks';
 
 export function parseInstance(ast: any, json: SveltosisComponent) {
   walk(ast.instance, {
@@ -15,7 +16,26 @@ export function parseInstance(ast: any, json: SveltosisComponent) {
       } else if (node.type === 'ExportNamedDeclaration') {
         parseProperties(json, node);
       } else if (node.type === 'ExpressionStatement' && node.expression.type === 'CallExpression') {
-        parseSetContext(json, node, parent, this);
+        const calleeName: string = node.expression.callee.name;
+        switch (calleeName) {
+          case 'setContext': {
+            parseSetContext(json, node, parent, this);
+            break;
+          }
+          case 'onMount': {
+            parseOnMount(json, node);
+            break;
+          }
+          case 'onDestroy': {
+            parseOnDestroy(json, node);
+            break;
+          }
+          case 'onAfterUpdate': {
+            parseAfterUpdate(json, node);
+            break;
+          }
+          // No default
+        }
       } else if (node.type === 'FunctionDeclaration') {
         parseFunctions(json, node);
       } else if (

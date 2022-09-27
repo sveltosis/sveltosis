@@ -1,7 +1,3 @@
-import { MitosisComponent } from '@builder.io/mitosis';
-
-type Component = MitosisComponent & { props: any };
-
 export function possiblyAppendPropertiesOrState(json: SveltosisComponent, input: string) {
   let output = input;
 

@@ -1,4 +1,6 @@
 import { walk } from 'svelte/compiler';
+import { MitosisNode } from '@builder.io/mitosis';
+
 import { parseEach } from './each';
 import { parseElement } from './element';
 import { parseFragment } from './fragment';
@@ -7,23 +9,26 @@ import { parseMustacheTag, parseRawMustacheTag } from './mustache-tag';
 import { parseSlot } from './slot';
 import { parseText } from './text';
 
-import type { MitosisNode } from '@builder.io/mitosis';
-import type { TemplateNode } from 'svelte/types/compiler/interfaces';
+import type { Ast, TemplateNode } from 'svelte/types/compiler/interfaces';
 
-export function parseHtml(template: TemplateNode, json: SveltosisComponent) {
+export function parseHtml(ast: Ast, json: SveltosisComponent) {
+  // todo: should filter children and check if just 1 has length
   const html =
-    template.children?.length === 2 && template.children[0].raw.trim().length === 0
-      ? template.children[1]
-      : template;
+    ast.html.children?.length === 2 && ast.html.children[0].raw.trim().length === 0
+      ? ast.html.children[1]
+      : ast.html;
 
   walk(html, {
-    enter(node: any, parent: any) {
-      if (parent?.children || node.data === '\n\n') {
+    enter(node, parent) {
+      const templateNode = node as TemplateNode;
+      const parentTemplateNode = parent as TemplateNode;
+
+      if (parentTemplateNode?.children || templateNode.data === '\n\n') {
         this.skip();
         return;
       }
 
-      const mitosisNode = parseHtmlNode(json, node);
+      const mitosisNode = parseHtmlNode(json, templateNode);
 
       if (mitosisNode) {
         json.children.push(mitosisNode);

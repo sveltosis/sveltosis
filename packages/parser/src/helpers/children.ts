@@ -1,14 +1,25 @@
 import { parseHtmlNode } from '../html';
+import type { TemplateNode } from 'svelte/types/compiler/interfaces';
+import { MitosisNode } from '@builder.io/mitosis';
 
-export function filterChildren(children: any) {
+export function filterChildren(children: TemplateNode[]) {
   return (
-    children?.filter(
-      (n: any) => n.type !== 'Comment' && (n.type !== 'Text' || n.data?.trim().length),
-    ) ?? []
+    children?.filter((n) => n.type !== 'Comment' && (n.type !== 'Text' || n.data?.trim().length)) ??
+    []
   );
 }
 
-export function parseChildren(json: SveltosisComponent, node: any) {
-  const children = filterChildren(node.children).map((n: any) => parseHtmlNode(json, n)) ?? [];
+export function parseChildren(json: SveltosisComponent, node: TemplateNode) {
+  const children: MitosisNode[] = [];
+
+  if (node.children) {
+    for (const child of filterChildren(node.children)) {
+      const mitosisNode = parseHtmlNode(json, child);
+      if (mitosisNode) {
+        children.push(mitosisNode);
+      }
+    }
+  }
+
   return children;
 }

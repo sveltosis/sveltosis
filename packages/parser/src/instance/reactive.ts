@@ -1,11 +1,20 @@
 import { generate } from 'astring';
-import { possiblyAppendPropertiesOrState as possiblyAppendPropertiesOrState } from '../helpers/bindings';
+import { possiblyAppendPropertiesOrState } from '../helpers/bindings';
+import type {
+  LabeledStatement,
+  ExpressionStatement,
+  AssignmentExpression,
+  Identifier,
+} from 'estree';
 
-export function parseReactive(json: SveltosisComponent, node: any) {
-  if (!node.body.expression) {
+export function parseReactive(json: SveltosisComponent, node: LabeledStatement) {
+  const body = node.body as ExpressionStatement;
+  const expression = body?.expression as AssignmentExpression | undefined;
+
+  if (!expression) {
     const wrap = node.body.type !== 'BlockStatement';
     const name = `reactive${
-      Object.values(json.state).filter((index: any) => index.type === 'getter').length
+      Object.values(json.state).filter((index) => index?.type === 'getter').length
     }`;
     json.state[name] = {
       code: `get ${name}() ${wrap ? '{' : ''}${possiblyAppendPropertiesOrState(
@@ -14,12 +23,12 @@ export function parseReactive(json: SveltosisComponent, node: any) {
       )}${wrap ? '}' : ''}`,
       type: 'getter',
     };
-  } else if (node.body.expression.left) {
-    const { name } = node.body.expression.left;
+  } else if (expression.left) {
+    const { name } = expression.left as Identifier;
     json.state[name] = {
       code: `get ${name}() {\n return ${possiblyAppendPropertiesOrState(
         json,
-        generate(node.body.expression.right),
+        generate(expression.right),
       )}}`,
       type: 'getter',
     };

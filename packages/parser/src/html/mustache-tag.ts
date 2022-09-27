@@ -1,8 +1,9 @@
 import { generate } from 'astring';
+import type { TemplateNode } from 'svelte/types/compiler/interfaces';
 import { possiblyAppendPropertiesOrState as possiblyAppendPropertiesOrState } from '../helpers/bindings';
 import { createMitosisNode } from '../helpers/mitosis-node';
 
-export function parseMustacheTag(json: SveltosisComponent, node: any) {
+export function parseMustacheTag(json: SveltosisComponent, node: TemplateNode) {
   const mitosisNode = createMitosisNode();
   mitosisNode.name = 'div';
   mitosisNode.bindings['_text'] = {
@@ -11,7 +12,7 @@ export function parseMustacheTag(json: SveltosisComponent, node: any) {
   return mitosisNode;
 }
 
-export function parseRawMustacheTag(json: SveltosisComponent, node: any) {
+export function parseRawMustacheTag(json: SveltosisComponent, node: TemplateNode) {
   const mitosisNode = createMitosisNode();
   mitosisNode.name = 'div';
   mitosisNode.bindings.innerHTML = {

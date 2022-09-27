@@ -1,5 +1,6 @@
 import { walk } from 'svelte/compiler';
 
+import { parseIfStatement } from './if-statement';
 import { parseImports } from './imports';
 import { parseProperties } from './properties';
 import { parseFunctions } from './functions';
@@ -8,53 +9,106 @@ import { parseReferences } from './references';
 import { parseReactive } from './reactive';
 import { parseAfterUpdate, parseOnDestroy, parseOnMount } from './hooks';
 
-import type { Script } from 'svelte/types/compiler/interfaces';
+import type { Ast } from 'svelte/types/compiler/interfaces';
+import type {
+  BaseNode,
+  ImportDeclaration,
+  ExportNamedDeclaration,
+  ExpressionStatement,
+  FunctionDeclaration,
+  VariableDeclaration,
+  LabeledStatement,
+  Identifier,
+  IfStatement,
+} from 'estree';
 
-export function parseInstance(instance: Script, json: SveltosisComponent) {
-  walk(instance, {
-    enter(node: any, parent: any) {
-      if (node.type === 'ImportDeclaration') {
-        parseImports(json, node);
-      } else if (node.type === 'ExportNamedDeclaration') {
-        parseProperties(json, node);
-      } else if (node.type === 'ExpressionStatement' && node.expression.type === 'CallExpression') {
-        const calleeName: string = node.expression.callee.name;
-        switch (calleeName) {
-          case 'setContext': {
-            parseSetContext(json, node, parent, this);
-            break;
-          }
-          case 'onMount': {
-            parseOnMount(json, node);
-            break;
-          }
-          case 'onDestroy': {
-            parseOnDestroy(json, node);
-            break;
-          }
-          case 'onAfterUpdate': {
-            parseAfterUpdate(json, node);
-            break;
-          }
-          // No default
-        }
-      } else if (node.type === 'FunctionDeclaration') {
-        parseFunctions(json, node);
-      } else if (
-        node.type === 'VariableDeclaration' &&
-        parent.type === 'Program' &&
-        node.declarations.length > 0
-      ) {
-        if (
-          node.declarations[0]?.init?.type === 'CallExpression' &&
-          node.declarations[0]?.init?.callee?.name === 'getContext'
-        ) {
-          parseGetContext(json, node);
-        } else {
-          parseReferences(json, node);
-        }
-      } else if (node.type === 'LabeledStatement' && node.label.name === '$') {
-        parseReactive(json, node);
+type InstanceHandler<T = BaseNode> = (json: SveltosisComponent, node: T) => void;
+
+const handleImportDeclaration: InstanceHandler<ImportDeclaration> = (json, node) => {
+  parseImports(json, node as ImportDeclaration);
+};
+
+const handleExportNamedDeclaration: InstanceHandler<ExportNamedDeclaration> = (json, node) => {
+  parseProperties(json, node);
+};
+
+const handleExpressionStatement: InstanceHandler<ExpressionStatement> = (json, node) => {
+  if (node.expression.type !== 'CallExpression') {
+    return;
+  }
+
+  const callee = node.expression.callee as Identifier;
+
+  switch (callee.name) {
+    case 'setContext': {
+      parseSetContext(json, node);
+      break;
+    }
+    case 'onMount': {
+      parseOnMount(json, node);
+      break;
+    }
+    case 'onDestroy': {
+      parseOnDestroy(json, node);
+      break;
+    }
+    case 'onAfterUpdate': {
+      parseAfterUpdate(json, node);
+      break;
+    }
+    // No default
+  }
+};
+
+const handleFunctionDeclaration: InstanceHandler<FunctionDeclaration> = (json, node) => {
+  parseFunctions(json, node);
+};
+
+const handleVariableDeclaration: InstanceHandler<VariableDeclaration> = (json, node) => {
+  const init = node.declarations[0]?.init;
+
+  if (init?.type === 'CallExpression' && (init?.callee as Identifier)?.name === 'getContext') {
+    parseGetContext(json, node);
+  } else {
+    parseReferences(json, node);
+  }
+};
+
+const handleLabeledStatement: InstanceHandler<LabeledStatement> = (json, node) => {
+  if (node.label.name === '$') {
+    parseReactive(json, node);
+  }
+};
+
+const handleIfStatement: InstanceHandler<IfStatement> = (json, node) => {
+  parseIfStatement(json, node);
+};
+
+export function parseInstance(ast: Ast, json: SveltosisComponent) {
+  walk(ast.instance as BaseNode, {
+    enter(node, parent) {
+      switch (node.type) {
+        case 'ImportDeclaration':
+          handleImportDeclaration(json, node as ImportDeclaration);
+          break;
+        case 'ExportNamedDeclaration':
+          handleExportNamedDeclaration(json, node as ExportNamedDeclaration);
+          break;
+        case 'ExpressionStatement':
+          handleExpressionStatement(json, node as ExpressionStatement);
+          break;
+        case 'FunctionDeclaration':
+          handleFunctionDeclaration(json, node as FunctionDeclaration);
+          break;
+        case 'VariableDeclaration':
+          parent.type === 'Program' && handleVariableDeclaration(json, node as VariableDeclaration);
+          break;
+        case 'LabeledStatement':
+          handleLabeledStatement(json, node as LabeledStatement);
+          break;
+        case 'IfStatement':
+          handleIfStatement(json, node as IfStatement);
+          break;
       }
     },
   });

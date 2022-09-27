@@ -1,13 +1,24 @@
-export function parseProperties(json: SveltosisComponent, node: any) {
-  const declarations = node.declaration.declarations;
+import type {
+  ExportNamedDeclaration,
+  Identifier,
+  SimpleLiteral,
+  VariableDeclaration,
+} from 'estree';
+
+export function parseProperties(json: SveltosisComponent, node: ExportNamedDeclaration) {
+  const declarations = (node.declaration as VariableDeclaration)?.declarations;
 
   if (declarations?.length) {
-    const property = declarations[0].id.name;
+    const declaration = declarations[0];
+    const property = (declaration.id as Identifier).name;
+    const value = (declaration.init as SimpleLiteral)?.value;
+
     const propertyObject = {
       [property]: {
-        default: declarations[0].init?.value,
+        default: value,
       },
     };
+
     json.props = { ...json.props, ...propertyObject };
 
     json.defaultProps = Object.fromEntries(

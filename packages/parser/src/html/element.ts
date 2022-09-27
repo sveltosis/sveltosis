@@ -1,36 +1,47 @@
 import { generate } from 'astring';
 import { upperFirst } from 'lodash';
-import { possiblyAppendPropertiesOrState as possiblyAppendPropertiesOrState } from '../helpers/bindings';
+import { possiblyAppendPropertiesOrState } from '../helpers/bindings';
 import { createMitosisNode } from '../helpers/mitosis-node';
 import { filterChildren, parseChildren } from '../helpers/children';
 import { insertAt } from '../helpers/string';
 
-export function parseElement(json: SveltosisComponent, node: any) {
+import type { TemplateNode, Element, Text, MustacheTag } from 'svelte/types/compiler/interfaces';
+import type { Identifier, ArrowFunctionExpression, BaseCallExpression, Node } from 'estree';
+
+interface AttributeShorthand {
+  type: 'AttributeShorthand';
+  expression: Identifier;
+}
+
+export function parseElement(json: SveltosisComponent, node: TemplateNode) {
   const mitosisNode = createMitosisNode();
   mitosisNode.name = node.name;
 
   if (node.attributes?.length) {
-    for (const attribute of node.attributes) {
+    for (const attribute of node.attributes as Element['attributes']) {
       switch (attribute.type) {
         case 'Attribute': {
           switch (attribute.value[0]?.type) {
             case 'Text': {
+              const value: Text = attribute.value[0];
               // if there are already conditional class declarations
               // add class names defined here to the bindings code as well
               if (attribute.name === 'class' && mitosisNode.bindings.class?.code?.length) {
                 mitosisNode.bindings.class.code = insertAt(
                   mitosisNode.bindings.class.code,
-                  `${attribute.value[0].data} `,
+                  `${value.data} `,
                   1,
                 );
               } else {
-                mitosisNode.properties[attribute.name] = attribute.value[0].data;
+                mitosisNode.properties[attribute.name] = value.data;
               }
 
               break;
             }
             case 'MustacheTag': {
-              const binding = attribute.value[0].expression.name;
+              const value: MustacheTag = attribute.value[0];
+              const expression = value.expression as Identifier;
+              const binding = expression.name;
 
               mitosisNode.bindings[attribute.name] = {
                 code: possiblyAppendPropertiesOrState(json, binding),
@@ -40,7 +51,8 @@ export function parseElement(json: SveltosisComponent, node: any) {
             }
             case 'AttributeShorthand': {
               // e.g. <input {value}/>
-              const binding = attribute.value[0].expression.name;
+              const value: AttributeShorthand = attribute.value[0];
+              const binding = value.expression.name;
               mitosisNode.bindings[binding] = {
                 code: possiblyAppendPropertiesOrState(json, binding),
               };
@@ -53,31 +65,39 @@ export function parseElement(json: SveltosisComponent, node: any) {
           break;
         }
         case 'Spread': {
+          const expression = attribute.expression as Identifier;
           mitosisNode.bindings._spread = {
-            code: possiblyAppendPropertiesOrState(json, attribute.expression.name),
+            code: possiblyAppendPropertiesOrState(json, expression.name),
           };
 
           break;
         }
         case 'EventHandler': {
-          let object = { code: '', arguments: [] };
-          object =
-            attribute.expression.type === 'ArrowTypeFunction'
-              ? {
-                  code: possiblyAppendPropertiesOrState(json, generate(attribute.expression.body)),
-                  arguments: attribute.expression.arguments?.map((a: any) => a.name),
-                }
-              : {
-                  code: possiblyAppendPropertiesOrState(json, generate(attribute.expression)),
-                  arguments: [],
-                };
+          let object: { code: string; arguments: string[] } = { code: '', arguments: [] };
+
+          if (attribute.expression.type === 'ArrowTypeFunction') {
+            const expression = attribute.expression as ArrowFunctionExpression;
+
+            object = {
+              code: possiblyAppendPropertiesOrState(json, generate(expression.body)),
+              arguments: (expression.body as BaseCallExpression)?.arguments?.map(
+                (a) => (a as Identifier).name,
+              ),
+            };
+          } else {
+            object = {
+              code: possiblyAppendPropertiesOrState(json, generate(attribute.expression)),
+              arguments: [],
+            };
+          }
 
           mitosisNode.bindings[`on${upperFirst(attribute.name)}`] = object;
 
           break;
         }
         case 'Binding': {
-          const binding = attribute.expression.name;
+          const expression = attribute.expression as Identifier;
+          const binding = expression.name;
           let name = attribute.name;
 
           // template ref
@@ -106,10 +126,12 @@ export function parseElement(json: SveltosisComponent, node: any) {
           break;
         }
         case 'Class': {
+          const expression = attribute.expression as Node;
+
           // conditional classes (e.g. class:disabled or class:disabled={disabled})
           const binding = possiblyAppendPropertiesOrState(
             json,
-            `${generate(attribute.expression)} ? '${attribute.name}'  : ''`,
+            `${generate(expression)} ? '${attribute.name}'  : ''`,
           );
 
           let code = '';
@@ -150,12 +172,18 @@ export function parseElement(json: SveltosisComponent, node: any) {
     }
   }
 
-  const filteredChildren = filterChildren(node.children);
+  let filteredChildren: TemplateNode[] = [];
+
+  if (node.children) {
+    filteredChildren = filterChildren(node.children);
+  }
 
   if (filteredChildren.length === 1 && filteredChildren[0].type === 'RawMustacheTag') {
+    const child = filteredChildren[0] as MustacheTag;
+
     mitosisNode.children = [];
     mitosisNode.bindings.innerHTML = {
-      code: possiblyAppendPropertiesOrState(json, generate(filteredChildren[0].expression)),
+      code: possiblyAppendPropertiesOrState(json, generate(child.expression)),
     };
   } else {
     mitosisNode.children = parseChildren(json, node);

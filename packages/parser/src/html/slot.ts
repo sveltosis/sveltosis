@@ -1,7 +1,8 @@
 import { upperFirst } from 'lodash';
+import type { TemplateNode } from 'svelte/types/compiler/interfaces';
 import { createMitosisNode } from '../helpers/mitosis-node';
 
-export function parseSlot(json: SveltosisComponent, node: any) {
+export function parseSlot(json: SveltosisComponent, node: TemplateNode) {
   const mitosisNode = createMitosisNode();
   if (
     node.attributes.length > 0 &&

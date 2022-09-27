@@ -75,7 +75,6 @@ export function parseElement(json: SveltosisComponent, node: TemplateNode) {
         case 'EventHandler': {
           let object: { code: string; arguments: string[] } = { code: '', arguments: [] };
 
-          console.log(attribute);
           if (attribute.expression.type === 'ArrowTypeFunction') {
             const expression = attribute.expression as ArrowFunctionExpression;
 

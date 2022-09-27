@@ -40,6 +40,6 @@
   | Package | Status | README |
   | - | - | - |
   | @sveltosis/parser | In Development |  <a href="https://github.com/sveltosis/sveltosis/tree/main/packages/parser"><b>README</b></a>
-  | @sveltosis/eslint-plugin | Planned |  <a href="https://github.com/sveltosis/sveltosis/tree/main/packages/parser"><b>README</b></a> |
+  | @sveltosis/eslint-plugin | Planned |  <a href="https://github.com/sveltosis/sveltosis/tree/main/packages/eslint-plugin"><b>README</b></a> |
 
 </div>

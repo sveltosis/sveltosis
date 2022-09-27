@@ -53,14 +53,14 @@ The goal is to support as much of Svelte's syntax as possible, but features list
 | [{#if ...}](https://svelte.dev/docs#template-syntax-if) | `ready` | - 
 | [{#each ...}](https://svelte.dev/docs#template-syntax-each) | `ready`| -
 | [{#await ...}](https://svelte.dev/docs#template-syntax-await) | todo| -
-| [templates:{#key ...}](https://svelte.dev/docs#template-syntax-key) | todo| -
+| [{#key ...}](https://svelte.dev/docs#template-syntax-key) | todo| -
 | [{@html ...}](https://svelte.dev/docs#template-syntax-html) | `ready` | -
 | [{@debug ...}](https://svelte.dev/docs#template-syntax-debug) | todo | -
 | [{@const ...}](https://svelte.dev/docs#template-syntax-const) | todo | -
 | [on:eventname](https://svelte.dev/docs#template-syntax-element-directives-on-eventname) | `ready` | -
  [bind:property](https://svelte.dev/docs#template-syntax-element-directives-bind-property) | `ready` | -
  [bind:group](https://svelte.dev/docs#template-syntax-element-directives-bind-group) | todo | -
- [bind:this](https://svelte.dev/docs#template-syntax-element-directives-bind-this) | todo | -
+ [bind:this](https://svelte.dev/docs#template-syntax-element-directives-bind-this) | `ready` | -
  [class:name](https://svelte.dev/docs#template-syntax-element-directives-class-name) | `ready` | -
  [style:property](https://svelte.dev/docs#template-syntax-element-directives-style-property) | `ready` | -
  | [use:action](https://svelte.dev/docs#template-syntax-element-directives-use-action) | todo | -

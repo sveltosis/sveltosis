@@ -3,10 +3,10 @@ import { parse } from 'svelte/compiler';
 import { parseInstance } from './instance';
 import { parseCss } from './css';
 import { parseHtml } from './html';
-import { MitosisComponent } from '@builder.io/mitosis';
 import { omit } from 'lodash';
 
 import type { Ast } from 'svelte/types/compiler/interfaces';
+import type { MitosisComponent } from '@builder.io/mitosis';
 
 function mapAstToMitosisJson(ast: Ast, name: string): MitosisComponent {
   const json: SveltosisComponent = {

@@ -98,14 +98,30 @@ export function parseElement(json: SveltosisComponent, node: TemplateNode) {
         case 'Binding': {
           const expression = attribute.expression as Identifier;
           const binding = expression.name;
-          mitosisNode.bindings[attribute.name] = {
+          let name = attribute.name;
+
+          // template ref
+          if (attribute.name === 'this') {
+            name = 'ref';
+            json.refs[binding] = {
+              argument: 'null',
+              typeParameter: 'any',
+            };
+            if (Object.prototype.hasOwnProperty.call(json.state, binding)) {
+              delete json.state[binding];
+            }
+          }
+
+          mitosisNode.bindings[name] = {
             code: possiblyAppendPropertiesOrState(json, binding),
           };
 
-          mitosisNode.bindings['onChange'] = {
-            code: `state.${attribute.expression.name} = event.target.value`,
-            arguments: ['event'],
-          };
+          if (name !== 'ref') {
+            mitosisNode.bindings['onChange'] = {
+              code: `state.${attribute.expression.name} = event.target.value`,
+              arguments: ['event'],
+            };
+          }
 
           break;
         }

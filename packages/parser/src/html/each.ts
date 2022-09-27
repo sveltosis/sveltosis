@@ -1,7 +1,9 @@
 import { createMitosisNode } from '../helpers/mitosis-node';
 import { parseChildren } from '../helpers/children';
 
-export function parseEach(json: SveltosisComponent, node: any) {
+import type { TemplateNode } from 'svelte/types/compiler/interfaces';
+
+export function parseEach(json: SveltosisComponent, node: TemplateNode) {
   return {
     ...createMitosisNode(),
     name: 'For',

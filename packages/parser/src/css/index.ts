@@ -2,6 +2,8 @@ import { walk } from 'svelte/compiler';
 import * as csstree from 'css-tree';
 import { camelCase } from 'lodash';
 import { MitosisNode } from '@builder.io/mitosis';
+import { Ast } from 'svelte/types/compiler/interfaces';
+import { BaseNode } from 'estree';
 
 function bindTypeSelectorToNode(node: MitosisNode, block: string) {
   node.bindings.css = {
@@ -46,7 +48,7 @@ function bindClassSelector(children: MitosisNode[], selector: string, block: str
   }
 }
 
-function objectToString(object: any) {
+function objectToString(object: Record<string, string>) {
   let string_ = '';
 
   for (const [p, value] of Object.entries(object)) {
@@ -56,31 +58,39 @@ function objectToString(object: any) {
   return `{\n ${string_} \n}`;
 }
 
-export const parseCss = (ast: any, json: SveltosisComponent) => {
-  walk(ast.css, {
-    enter(node: any, parent: any) {
+export const parseCss = (ast: Ast, json: SveltosisComponent) => {
+  walk(ast.css as BaseNode, {
+    enter(node, parent) {
       if (node.type === 'Rule') {
-        const selector = csstree.generate(node.prelude);
-        let block: any = {};
+        const cssNode = node as csstree.Rule;
+        let parentNode = parent as csstree.CssNode | csstree.Declaration;
 
-        csstree.walk(node.block, {
-          enter(node: any) {
-            if (node.type === 'Value') {
-              const firstChildNode = node.children[0];
-              block[camelCase(parent.property)] = node.children
-                .map((c: any) => csstree.generate(c))
-                .join(' ');
+        const selector = csstree.generate(cssNode.prelude);
+        const block: Record<string, string> = {};
+
+        csstree.walk(cssNode.block, {
+          enter(node_: csstree.CssNode) {
+            if (node_.type === 'Value') {
+              const children = node_.children.map((c) =>
+                csstree.generate(c),
+              ) as unknown as Array<string>;
+
+              block[camelCase((parentNode as csstree.Declaration).property)] = children.join(' ');
             }
-            parent = node;
+            parentNode = node_;
           },
         });
 
-        block = objectToString(block);
+        const blockString = objectToString(block);
+        const prelude = cssNode.prelude as unknown as csstree.SelectorListPlain;
+        const children = prelude.children;
+        const child = children[0] as csstree.SelectorListPlain;
+        const type = child?.children[0]?.type;
 
-        if (node.prelude.children[0]?.children[0]?.type === 'TypeSelector') {
-          bindTypeSelector(json.children, selector, block);
-        } else if (node.prelude.children[0]?.children[0]?.type === 'ClassSelector') {
-          bindClassSelector(json.children, selector, block);
+        if (type === 'TypeSelector') {
+          bindTypeSelector(json.children, selector, blockString);
+        } else if (type === 'ClassSelector') {
+          bindClassSelector(json.children, selector, blockString);
         }
         // todo: support .card > .input
         // todo: handle multiple blocks

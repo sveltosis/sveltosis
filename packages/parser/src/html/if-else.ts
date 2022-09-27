@@ -2,8 +2,9 @@ import { parseHtmlNode } from '.';
 import { possiblyAppendPropertiesOrState as possiblyAppendPropertiesOrState } from '../helpers/bindings';
 import { createMitosisNode } from '../helpers/mitosis-node';
 import { parseChildren } from '../helpers/children';
+import type { TemplateNode } from 'svelte/types/compiler/interfaces';
 
-export function parseIfElse(json: SveltosisComponent, node: any) {
+export function parseIfElse(json: SveltosisComponent, node: TemplateNode) {
   const mitosisNode = createMitosisNode();
   mitosisNode.name = 'Show';
   mitosisNode.bindings = {
@@ -24,7 +25,7 @@ export function parseIfElse(json: SveltosisComponent, node: any) {
         : {
             ...createMitosisNode(),
             name: 'div',
-            children: node.else.children?.map((n: any) => parseHtmlNode(json, n)) ?? [],
+            children: node.else.children?.map((n: TemplateNode) => parseHtmlNode(json, n)) ?? [],
           };
   }
   return mitosisNode;

@@ -1,4 +1,4 @@
-const { sveltosis } = require('sveltosis');
+const { sveltosis } = require('@sveltosis/parser');
 
 module.exports = {
 	files: 'src/lib/**/*',

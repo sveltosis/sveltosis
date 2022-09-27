@@ -6,7 +6,9 @@ import { parseHtml } from './html';
 import { MitosisComponent } from '@builder.io/mitosis';
 import { omit } from 'lodash';
 
-function mapAstToMitosisJson(ast: any, name: string): MitosisComponent {
+import type { Ast } from 'svelte/types/compiler/interfaces';
+
+function mapAstToMitosisJson(ast: Ast, name: string): MitosisComponent {
   const json: SveltosisComponent = {
     '@type': '@builder.io/mitosis/component',
     inputs: [],

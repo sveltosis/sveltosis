@@ -53,7 +53,7 @@ The goal is to support as much of Svelte's syntax as possible, but features list
 | [{#if ...}](https://svelte.dev/docs#template-syntax-if) | `ready` | - 
 | [{#each ...}](https://svelte.dev/docs#template-syntax-each) | `ready`| -
 | [{#await ...}](https://svelte.dev/docs#template-syntax-await) | todo| -
-| [templates:{#key ...}](https://svelte.dev/docs#template-syntax-key) | todo| -
+| [{#key ...}](https://svelte.dev/docs#template-syntax-key) | todo| -
 | [{@html ...}](https://svelte.dev/docs#template-syntax-html) | `ready` | -
 | [{@debug ...}](https://svelte.dev/docs#template-syntax-debug) | todo | -
 | [{@const ...}](https://svelte.dev/docs#template-syntax-const) | todo | -

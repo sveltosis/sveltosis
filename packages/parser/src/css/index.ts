@@ -5,8 +5,6 @@ import { MitosisNode } from '@builder.io/mitosis';
 import { Ast } from 'svelte/types/compiler/interfaces';
 import { BaseNode } from 'estree';
 
-import type { Style } from 'svelte/types/compiler/interfaces';
-
 function bindTypeSelectorToNode(node: MitosisNode, block: string) {
   node.bindings.css = {
     code: block,

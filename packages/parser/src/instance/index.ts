@@ -1,5 +1,6 @@
 import { walk } from 'svelte/compiler';
 
+import { parseIfStatement } from './if-statement';
 import { parseImports } from './imports';
 import { parseProperties } from './properties';
 import { parseFunctions } from './functions';
@@ -18,6 +19,7 @@ import type {
   VariableDeclaration,
   LabeledStatement,
   Identifier,
+  IfStatement,
 } from 'estree';
 
 type InstanceHandler<T = BaseNode> = (json: SveltosisComponent, node: T) => void;
@@ -78,6 +80,10 @@ const handleLabeledStatement: InstanceHandler<LabeledStatement> = (json, node) =
   }
 };
 
+const handleIfStatement: InstanceHandler<IfStatement> = (json, node) => {
+  parseIfStatement(json, node);
+};
+
 export function parseInstance(ast: Ast, json: SveltosisComponent) {
   walk(ast.instance as BaseNode, {
     enter(node, parent) {
@@ -99,6 +105,10 @@ export function parseInstance(ast: Ast, json: SveltosisComponent) {
           break;
         case 'LabeledStatement':
           handleLabeledStatement(json, node as LabeledStatement);
+          break;
+        case 'IfStatement':
+          handleIfStatement(json, node as IfStatement);
+          break;
       }
     },
   });

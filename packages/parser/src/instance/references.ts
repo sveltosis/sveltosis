@@ -1,31 +1,38 @@
 import { generate } from 'astring';
 import { isString, some } from 'lodash';
 import { possiblyAppendPropertiesOrState } from '../helpers/bindings';
+import type {
+  Identifier,
+  VariableDeclaration,
+  Property,
+  SimpleLiteral,
+  Expression,
+  Pattern,
+} from 'estree';
 
-function getParsedValue(json: SveltosisComponent, element: any) {
+function getParsedValue(json: SveltosisComponent, element: Expression | Pattern) {
   return element.type === 'Identifier'
     ? possiblyAppendPropertiesOrState(json, element.name)
-    : possiblyAppendPropertiesOrState(json, element.value);
+    : possiblyAppendPropertiesOrState(json, (element as SimpleLiteral).value as string);
 }
 
-function isPropertyOrStateReference(index: any) {
+function isPropertyOrStateReference(index: string) {
   return isString(index) && (index.includes('props.') || index.includes('state.'));
 }
 
-export function parseReferences(json: SveltosisComponent, node: any) {
+export function parseReferences(json: SveltosisComponent, node: VariableDeclaration) {
   const declaration = node.declarations[0];
+  let code: string[] | Record<string, string> | string;
 
-  let code;
-
-  if (declaration.init.type === 'ArrayExpression') {
-    code = declaration.init.elements.map((element: any) => {
-      return getParsedValue(json, element);
+  if (declaration?.init?.type === 'ArrayExpression') {
+    code = declaration.init.elements.map((element) => {
+      return getParsedValue(json, element as Expression);
     });
 
     if (some(code, (index: string) => isPropertyOrStateReference(index))) {
-      const name = declaration.id.name;
+      const name = (declaration.id as Identifier).name;
       json.state[name] = {
-        code: `get ${name}() { return [${code.map((index: any) => {
+        code: `get ${name}() { return [${code.map((index) => {
           if (isPropertyOrStateReference(index)) {
             return index;
           }
@@ -35,10 +42,11 @@ export function parseReferences(json: SveltosisComponent, node: any) {
       };
       return;
     }
-  } else if (declaration.init.type === 'ObjectExpression') {
-    const properties = declaration.init.properties.map((element: any) => {
+  } else if (declaration?.init?.type === 'ObjectExpression') {
+    const properties = declaration.init.properties.map((element) => {
+      const element_ = element as Property;
       return {
-        [generate(element.key)]: getParsedValue(json, element.value),
+        [generate(element_.key)]: getParsedValue(json, element_.value),
       };
     });
 
@@ -47,10 +55,13 @@ export function parseReferences(json: SveltosisComponent, node: any) {
       Object.assign(code, { [item.key]: item.value });
     }
   } else {
-    code = possiblyAppendPropertiesOrState(json, declaration.init.value);
+    code = possiblyAppendPropertiesOrState(
+      json,
+      (declaration?.init as SimpleLiteral)?.value as string,
+    );
   }
 
-  json.state[declaration.id.name] = {
+  json.state[(declaration.id as Identifier).name] = {
     code,
     type: 'property',
   };

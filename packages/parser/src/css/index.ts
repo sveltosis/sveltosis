@@ -2,6 +2,8 @@ import { walk } from 'svelte/compiler';
 import * as csstree from 'css-tree';
 import { camelCase } from 'lodash';
 import { MitosisNode } from '@builder.io/mitosis';
+import { Ast, Style } from 'svelte/types/compiler/interfaces';
+import { BaseNode } from 'estree';
 
 function bindTypeSelectorToNode(node: MitosisNode, block: string) {
   node.bindings.css = {
@@ -46,7 +48,7 @@ function bindClassSelector(children: MitosisNode[], selector: string, block: str
   }
 }
 
-function objectToString(object: any) {
+function objectToString(object: Record<string, string>) {
   let string_ = '';
 
   for (const [p, value] of Object.entries(object)) {
@@ -56,31 +58,33 @@ function objectToString(object: any) {
   return `{\n ${string_} \n}`;
 }
 
-export const parseCss = (ast: any, json: SveltosisComponent) => {
-  walk(ast.css, {
-    enter(node: any, parent: any) {
-      if (node.type === 'Rule') {
-        const selector = csstree.generate(node.prelude);
-        let block: any = {};
+export const parseCss = (ast: Ast, json: SveltosisComponent) => {
+  walk(ast.css as BaseNode, {
+    enter(node, parent) {
+      const cssNode = node as Style;
+      const cssParentNode = parent as Style;
 
-        csstree.walk(node.block, {
-          enter(node: any) {
+      if (node.type === 'Rule') {
+        const selector = csstree.generate(cssNode.prelude);
+        const block: Record<string, string> = {};
+
+        csstree.walk(cssNode.block, {
+          enter(node: csstree.CssNode) {
             if (node.type === 'Value') {
-              const firstChildNode = node.children[0];
-              block[camelCase(parent.property)] = node.children
-                .map((c: any) => csstree.generate(c))
+              block[camelCase(cssParentNode.property)] = cssNode.children
+                .map((c) => csstree.generate(c))
                 .join(' ');
             }
             parent = node;
           },
         });
 
-        block = objectToString(block);
+        const blockString = objectToString(block);
 
-        if (node.prelude.children[0]?.children[0]?.type === 'TypeSelector') {
-          bindTypeSelector(json.children, selector, block);
-        } else if (node.prelude.children[0]?.children[0]?.type === 'ClassSelector') {
-          bindClassSelector(json.children, selector, block);
+        if (cssNode.prelude.children[0]?.children[0]?.type === 'TypeSelector') {
+          bindTypeSelector(json.children, selector, blockString);
+        } else if (cssNode.prelude.children[0]?.children[0]?.type === 'ClassSelector') {
+          bindClassSelector(json.children, selector, blockString);
         }
         // todo: support .card > .input
         // todo: handle multiple blocks

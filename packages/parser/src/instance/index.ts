@@ -8,6 +8,7 @@ import { parseProperties } from './properties';
 import { parseReactive } from './reactive';
 import { parseReferences } from './references';
 import { parseStatementAtProgramLevel } from './statements';
+import { parseMemberExpression } from './expressions';
 
 import type { Ast } from 'svelte/types/compiler/interfaces';
 import type {
@@ -32,8 +33,17 @@ const handleExportNamedDeclaration: InstanceHandler<ExportNamedDeclaration> = (j
   parseProperties(json, node);
 };
 
-const handleExpressionStatement: InstanceHandler<ExpressionStatement> = (json, node) => {
+const handleMemberExpression: InstanceHandler<ExpressionStatement> = (json, node, parent) => {
+  parseMemberExpression(json, node, parent);
+};
+
+const handleExpressionStatement: InstanceHandler<ExpressionStatement> = (json, node, parent) => {
   if (node.expression.type !== 'CallExpression') {
+    return;
+  }
+
+  if (node.expression.callee.type === 'MemberExpression') {
+    handleMemberExpression(json, node, parent);
     return;
   }
 
@@ -97,7 +107,7 @@ export function parseInstance(ast: Ast, json: SveltosisComponent) {
           handleExportNamedDeclaration(json, node as ExportNamedDeclaration);
           break;
         case 'ExpressionStatement':
-          handleExpressionStatement(json, node as ExpressionStatement);
+          handleExpressionStatement(json, node as ExpressionStatement, parent);
           break;
         case 'FunctionDeclaration':
           handleFunctionDeclaration(json, node as FunctionDeclaration);

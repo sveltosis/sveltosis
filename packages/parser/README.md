@@ -38,6 +38,8 @@ The goal is to support as much of Svelte's syntax as possible, but features list
 
 <br>
 
+<div align="center">
+
 | Feature | Status | Preview |
 | - | - | - |
 | [typescript]() | todo | - 
@@ -84,3 +86,5 @@ The goal is to support as much of Svelte's syntax as possible, but features list
 | [getAllContexts](https://svelte.dev/docs#run-time-svelte-getallcontexts) | todo | -
 | [createEventDispatcher](https://svelte.dev/docs#run-time-svelte-createeventdispatcher) | todo | -
 | [store](https://svelte.dev/docs#run-time-svelte-store) | todo | -
+
+</div>

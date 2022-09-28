@@ -1,4 +1,6 @@
-# @sveltosis/parser
+<div align="center">
+  <h1>@sveltosis/parser</h1>
+</div>
 
 <p align="center">
 <b>

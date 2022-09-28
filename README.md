@@ -1,4 +1,10 @@
-# Sveltosis
+<div align="center">
+  <h1>
+  Sveltosis
+  </h1>
+</div>
+
+<br>
 
 <p align="center">
 <b>
@@ -11,8 +17,7 @@
 <p align="center">
  Powered by 
   <a href="https://github.com/BuilderIO/mitosis">Mitosis</a>
-  </p>
-<br>
+</p>
 
 ---
 

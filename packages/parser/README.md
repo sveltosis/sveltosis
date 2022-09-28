@@ -80,7 +80,7 @@ The goal is to support as much of Svelte's syntax as possible, but features list
 | [afterUpdate](https://svelte.dev/docs#run-time-svelte-afterupdate) | `ready` | -
 | [onDestroy](https://svelte.dev/docs#run-time-svelte-ondestroy) | `ready` | -
 | [tick](https://svelte.dev/docs#run-time-svelte-tick) | todo | -
-| [setContext](https://svelte.dev/docs#run-time-svelte-setcontext) | [waiting for PR @ Mitosis](https://github.com/BuilderIO/mitosis/pull/760) | -
+| [setContext](https://svelte.dev/docs#run-time-svelte-setcontext) | `ready` | -
 | [getContext](https://svelte.dev/docs#run-time-svelte-getcontext) | `ready` | -
 | [hasContext](https://svelte.dev/docs#run-time-svelte-hascontext) | todo | -
 | [getAllContexts](https://svelte.dev/docs#run-time-svelte-getallcontexts) | todo | -

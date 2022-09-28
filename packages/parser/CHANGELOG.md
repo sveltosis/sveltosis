@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/sveltosis/sveltosis/compare/@sveltosis/parser@0.2.1...@sveltosis/parser@0.3.0) (2022-09-28)
+
+
+### Bug Fixes
+
+* **parser:** css parser using wrong node reference ([9a5f678](https://github.com/sveltosis/sveltosis/commit/9a5f67868574afe32b6ed35c6ab083ffb72672ec))
+
+
+### Features
+
+* bind:this ([6904fbc](https://github.com/sveltosis/sveltosis/commit/6904fbc5666503a11690d5fdc286d6e7e991b414))
+* **parser:** getContext / setContext ([8195a7c](https://github.com/sveltosis/sveltosis/commit/8195a7c556ad3f78eef3f3ffe1388dcdfe11094b))
+* **parser:** statements at program level ([a7d8f46](https://github.com/sveltosis/sveltosis/commit/a7d8f46af81fdcf029ad1ab3ab164b19d7b5f28e))
+* support if statements ([1ee0568](https://github.com/sveltosis/sveltosis/commit/1ee056842745caccd468c210a5a96bcae1869697))
+
+
+
+
+
 ## [0.2.1](https://github.com/sveltosis/sveltosis/compare/@sveltosis/parser@0.2.0...@sveltosis/parser@0.2.1) (2022-09-26)
 
 

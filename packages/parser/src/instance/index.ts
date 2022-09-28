@@ -1,13 +1,13 @@
 import { walk } from 'svelte/compiler';
 
-import { parseIfStatement } from './if-statement';
-import { parseImports } from './imports';
-import { parseProperties } from './properties';
+import { parseAfterUpdate, parseOnDestroy, parseOnMount } from './hooks';
 import { parseFunctions } from './functions';
 import { parseGetContext, parseSetContext } from './context';
-import { parseReferences } from './references';
+import { parseImports } from './imports';
+import { parseProperties } from './properties';
 import { parseReactive } from './reactive';
-import { parseAfterUpdate, parseOnDestroy, parseOnMount } from './hooks';
+import { parseReferences } from './references';
+import { parseStatementAtProgramLevel } from './statements';
 
 import type { Ast } from 'svelte/types/compiler/interfaces';
 import type {
@@ -19,10 +19,10 @@ import type {
   VariableDeclaration,
   LabeledStatement,
   Identifier,
-  IfStatement,
+  Statement,
 } from 'estree';
 
-type InstanceHandler<T = BaseNode> = (json: SveltosisComponent, node: T) => void;
+type InstanceHandler<T = BaseNode> = (json: SveltosisComponent, node: T, parent?: BaseNode) => void;
 
 const handleImportDeclaration: InstanceHandler<ImportDeclaration> = (json, node) => {
   parseImports(json, node as ImportDeclaration);
@@ -80,8 +80,10 @@ const handleLabeledStatement: InstanceHandler<LabeledStatement> = (json, node) =
   }
 };
 
-const handleIfStatement: InstanceHandler<IfStatement> = (json, node) => {
-  parseIfStatement(json, node);
+const handleStatement: InstanceHandler<Statement> = (json, node, parent) => {
+  if (parent?.type === 'Program') {
+    parseStatementAtProgramLevel(json, node);
+  }
 };
 
 export function parseInstance(ast: Ast, json: SveltosisComponent) {
@@ -107,7 +109,13 @@ export function parseInstance(ast: Ast, json: SveltosisComponent) {
           handleLabeledStatement(json, node as LabeledStatement);
           break;
         case 'IfStatement':
-          handleIfStatement(json, node as IfStatement);
+        case 'SwitchStatement':
+        case 'TryStatement':
+        case 'DoWhileStatement':
+        case 'ForStatement':
+        case 'ForInStatement':
+        case 'ForOfStatement':
+          handleStatement(json, node as Statement, parent);
           break;
       }
     },

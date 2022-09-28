@@ -19,7 +19,7 @@ export function parseGetContext(json: SveltosisComponent, node: VariableDeclarat
       const argument = arguments_[0] as SimpleLiteral;
 
       json.context.get[name] = {
-        name: argument.value as string,
+        name: generate(argument),
         path: '',
       };
     }
@@ -44,10 +44,11 @@ export function parseSetContext(json: SveltosisComponent, node: ExpressionStatem
 
     if (hook === 'setContext') {
       const key = node.expression.arguments[0] as SimpleLiteral;
-      const value = node.expression.arguments[1] as SimpleLiteral;
+      const value = node.expression.arguments[1] as Identifier;
+
       json.context.set[key.value as string] = {
-        name: key.value as string,
-        ref: possiblyAppendPropertiesOrState(json, value.value as string),
+        name: generate(key) as string,
+        ref: possiblyAppendPropertiesOrState(json, value.name),
       };
     }
   }

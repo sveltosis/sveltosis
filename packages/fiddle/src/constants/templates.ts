@@ -110,7 +110,7 @@ export const templates: { [key: string]: string } = {
     {@html html}
   </div>
   `,
-  'context (not working yet)': dedent`
+  context: dedent`
   <script>
     import { getContext, setContext } from 'svelte';
 

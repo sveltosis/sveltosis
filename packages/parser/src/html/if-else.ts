@@ -3,6 +3,7 @@ import { possiblyAppendPropertiesOrState as possiblyAppendPropertiesOrState } fr
 import { createMitosisNode } from '../helpers/mitosis-node';
 import { parseChildren } from '../helpers/children';
 import type { TemplateNode } from 'svelte/types/compiler/interfaces';
+import { generate } from 'astring';
 
 export function parseIfElse(json: SveltosisComponent, node: TemplateNode) {
   const mitosisNode = createMitosisNode();
@@ -11,7 +12,7 @@ export function parseIfElse(json: SveltosisComponent, node: TemplateNode) {
     when: {
       code: possiblyAppendPropertiesOrState(
         json,
-        possiblyAppendPropertiesOrState(json, node.expression.name),
+        possiblyAppendPropertiesOrState(json, generate(node.expression)),
       ),
     },
   };

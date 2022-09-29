@@ -41,7 +41,7 @@ export function parseElement(json: SveltosisComponent, node: TemplateNode) {
             case 'MustacheTag': {
               const value: MustacheTag = attribute.value[0];
               const expression = value.expression as Identifier;
-              const binding = expression.name;
+              const binding = generate(expression);
 
               mitosisNode.bindings[attribute.name] = {
                 code: possiblyAppendPropertiesOrState(json, binding),

@@ -3,7 +3,8 @@ import { upperFirst } from 'lodash';
 import { possiblyAppendPropertiesOrState } from '../helpers/bindings';
 import { createMitosisNode } from '../helpers/mitosis-node';
 import { filterChildren, parseChildren } from '../helpers/children';
-import { insertAt } from '../helpers/string';
+import { insertAt, uniqueName } from '../helpers/string';
+import { parseAction } from './actions';
 
 import type { TemplateNode, Element, Text, MustacheTag } from 'svelte/types/compiler/interfaces';
 import type { Identifier, ArrowFunctionExpression, BaseCallExpression, Node } from 'estree';
@@ -15,7 +16,20 @@ interface AttributeShorthand {
 
 export function parseElement(json: SveltosisComponent, node: TemplateNode) {
   const mitosisNode = createMitosisNode();
+  const nodeReference = uniqueName(Object.keys(json.refs), node.name);
   mitosisNode.name = node.name;
+
+  const useReference = () => {
+    if (!Object.keys(json.refs).includes(nodeReference)) {
+      json.refs[nodeReference] = { argument: '', typeParameter: '' };
+
+      mitosisNode.bindings.ref = {
+        code: nodeReference,
+      };
+    }
+
+    return nodeReference;
+  };
 
   if (node.attributes?.length) {
     for (const attribute of node.attributes as Element['attributes']) {
@@ -166,6 +180,11 @@ export function parseElement(json: SveltosisComponent, node: TemplateNode) {
               code,
             };
           }
+          break;
+        }
+        case 'Action': {
+          parseAction(json, useReference(), attribute);
+          break;
         }
         // No default
       }

@@ -1,5 +1,5 @@
 import { parse, preprocess } from 'svelte/compiler';
-import { less, postcss, scss, stylus, typescript } from 'svelte-preprocess';
+import preprocessor from 'svelte-preprocess';
 
 import { parseInstance } from './instance';
 import { parseCss } from './css';
@@ -36,13 +36,9 @@ export const sveltosis = async function (
   string_: string,
   path: string,
 ): Promise<MitosisComponent | undefined> {
-  const processedString = await preprocess(
-    string_,
-    [typescript(), postcss(), less(), scss(), stylus()],
-    {
-      filename: path.split('/').pop(),
-    },
-  );
+  const processedString = await preprocess(string_, preprocessor(), {
+    filename: path.split('/').pop(),
+  });
   const ast = parse(processedString.code);
   const componentName = path.split('/').pop()?.split('.')[0] ?? 'MyComponent';
   return mapAstToMitosisJson(ast, componentName);

@@ -14,6 +14,11 @@ const nextConfig = {
 
     config.resolve.plugins = [...config.resolve.plugins, new TsconfigPathsPlugin()];
 
+    config.module.rules.push({
+      test: /d.ts/,
+      loader: 'ignore-loader',
+    });
+
     return config;
   },
   swcMinify: false,

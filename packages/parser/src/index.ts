@@ -7,6 +7,7 @@ import { omit } from 'lodash';
 
 import type { Ast } from 'svelte/types/compiler/interfaces';
 import type { MitosisComponent } from '@builder.io/mitosis';
+import { postProcess } from './helpers/post-process';
 
 function mapAstToMitosisJson(ast: Ast, name: string): MitosisComponent {
   const json: SveltosisComponent = {
@@ -27,6 +28,8 @@ function mapAstToMitosisJson(ast: Ast, name: string): MitosisComponent {
   parseInstance(ast, json);
   parseHtml(ast, json);
   parseCss(ast, json);
+
+  postProcess(json);
 
   return omit(json, ['props']);
 }

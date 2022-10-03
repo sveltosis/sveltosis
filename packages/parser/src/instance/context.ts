@@ -1,5 +1,4 @@
 import { generate } from 'astring';
-import { possiblyAppendPropertiesOrState } from '../helpers/bindings';
 
 import type {
   BaseCallExpression,
@@ -36,19 +35,13 @@ export function parseSetContext(json: SveltosisComponent, node: ExpressionStatem
 
     const argument = node.expression.arguments[0];
 
-    const object: { code?: string } = {};
-
-    if (argument.type === 'ArrowFunctionExpression') {
-      object.code = generate(argument.body);
-    }
-
     if (hook === 'setContext') {
       const key = node.expression.arguments[0] as SimpleLiteral;
       const value = node.expression.arguments[1] as Identifier;
 
       json.context.set[key.value as string] = {
         name: generate(key) as string,
-        ref: possiblyAppendPropertiesOrState(json, value.name),
+        ref: value.name,
       };
     }
   }

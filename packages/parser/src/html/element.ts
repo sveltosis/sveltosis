@@ -1,6 +1,5 @@
 import { generate } from 'astring';
 import { upperFirst } from 'lodash';
-import { possiblyAppendPropertiesOrState } from '../helpers/bindings';
 import { createMitosisNode } from '../helpers/mitosis-node';
 import { filterChildren, parseChildren } from '../helpers/children';
 import { insertAt } from '../helpers/string';
@@ -41,10 +40,10 @@ export function parseElement(json: SveltosisComponent, node: TemplateNode) {
             case 'MustacheTag': {
               const value: MustacheTag = attribute.value[0];
               const expression = value.expression as Identifier;
-              const binding = generate(expression);
+              const code = generate(expression);
 
               mitosisNode.bindings[attribute.name] = {
-                code: possiblyAppendPropertiesOrState(json, binding),
+                code,
               };
 
               break;
@@ -52,9 +51,9 @@ export function parseElement(json: SveltosisComponent, node: TemplateNode) {
             case 'AttributeShorthand': {
               // e.g. <input {value}/>
               const value: AttributeShorthand = attribute.value[0];
-              const binding = value.expression.name;
-              mitosisNode.bindings[binding] = {
-                code: possiblyAppendPropertiesOrState(json, binding),
+              const code = value.expression.name;
+              mitosisNode.bindings[code] = {
+                code,
               };
 
               break;
@@ -67,7 +66,7 @@ export function parseElement(json: SveltosisComponent, node: TemplateNode) {
         case 'Spread': {
           const expression = attribute.expression as Identifier;
           mitosisNode.bindings._spread = {
-            code: possiblyAppendPropertiesOrState(json, expression.name),
+            code: expression.name,
           };
 
           break;
@@ -79,14 +78,14 @@ export function parseElement(json: SveltosisComponent, node: TemplateNode) {
             const expression = attribute.expression as ArrowFunctionExpression;
 
             object = {
-              code: possiblyAppendPropertiesOrState(json, generate(expression.body)),
+              code: generate(expression.body),
               arguments: (expression.body as BaseCallExpression)?.arguments?.map(
                 (a) => (a as Identifier).name,
               ),
             };
           } else {
             object = {
-              code: possiblyAppendPropertiesOrState(json, generate(attribute.expression)),
+              code: generate(attribute.expression),
               arguments: [],
             };
           }
@@ -113,7 +112,7 @@ export function parseElement(json: SveltosisComponent, node: TemplateNode) {
           }
 
           mitosisNode.bindings[name] = {
-            code: possiblyAppendPropertiesOrState(json, binding),
+            code: binding,
           };
 
           if (name !== 'ref') {
@@ -129,10 +128,7 @@ export function parseElement(json: SveltosisComponent, node: TemplateNode) {
           const expression = attribute.expression as Node;
 
           // conditional classes (e.g. class:disabled or class:disabled={disabled})
-          const binding = possiblyAppendPropertiesOrState(
-            json,
-            `${generate(expression)} ? '${attribute.name}'  : ''`,
-          );
+          const binding = `${generate(expression)} ? '${attribute.name}'  : ''`;
 
           let code = '';
 
@@ -183,7 +179,7 @@ export function parseElement(json: SveltosisComponent, node: TemplateNode) {
 
     mitosisNode.children = [];
     mitosisNode.bindings.innerHTML = {
-      code: possiblyAppendPropertiesOrState(json, generate(child.expression)),
+      code: generate(child.expression),
     };
   } else {
     mitosisNode.children = parseChildren(json, node);

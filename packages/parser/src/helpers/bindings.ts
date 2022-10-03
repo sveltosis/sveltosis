@@ -1,3 +1,26 @@
+export function preventNameCollissions(
+  json: SveltosisComponent,
+  input: string,
+  arguments_: any[],
+  prepend = '',
+  append = '_',
+) {
+  let output = input;
+
+  const keys = [...Object.keys(json.props), ...Object.keys(json.state)];
+
+  for (const key of keys) {
+    if (arguments_.includes(key)) {
+      const regex = new RegExp(`${key}\\b`, 'g');
+      if (regex.test(output)) {
+        output = output.replace(regex, `${prepend}${key}${append}`);
+      }
+    }
+  }
+
+  return output;
+}
+
 export function possiblyAppendPropertiesOrState(json: SveltosisComponent, input: string) {
   let output = input;
 

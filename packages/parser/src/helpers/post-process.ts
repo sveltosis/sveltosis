@@ -57,24 +57,24 @@ function addPropertiesAndState(json: SveltosisComponent, input: string) {
 }
 
 async function addPropertiesAndStateToNode(json: SveltosisComponent, node: MitosisNode) {
-  Object.keys(node.bindings).forEach(async (key) => {
+  for (const key of Object.keys(node.bindings)) {
     if (Object.prototype.hasOwnProperty.call(node.bindings, key)) {
       node.bindings[key] = {
         code: addPropertiesAndState(json, node.bindings[key]?.code ?? ''),
         arguments: node.bindings[key]?.arguments ?? undefined,
       };
     }
-  });
+  }
 }
 
 function addPropertiesAndStatesToChildren(json: SveltosisComponent, children: MitosisNode[]) {
-  children.forEach(async (node) => {
+  for (const node of children) {
     addPropertiesAndStateToNode(json, node);
 
     if (node.children?.length) {
       addPropertiesAndStatesToChildren(json, node.children);
     }
-  });
+  }
 }
 
 export function postProcess(json: SveltosisComponent) {

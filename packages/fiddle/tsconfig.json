@@ -18,7 +18,6 @@
     "moduleResolution": "Node",
     "isolatedModules": true,
     "jsx": "preserve",
-    "jsxImportSource": "@emotion/react",
     "baseUrl": "./",
     "paths": {
       "@sveltosis/parser": [

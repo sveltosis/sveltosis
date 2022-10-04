@@ -1,26 +1,37 @@
-import { MitosisNode } from '@builder.io/mitosis';
+import { extendedHook, MitosisNode, StateValue } from '@builder.io/mitosis';
 
 export function preventNameCollissions(
   json: SveltosisComponent,
   input: string,
-  arguments_: any[],
+  arguments_: string[],
   prepend = '',
   append = '_',
 ) {
   let output = input;
+  const argumentsOutput = arguments_;
 
-  const keys = [...Object.keys(json.props), ...Object.keys(json.state)];
+  const keys = [...Object.keys(json.props), ...Object.keys(json.state), ...Object.keys(json.refs)];
 
   for (const key of keys) {
-    if (arguments_.includes(key)) {
-      const regex = new RegExp(`${key}\\b`, 'g');
-      if (regex.test(output)) {
-        output = output.replace(regex, `${prepend}${key}${append}`);
+    const regex = () => new RegExp(`(?<!=(?:\\s))${key}\\b`, 'g');
+
+    for (const [index, argument] of argumentsOutput.entries()) {
+      if (regex().test(argument)) {
+        argumentsOutput.splice(index, 1, argument.replace(regex(), `${prepend}${key}${append}`));
       }
+    }
+
+    const isInOutput = regex().test(output);
+
+    if (isInOutput) {
+      output = output.replace(regex(), `${prepend}${key}${append}`);
     }
   }
 
-  return output;
+  return {
+    code: output,
+    arguments: argumentsOutput,
+  };
 }
 
 function prependProperties(json: SveltosisComponent, input: string) {
@@ -56,7 +67,7 @@ function addPropertiesAndState(json: SveltosisComponent, input: string) {
   return output;
 }
 
-async function addPropertiesAndStateToNode(json: SveltosisComponent, node: MitosisNode) {
+function addPropertiesAndStateToNode(json: SveltosisComponent, node: MitosisNode) {
   for (const key of Object.keys(node.bindings)) {
     if (Object.prototype.hasOwnProperty.call(node.bindings, key)) {
       node.bindings[key] = {
@@ -67,30 +78,79 @@ async function addPropertiesAndStateToNode(json: SveltosisComponent, node: Mitos
   }
 }
 
-function addPropertiesAndStatesToChildren(json: SveltosisComponent, children: MitosisNode[]) {
+function postProcessState(json: SveltosisComponent) {
+  for (const key of Object.keys(json.state)) {
+    const item: StateValue & { arguments?: string[] } = json.state[key] as StateValue;
+
+    if (item?.type !== 'property') {
+      const output = preventNameCollissions(json, item.code, item?.arguments || []);
+
+      output.code = addPropertiesAndState(json, output.code);
+
+      json.state[key] = {
+        ...item,
+        ...output,
+      };
+    }
+  }
+}
+
+function postProcessChildren(json: SveltosisComponent, children: MitosisNode[]) {
   for (const node of children) {
     addPropertiesAndStateToNode(json, node);
 
     if (node.children?.length) {
-      addPropertiesAndStatesToChildren(json, node.children);
+      postProcessChildren(json, node.children);
+    }
+  }
+}
+
+function addPropertiesAndStateToHook(json: SveltosisComponent, hook: extendedHook): extendedHook {
+  return {
+    code: addPropertiesAndState(json, hook.code),
+    deps: addPropertiesAndState(json, hook.deps || ''),
+  };
+}
+
+function postProcessHooks(json: SveltosisComponent) {
+  const hookKeys = Object.keys(json.hooks) as Array<keyof typeof json.hooks>;
+  for (const key of hookKeys) {
+    const hook = json.hooks[key];
+
+    if (!hook) {
+      continue;
+    }
+
+    if (key === 'onUpdate' && hook) {
+      for (const [index, hookEntry] of (hook as extendedHook[]).entries()) {
+        json.hooks[key]?.splice(index, 1, addPropertiesAndStateToHook(json, hookEntry));
+      }
+      continue;
+    }
+
+    (json.hooks[key] as extendedHook) = addPropertiesAndStateToHook(json, hook as extendedHook);
+  }
+}
+
+function postProcessContext(json: SveltosisComponent) {
+  for (const key of Object.keys(json.context.set)) {
+    if (json.context.set[key]?.ref) {
+      json.context.set[key].ref = addPropertiesAndState(json, json.context.set[key].ref as string);
     }
   }
 }
 
 export function postProcess(json: SveltosisComponent) {
   // Call preventNameCollissions here, before the rest (where it applies -- function arguments for now)
-
   // State (everything except type === 'property')
+  postProcessState(json);
 
   // Children
-  addPropertiesAndStatesToChildren(json, json.children);
+  postProcessChildren(json, json.children);
 
   // Hooks
+  postProcessHooks(json);
 
   // Context
-  for (const key of Object.keys(json.context.set)) {
-    if (json.context.set[key]?.ref) {
-      json.context.set[key].ref = addPropertiesAndState(json, json.context.set[key].ref as string);
-    }
-  }
+  postProcessContext(json);
 }

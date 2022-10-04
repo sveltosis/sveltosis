@@ -45,7 +45,7 @@ export function parseAction(
 
   json.hooks.onUpdate.push({
     code: onReferenceUpdate,
-    deps: nodeReference,
+    deps: `[${nodeReference}]`,
   });
 
   // Handle Update
@@ -54,7 +54,7 @@ export function parseAction(
 
     json.hooks.onUpdate.push({
       code: onUpdate,
-      deps: parameters,
+      deps: `[${parameters}]`,
     });
   }
 }

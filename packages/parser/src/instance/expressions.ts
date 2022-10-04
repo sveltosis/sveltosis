@@ -1,6 +1,5 @@
 import { generate } from 'astring';
 import { BaseNode, ExpressionStatement } from 'estree';
-import { possiblyAppendPropertiesOrState } from '../helpers/bindings';
 import { addToOnInitHook } from '../helpers/hooks';
 
 export function parseMemberExpression(
@@ -9,6 +8,6 @@ export function parseMemberExpression(
   parent: BaseNode,
 ) {
   if (parent?.type === 'Program') {
-    addToOnInitHook(json, possiblyAppendPropertiesOrState(json, generate(node)));
+    addToOnInitHook(json, generate(node));
   }
 }

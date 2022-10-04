@@ -1,5 +1,4 @@
 import { generate } from 'astring';
-import { possiblyAppendPropertiesOrState } from '../helpers/bindings';
 import type {
   LabeledStatement,
   ExpressionStatement,
@@ -17,19 +16,13 @@ export function parseReactive(json: SveltosisComponent, node: LabeledStatement) 
       Object.values(json.state).filter((index) => index?.type === 'getter').length
     }`;
     json.state[name] = {
-      code: `get ${name}() ${wrap ? '{' : ''}${possiblyAppendPropertiesOrState(
-        json,
-        generate(node.body),
-      )}${wrap ? '}' : ''}`,
+      code: `get ${name}() ${wrap ? '{' : ''}${generate(node.body)}${wrap ? '}' : ''}`,
       type: 'getter',
     };
   } else if (expression.left) {
     const { name } = expression.left as Identifier;
     json.state[name] = {
-      code: `get ${name}() {\n return ${possiblyAppendPropertiesOrState(
-        json,
-        generate(expression.right),
-      )}}`,
+      code: `get ${name}() {\n return ${generate(expression.right)}}`,
       type: 'getter',
     };
   }

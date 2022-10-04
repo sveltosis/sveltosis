@@ -1,6 +1,5 @@
 import { generate } from 'astring';
 import { isString, some } from 'lodash';
-import { possiblyAppendPropertiesOrState } from '../helpers/bindings';
 import type {
   Identifier,
   VariableDeclaration,
@@ -12,8 +11,8 @@ import type {
 
 function getParsedValue(json: SveltosisComponent, element: Expression | Pattern) {
   return element.type === 'Identifier'
-    ? possiblyAppendPropertiesOrState(json, element.name)
-    : possiblyAppendPropertiesOrState(json, (element as SimpleLiteral).value as string);
+    ? element.name
+    : ((element as SimpleLiteral).value as string);
 }
 
 function isPropertyOrStateReference(index: string) {
@@ -55,10 +54,7 @@ export function parseReferences(json: SveltosisComponent, node: VariableDeclarat
       Object.assign(code, { [item.key]: item.value });
     }
   } else {
-    code = possiblyAppendPropertiesOrState(
-      json,
-      (declaration?.init as SimpleLiteral)?.value as string,
-    );
+    code = (declaration?.init as SimpleLiteral)?.value as string;
   }
 
   json.state[(declaration.id as Identifier).name] = {

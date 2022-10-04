@@ -1,5 +1,4 @@
 import { parseHtmlNode } from '.';
-import { possiblyAppendPropertiesOrState as possiblyAppendPropertiesOrState } from '../helpers/bindings';
 import { createMitosisNode } from '../helpers/mitosis-node';
 import { parseChildren } from '../helpers/children';
 import type { TemplateNode } from 'svelte/types/compiler/interfaces';
@@ -10,10 +9,7 @@ export function parseIfElse(json: SveltosisComponent, node: TemplateNode) {
   mitosisNode.name = 'Show';
   mitosisNode.bindings = {
     when: {
-      code: possiblyAppendPropertiesOrState(
-        json,
-        possiblyAppendPropertiesOrState(json, generate(node.expression)),
-      ),
+      code: generate(node.expression),
     },
   };
 

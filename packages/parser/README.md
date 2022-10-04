@@ -44,7 +44,7 @@ The goal is to support as much of Svelte's syntax as possible, but features list
 
 | Feature | Status | Preview |
 | - | - | - |
-| [typescript]() | todo | - 
+| [typescript]() | `in progress` | - 
 | [props](https://svelte.dev/docs#component-format-script-1-export-creates-a-component-prop) | `ready` | - 
 | [assignments](https://svelte.dev/docs#component-format-script-2-assignments-are-reactive) | `ready` | -
 | [reactive statements](https://svelte.dev/docs#component-format-script-3-$-marks-a-statement-as-reactive) | `ready`| -

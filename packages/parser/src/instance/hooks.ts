@@ -1,6 +1,5 @@
 import { generate } from 'astring';
 import type { ExpressionStatement, BaseCallExpression, BaseFunction } from 'estree';
-import { possiblyAppendPropertiesOrState } from '../helpers/bindings';
 
 function parseHookBody(
   json: SveltosisComponent,
@@ -15,7 +14,7 @@ function parseHookBody(
     code = code.slice(1, -1);
   }
 
-  return possiblyAppendPropertiesOrState(json, code);
+  return code;
 }
 
 export function parseOnMount(json: SveltosisComponent, node: ExpressionStatement) {

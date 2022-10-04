@@ -1,5 +1,4 @@
 import { generate } from 'astring';
-import { possiblyAppendPropertiesOrState, preventNameCollissions } from '../helpers/bindings';
 import type { FunctionDeclaration, Identifier } from 'estree';
 
 export function parseFunctions(json: SveltosisComponent, node: FunctionDeclaration) {
@@ -8,10 +7,9 @@ export function parseFunctions(json: SveltosisComponent, node: FunctionDeclarati
   const arguments_ = node.params?.map((parameter) => generate(parameter)) ?? [];
 
   json.state[id.name] = {
-    code: possiblyAppendPropertiesOrState(
-      json,
-      preventNameCollissions(json, generate(node), arguments_),
-    ),
+    // code: preventNameCollissions(json, generate(node), arguments_),
+    arguments: arguments_,
+    code: generate(node),
     type: 'function',
   };
 }

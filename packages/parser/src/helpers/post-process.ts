@@ -51,8 +51,8 @@ function prependState(json: SveltosisComponent, input: string) {
 
 function addPropertiesAndState(json: SveltosisComponent, input: string) {
   let output = input;
-  output = prependProperties(json, input);
-  output = prependState(json, input);
+  output = prependProperties(json, output);
+  output = prependState(json, output);
   return output;
 }
 

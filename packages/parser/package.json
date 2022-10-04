@@ -65,9 +65,9 @@
     ],
     "dts": true,
     "splitting": true,
-    "clean": true
+    "clean": true,
+    "replaceNodeEnv": false
   },
-  "packageManager": "pnpm@7.11.0",
   "peerDependencies": {
     "svelte": "^3.50.0",
     "svelte-preprocess": "^4.10.7"

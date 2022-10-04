@@ -1,5 +1,6 @@
 const withTM = require('next-transpile-modules')(['@builder.io/mitosis', '@sveltosis/parser']);
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+
 /**
  * @type {import('next').NextConfig}
  */
@@ -16,6 +17,11 @@ const nextConfig = {
 
     config.module.rules.push({
       test: /d.ts/,
+      loader: 'ignore-loader',
+    });
+
+    config.module.rules.push({
+      test: /postcss-load-config/,
       loader: 'ignore-loader',
     });
 

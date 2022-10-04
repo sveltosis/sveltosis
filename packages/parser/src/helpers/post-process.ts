@@ -14,16 +14,18 @@ export function preventNameCollissions(
 
   for (const key of keys) {
     const regex = () => new RegExp(`(?<!=(?:\\s))${key}\\b`, 'g');
+    let isInArguments = false;
 
     for (const [index, argument] of argumentsOutput.entries()) {
       if (regex().test(argument)) {
+        isInArguments = true;
         argumentsOutput.splice(index, 1, argument.replace(regex(), `${prepend}${key}${append}`));
       }
     }
 
     const isInOutput = regex().test(output);
 
-    if (isInOutput) {
+    if (isInArguments && isInOutput) {
       output = output.replace(regex(), `${prepend}${key}${append}`);
     }
   }

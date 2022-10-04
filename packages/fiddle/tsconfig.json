@@ -21,8 +21,8 @@
     "jsxImportSource": "@emotion/react",
     "baseUrl": "./",
     "paths": {
-      "@builder.io/mitosis": [
-        "../core/src/index.ts"
+      "@sveltosis/parser": [
+        "../parser/src/index.ts"
       ]
     }
   },

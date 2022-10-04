@@ -78,6 +78,10 @@ function addPropertiesAndStatesToChildren(json: SveltosisComponent, children: Mi
 }
 
 export function postProcess(json: SveltosisComponent) {
+  // Call preventNameCollissions here, before the rest (where it applies -- function arguments for now)
+
+  // State (everything except type === 'property')
+
   // Children
   addPropertiesAndStatesToChildren(json, json.children);
 
@@ -89,6 +93,4 @@ export function postProcess(json: SveltosisComponent) {
       json.context.set[key].ref = addPropertiesAndState(json, json.context.set[key].ref as string);
     }
   }
-
-  // also call preventNameCollissions here (where it applies)
 }

@@ -24,6 +24,7 @@ function mapAstToMitosisJson(ast: Ast, name: string): MitosisComponent {
     subComponents: [],
     meta: {},
     name,
+    style: undefined,
   };
 
   parseInstance(ast, json);

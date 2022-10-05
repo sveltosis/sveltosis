@@ -29,10 +29,9 @@
     "test": "vitest"
   },
   "devDependencies": {
-    "@builder.io/mitosis": "^0.0.69",
-    "@builder.io/mitosis-cli": "^0.0.30",
+    "@builder.io/mitosis": "^0.0.71",
+    "@builder.io/mitosis-cli": "^0.0.31",
     "@sachinraja/eslint-config": "0.1.1",
-    "@types/css-tree": "^1.0.7",
     "@types/estree": "^1.0.0",
     "@types/lodash": "^4.14.185",
     "@types/node": "18.7.14",
@@ -71,8 +70,5 @@
   "peerDependencies": {
     "svelte": "^3.50.0",
     "svelte-preprocess": "^4.10.7"
-  },
-  "dependencies": {
-    "css-tree": "^2.2.1"
   }
 }

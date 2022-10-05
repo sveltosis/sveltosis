@@ -144,6 +144,10 @@ export const templates: { [key: string]: string } = {
       color: red;
       font-size: 12px;
     }
+    
+    .form-input:focus {
+      outline: 1px solid blue;
+    }
   </style>
   `,
 };

@@ -33,8 +33,6 @@ export function parseSetContext(json: SveltosisComponent, node: ExpressionStatem
   ) {
     const hook = (node.expression.callee as Identifier).name;
 
-    const argument = node.expression.arguments[0];
-
     if (hook === 'setContext') {
       const key = node.expression.arguments[0] as SimpleLiteral;
       const value = node.expression.arguments[1] as Identifier;

@@ -268,7 +268,7 @@ export default function Fiddle() {
       svelteStateType:
         localStorageGet('options.svelteStateType') || ('variables' as 'variables' | 'proxies'),
       vueApi: localStorageGet('options.vueApi') || ('options' as 'options' | 'composition'),
-      vueVersion: localStorageGet('options.vueVersion') || ('2' as '2' | '3'),
+      vueVersion: localStorageGet('options.vueVersion') || ('3' as '2' | '3'),
     },
 
     async updateOutput() {

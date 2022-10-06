@@ -95,8 +95,15 @@ export function parseElement(json: SveltosisComponent, node: TemplateNode) {
           break;
         }
         case 'Binding': {
+          /* 
+            adding onChange handlers for bind:group and bind:property is done during post processing 
+            same goes for replacing the group binding with checked
+            see helpers/post-process.ts
+          */
+
           const expression = attribute.expression as Identifier;
           const binding = expression.name;
+
           let name = attribute.name;
 
           // template ref
@@ -114,13 +121,6 @@ export function parseElement(json: SveltosisComponent, node: TemplateNode) {
           mitosisNode.bindings[name] = {
             code: binding,
           };
-
-          if (name !== 'ref') {
-            mitosisNode.bindings['onChange'] = {
-              code: `state.${attribute.expression.name} = event.target.value`,
-              arguments: ['event'],
-            };
-          }
 
           break;
         }

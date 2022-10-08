@@ -1,4 +1,5 @@
 import { extendedHook, MitosisNode, StateValue } from '@builder.io/mitosis';
+import { processBindings } from './bindings';
 
 export function preventNameCollissions(
   json: SveltosisComponent,
@@ -100,6 +101,7 @@ function postProcessState(json: SveltosisComponent) {
 function postProcessChildren(json: SveltosisComponent, children: MitosisNode[]) {
   for (const node of children) {
     addPropertiesAndStateToNode(json, node);
+    processBindings(json, node);
 
     if (node.children?.length) {
       postProcessChildren(json, node.children);

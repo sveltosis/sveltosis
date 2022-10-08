@@ -171,4 +171,11 @@ export const templates: { [key: string]: string } = {
     <p>Fillings: {fillings}</p>
   </div>
   `,
+  'bind:property': dedent`
+      <script>
+      let value = 'hello';
+    </script>
+
+    <input {value} />
+  `,
 };

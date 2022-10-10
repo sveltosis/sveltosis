@@ -103,9 +103,23 @@ function postProcessChildren(json: SveltosisComponent, children: MitosisNode[]) 
     addPropertiesAndStateToNode(json, node);
     processBindings(json, node);
 
-    if (node.children?.length) {
-      postProcessChildren(json, node.children);
+    let children: MitosisNode[] = [];
+
+    if (node.children?.length > 0) {
+      children = node.children;
     }
+
+    const metaValues = (Object.values(node.meta) || []) as Array<MitosisNode | MitosisNode['meta']>;
+
+    if (metaValues.length > 0) {
+      const metaChildren = metaValues.filter((item) => {
+        return item?.['@type'] === '@builder.io/mitosis/node';
+      }) as MitosisNode[];
+
+      children = [...children, ...metaChildren];
+    }
+
+    postProcessChildren(json, children);
   }
 }
 
@@ -157,4 +171,6 @@ export function postProcess(json: SveltosisComponent) {
 
   // Context
   postProcessContext(json);
+
+  console.log(json);
 }

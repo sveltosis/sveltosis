@@ -171,6 +171,4 @@ export function postProcess(json: SveltosisComponent) {
 
   // Context
   postProcessContext(json);
-
-  console.log(json);
 }

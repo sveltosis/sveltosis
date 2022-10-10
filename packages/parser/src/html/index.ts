@@ -57,10 +57,10 @@ export function parseHtmlNode(
       return parseElement(json, node);
     }
     case 'MustacheTag': {
-      return parseMustacheTag(json, node);
+      return parseMustacheTag(node);
     }
     case 'RawMustacheTag': {
-      return parseRawMustacheTag(json, node);
+      return parseRawMustacheTag(node);
     }
     case 'IfBlock': {
       return parseIfElse(json, node);

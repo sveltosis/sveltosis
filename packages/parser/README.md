@@ -67,7 +67,7 @@ The goal is to support as much of Svelte's syntax as possible, but features list
  [bind:this](https://svelte.dev/docs#template-syntax-element-directives-bind-this) | `ready` | -
  [class:name](https://svelte.dev/docs#template-syntax-element-directives-class-name) | `ready` | -
  [style:property](https://svelte.dev/docs#template-syntax-element-directives-style-property) | `ready` | -
- | [use:action](https://svelte.dev/docs#template-syntax-element-directives-use-action) | todo | -
+ | [use:action](https://svelte.dev/docs#template-syntax-element-directives-use-action) | `experimental` | -
  | [transition:fn](https://svelte.dev/docs#template-syntax-element-directives-transition-fn) | todo | -
  | [slot](https://svelte.dev/docs#template-syntax-slot) | `ready` | -
  | [\<svelte:self>](https://svelte.dev/docs#template-syntax-svelte-self) | todo | -

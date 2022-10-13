@@ -12,7 +12,7 @@ test('typescript props', async () => {
     </script>
   
     <div></div>`,
-    '',
+    'dummy.svelte',
   );
 
   expect(json?.propsTypeRef).toBeDefined();
@@ -38,7 +38,7 @@ test('typescript types', async () => {
     </script>
   
     <div></div>`,
-    '',
+    'dummy.svelte',
   );
 
   expect(json?.propsTypeRef).toBeDefined();

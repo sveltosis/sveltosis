@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.1](https://github.com/sveltosis/sveltosis/compare/@sveltosis/parser@0.4.0...@sveltosis/parser@0.4.1) (2022-10-13)
+
+
+### Bug Fixes
+
+* **parser:** update to support multiple spreads ([d134c60](https://github.com/sveltosis/sveltosis/commit/d134c602e110b6c73f0b97736ab5d1bf10b65d1f))
+
+
+
+
+
 # [0.4.0](https://github.com/sveltosis/sveltosis/compare/@sveltosis/parser@0.3.0...@sveltosis/parser@0.4.0) (2022-10-13)
 
 

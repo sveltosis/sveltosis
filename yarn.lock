@@ -354,14 +354,14 @@
     "@babel/helper-validator-identifier" "^7.19.1"
     to-fast-properties "^2.0.0"
 
-"@builder.io/mitosis-cli@^0.0.31":
-  version "0.0.31"
-  resolved "https://registry.yarnpkg.com/@builder.io/mitosis-cli/-/mitosis-cli-0.0.31.tgz#f7b6b29def8d20e8f017a91a3613ad030f6f041b"
-  integrity sha512-39o/AkeuDPklnsLQ2eY/PhrLB32komlThMGF3cZUG2neLjTxH9A7qUqVdUI3kenRDeDCI9CsTxRbQOPmucgGMw==
+"@builder.io/mitosis-cli@^0.0.32-6":
+  version "0.0.32-6"
+  resolved "https://registry.yarnpkg.com/@builder.io/mitosis-cli/-/mitosis-cli-0.0.32-6.tgz#e3858df7d0346e62aff63bada07121edb6e82e99"
+  integrity sha512-Ly3WMh6/ZPWHOjIDQp3f3/4YSZ9Z9PfdhDqY9f4ALfmmgSXuUhfo3cEYOWsi55AwlzG0hznvjhM38qpHUMkxyg==
   dependencies:
     "@babel/core" "^7.17.8"
     "@babel/preset-typescript" "^7.16.7"
-    "@builder.io/mitosis" "0.0.70"
+    "@builder.io/mitosis" "0.0.72-5"
     "@vue/compiler-sfc" "^3.1.5"
     babel-preset-solid "^1.3.13"
     chalk "^4.1.0"
@@ -381,10 +381,10 @@
     vue-template-es2015-compiler "^1.9.1"
     vue-template-validator "^1.1.5"
 
-"@builder.io/mitosis@0.0.70":
-  version "0.0.70"
-  resolved "https://registry.yarnpkg.com/@builder.io/mitosis/-/mitosis-0.0.70.tgz#7b1909e7db1d532601aa79ebe783177942b6a2b9"
-  integrity sha512-Oo0tPyvdEXBgCqelHlIaipmA+w2UB1Z2KVCv0RYdJDiYEDKqwqH7poD6928vdntG9v999IgRUisr9xlaK0fjmg==
+"@builder.io/mitosis@0.0.72-5":
+  version "0.0.72-5"
+  resolved "https://registry.yarnpkg.com/@builder.io/mitosis/-/mitosis-0.0.72-5.tgz#9db7126845b03caf12636ef1064e03a9abdb0e8c"
+  integrity sha512-OEXFIwWkDmhpi3j3kfuAda1ZA5bZzKzBtDpAKzSz4i07lDQEP4g3SdNuhCjQ6+KK3RKs3YZx8zpFzenjKeW8Yw==
   dependencies:
     "@angular/compiler" "^11.2.11"
     "@babel/core" "7.14.5"
@@ -416,10 +416,10 @@
     typescript "^4.7.3"
     vue "~2.6"
 
-"@builder.io/mitosis@^0.0.71":
-  version "0.0.71"
-  resolved "https://registry.yarnpkg.com/@builder.io/mitosis/-/mitosis-0.0.71.tgz#9fbd4b20a77892f80a560363a2a5d2f132b9929f"
-  integrity sha512-ocEt2/oLsJm/1/4ucchxqfsJm+dpglAtbdzhZYR3OtGG5zZlHmQXmQUpUdYy8fApq7+HrRLYPU+GxQS+O8GFHw==
+"@builder.io/mitosis@^0.0.72":
+  version "0.0.72"
+  resolved "https://registry.yarnpkg.com/@builder.io/mitosis/-/mitosis-0.0.72.tgz#d46aa77e1d832af2155b4591681b7c83183bebbc"
+  integrity sha512-hlcQ/t7X6+LGbYf2I3kw3vqEs/c+L5u7N+mwqXM+F+vk48Yl+wa+D9t2/nqi5e6+cOU87te00LF0pyD5s5hHgQ==
   dependencies:
     "@angular/compiler" "^11.2.11"
     "@babel/core" "7.14.5"

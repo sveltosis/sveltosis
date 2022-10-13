@@ -76,6 +76,7 @@ function addPropertiesAndStateToNode(json: SveltosisComponent, node: MitosisNode
       node.bindings[key] = {
         code: addPropertiesAndState(json, node.bindings[key]?.code ?? ''),
         arguments: node.bindings[key]?.arguments ?? undefined,
+        type: node.bindings[key]?.type,
       };
     }
   }

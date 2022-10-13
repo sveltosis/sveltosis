@@ -29,8 +29,8 @@
     "test": "vitest"
   },
   "devDependencies": {
-    "@builder.io/mitosis": "^0.0.71",
-    "@builder.io/mitosis-cli": "^0.0.31",
+    "@builder.io/mitosis": "^0.0.72",
+    "@builder.io/mitosis-cli": "^0.0.32-6",
     "@sachinraja/eslint-config": "0.1.1",
     "@types/estree": "^1.0.0",
     "@types/lodash": "^4.14.185",

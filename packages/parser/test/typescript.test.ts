@@ -48,3 +48,28 @@ test('typescript types', async () => {
   expect(json?.types && json.types[1]).toContain('Props');
   expect(json?.types && json.types[1]).toContain('person: Person');
 });
+
+test('typescript interface', async () => {
+  const json = await sveltosis(
+    `
+    <script lang="ts">
+        interface Person {
+          name: string;
+          age: number;
+        }
+
+        export let person: Person;
+    </script>
+  
+    <div></div>`,
+  );
+
+  expect(json?.propsTypeRef).toBeDefined();
+  expect(json?.propsTypeRef).toEqual('Props');
+
+  expect(json?.types?.length).toEqual(2);
+  expect(json?.types && json.types[0]).toContain('name: string');
+  expect(json?.types && json.types[0]).toContain('age: number');
+  expect(json?.types && json.types[1]).toContain('Props');
+  expect(json?.types && json.types[1]).toContain('person: Person');
+});

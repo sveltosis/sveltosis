@@ -48,7 +48,7 @@ function mapAstToMitosisJson(
 
 export const sveltosis = async function (
   string_: string,
-  path: string,
+  path = 'component.svelte',
 ): Promise<MitosisComponent | undefined> {
   const usesTypescript = isTypeScriptComponent(string_);
 

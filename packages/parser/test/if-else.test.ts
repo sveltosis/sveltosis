@@ -17,7 +17,7 @@ const template = `
 `;
 
 test('if / else', async () => {
-  const json = await sveltosis(template, '');
+  const json = await sveltosis(template);
 
   const node = json?.children[0];
 

@@ -20,17 +20,17 @@ const template = `
     `;
 
 test('hooks:onMount', async () => {
-  const json = await sveltosis(template, '');
+  const json = await sveltosis(template);
   expect(json?.hooks.onMount?.code).toEqual("\n  console.log('onMount');\n");
 });
 
 test('hooks:onDestroy', async () => {
-  const json = await sveltosis(template, '');
+  const json = await sveltosis(template);
   expect(json?.hooks.onUnMount?.code).toEqual("\n  console.log('onDestroy');\n");
 });
 
 test('hooks:onAfterUpdate', async () => {
-  const json = await sveltosis(template, '');
+  const json = await sveltosis(template);
   expect(json?.hooks.onUpdate?.length || 0).toBeGreaterThan(0);
   expect(json?.hooks.onUpdate && json.hooks.onUpdate[0].code).toEqual(
     "\n  console.log('onAfterUpdate');\n",

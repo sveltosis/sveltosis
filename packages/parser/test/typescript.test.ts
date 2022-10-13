@@ -12,7 +12,6 @@ test('typescript props', async () => {
     </script>
   
     <div></div>`,
-    '',
   );
 
   expect(json?.propsTypeRef).toBeDefined();
@@ -38,7 +37,6 @@ test('typescript types', async () => {
     </script>
   
     <div></div>`,
-    '',
   );
 
   expect(json?.propsTypeRef).toBeDefined();

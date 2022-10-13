@@ -5,5 +5,5 @@ const styleString = `input { font-size: 12px; } \n .form-input:focus { outline: 
 
 test('style', async () => {
   const json = await sveltosis(`<style>${styleString}</style>`, '');
-  expect(json?.style).equal(styleString);
+  expect(json?.style).toEqual(styleString);
 });

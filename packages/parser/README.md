@@ -44,14 +44,14 @@ The goal is to support as much of Svelte's syntax as possible, but features list
 
 | Feature | Status | Preview |
 | - | - | - |
-| [typescript]() | `in progress` | - 
+| [typescript]() | `ready` | - 
 | [props](https://svelte.dev/docs#component-format-script-1-export-creates-a-component-prop) | `ready` | - 
 | [assignments](https://svelte.dev/docs#component-format-script-2-assignments-are-reactive) | `ready` | -
 | [reactive statements](https://svelte.dev/docs#component-format-script-3-$-marks-a-statement-as-reactive) | `ready`| -
 | [script context module](https://svelte.dev/docs#component-format-script-context-module) | todo | -
-| [\<style\>](https://svelte.dev/docs#component-format-style) | partially [waiting for PR @ Mitosis](https://github.com/BuilderIO/mitosis/pull/758)] | -
+| [\<style\>](https://svelte.dev/docs#component-format-style) | `ready` | -
 | [tags](https://svelte.dev/docs#template-syntax-tags) | `ready` | -
-| [attributes and props](https://svelte.dev/docs#template-syntax-attributes-and-props) | `partially` | -
+| [attributes and props](https://svelte.dev/docs#template-syntax-attributes-and-props) | `ready` | -
 | [text expressions](https://svelte.dev/docs#template-syntax-text-expressions) | `ready` | -
 | [comments](https://svelte.dev/docs#template-syntax-text-expressions) | todo | -
 | [{#if ...}](https://svelte.dev/docs#template-syntax-if) | `ready` | - 

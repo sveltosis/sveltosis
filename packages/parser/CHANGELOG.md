@@ -3,6 +3,43 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/sveltosis/sveltosis/compare/@sveltosis/parser@0.3.0...@sveltosis/parser@0.4.0) (2022-10-13)
+
+
+### Bug Fixes
+
+* bindings in hooks ([172e30e](https://github.com/sveltosis/sveltosis/commit/172e30e653396d3fa4113c69bfa6da7ac6720892))
+* **fiddle:** ignore postcss-load-config (https://github.com/postcss/postcss-load-config/issues/196) ([1c1def5](https://github.com/sveltosis/sveltosis/commit/1c1def564a748e341d80d2c6e443372ca5af2e69))
+* member expressions ([4149a17](https://github.com/sveltosis/sveltosis/commit/4149a17c597e973ac557a3902cd43e3f431253a2))
+* **parser:** check arguments exist before replacing output in collision check ([f9f95e0](https://github.com/sveltosis/sveltosis/commit/f9f95e005c78d9294aac4355608fcfdf6ced51d4))
+* **parser:** don't prepend state to function names in state ([398fdec](https://github.com/sveltosis/sveltosis/commit/398fdec560a34159d26b5a51b8bd12ce477dff89))
+* **parser:** ensure child nodes inside meta are post processed ([6111c9b](https://github.com/sveltosis/sveltosis/commit/6111c9bd285cd24549cec410b8edbce1b0cb0e7d))
+* **parser:** hooks ([f2872fd](https://github.com/sveltosis/sveltosis/commit/f2872fde6c8aa05bec61203606fa6647666d1f88))
+* **parser:** if statements ([37ce1d3](https://github.com/sveltosis/sveltosis/commit/37ce1d322eaf69eaf22b9294bbcfd6342323752f))
+* **parser:** mustache tag attribute ([66606c3](https://github.com/sveltosis/sveltosis/commit/66606c3266b2474a102038dc94efb67c63e80238))
+* **parser:** name colissions in fns ([a59e7fb](https://github.com/sveltosis/sveltosis/commit/a59e7fb4f7002595b71e19e014e060369529eb57))
+* **parser:** pass output ([b0634d8](https://github.com/sveltosis/sveltosis/commit/b0634d8f6215d638340bf65e727e8f675438e24e))
+* **parser:** remove console.log in post process ([d5f5c50](https://github.com/sveltosis/sveltosis/commit/d5f5c504a0e1891540cc7fa8c71f2a7ffee62a2b))
+* **parser:** set default path value ([3f13239](https://github.com/sveltosis/sveltosis/commit/3f132395ad33face164844f472b198a18ef15cfd))
+* **parser:** use array for onUpdate hook deps ([2318f46](https://github.com/sveltosis/sveltosis/commit/2318f46afc72b77092677cabf53c7a27f3c3873c))
+
+
+### Features
+
+* **core:** add typescript ([b261652](https://github.com/sveltosis/sveltosis/commit/b261652760a853a1680b88705d97b77702c42dcc))
+* **parser:** add preprocessors ([bb37b48](https://github.com/sveltosis/sveltosis/commit/bb37b48ac350413e4f9ab18324091d909b1ace57))
+* **parser:** add preprocessors ([bd0ded8](https://github.com/sveltosis/sveltosis/commit/bd0ded8c50131381817aa7ea77f05b58fa25c482))
+* **parser:** add string helper to generate unique names ([8bd31d8](https://github.com/sveltosis/sveltosis/commit/8bd31d8e3eabebe5a9317b60ece9cd2367db2e56))
+* **parser:** bind group ([8bb162b](https://github.com/sveltosis/sveltosis/commit/8bb162b0229d9e9072c7c532eab75aadf2b76340))
+* **parser:** initial parser for use:action ([631c954](https://github.com/sveltosis/sveltosis/commit/631c954c27a2aac30666aef2ca04e6b1ea2188ee))
+* **parser:** parse actions from element attributes ([d197ecc](https://github.com/sveltosis/sveltosis/commit/d197ecc254ac45f31da9912f3c7f3d57b26f8952))
+* **parser:** post process hooks, state, and prevent name collisions ([876c460](https://github.com/sveltosis/sveltosis/commit/876c460efddf6f35b70675a1b0683bb2bf275ec4))
+* **parser:** style ([f9b54cd](https://github.com/sveltosis/sveltosis/commit/f9b54cd2401529b4fe7f1a25f2a9e99e799b47ae))
+
+
+
+
+
 # [0.3.0](https://github.com/sveltosis/sveltosis/compare/@sveltosis/parser@0.2.1...@sveltosis/parser@0.3.0) (2022-09-28)
 
 

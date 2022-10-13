@@ -13,5 +13,5 @@ const template = `
 </ul>`;
 
 test('each', async () => {
-  const json = await sveltosis(template, '');
+  const json = await sveltosis(template);
 });

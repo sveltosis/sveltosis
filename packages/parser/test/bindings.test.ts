@@ -39,7 +39,6 @@ test('bind:group checkbox', async () => {
           <input type="checkbox" bind:group={fillings} value="Cheese">
           <input type="checkbox" bind:group={fillings} value="Guac (extra)">
       `,
-    '',
   );
   const bindings = json?.children[0].children[0].bindings;
 
@@ -60,7 +59,6 @@ test('bind:property', async () => {
 
     <input {value} />
 `,
-    '',
   );
 
   const bindings = json?.children[0].bindings;
@@ -82,7 +80,6 @@ test('bind:this', async () => {
     
     <input bind:this={ref} />
     `,
-    '',
   );
 
   expect(json?.refs.ref).toBeDefined();

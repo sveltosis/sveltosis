@@ -79,8 +79,9 @@ export function parseElement(json: SveltosisComponent, node: TemplateNode) {
         }
         case 'Spread': {
           const expression = attribute.expression as Identifier;
-          mitosisNode.bindings._spread = {
+          mitosisNode.bindings[expression.name] = {
             code: expression.name,
+            type: 'spread',
           };
 
           break;

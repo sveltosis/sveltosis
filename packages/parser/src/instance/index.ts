@@ -2,7 +2,7 @@ import { walk } from 'svelte/compiler';
 
 import { parseAfterUpdate, parseOnDestroy, parseOnMount } from './hooks';
 import { parseFunctions } from './functions';
-import { parseGetContext, parseSetContext } from './context';
+import { parseGetContext, parseHasContext, parseSetContext } from './context';
 import { parseImports } from './imports';
 import { parseProperties } from './properties';
 import { parseReactive } from './reactive';
@@ -79,6 +79,11 @@ const handleVariableDeclaration: InstanceHandler<VariableDeclaration> = (json, n
 
   if (init?.type === 'CallExpression' && (init?.callee as Identifier)?.name === 'getContext') {
     parseGetContext(json, node);
+  } else if (
+    init?.type === 'CallExpression' &&
+    (init?.callee as Identifier)?.name === 'hasContext'
+  ) {
+    parseHasContext(json, node);
   } else if (
     init?.type === 'CallExpression' &&
     (init?.callee as Identifier)?.name === 'createEventDispatcher'

@@ -7,6 +7,7 @@ import type {
   SimpleLiteral,
   ExpressionStatement,
 } from 'estree';
+import { stripQuotes } from '../helpers/string';
 
 export function parseGetContext(json: SveltosisComponent, node: VariableDeclaration) {
   if (node.declarations.length > 0) {
@@ -20,6 +21,31 @@ export function parseGetContext(json: SveltosisComponent, node: VariableDeclarat
       json.context.get[name] = {
         name: generate(argument),
         path: '',
+      };
+    }
+  }
+}
+
+export function parseHasContext(json: SveltosisComponent, node: VariableDeclaration) {
+  if (node.declarations.length > 0) {
+    const declaration = node.declarations[0];
+    const { name } = declaration.id as Identifier;
+    const arguments_ = (declaration.init as BaseCallExpression)?.arguments;
+
+    if (arguments?.length) {
+      const argument = arguments_[0] as SimpleLiteral;
+
+      console.log({ name, argument });
+      const generatedArgument = generate(argument);
+
+      json.context.get[stripQuotes(generatedArgument)] = {
+        name: generatedArgument,
+        path: '',
+      };
+
+      json.state[name] = {
+        code: `get ${name}() { return ${stripQuotes(generatedArgument)} !== undefined}`,
+        type: 'getter',
       };
     }
   }

@@ -20,3 +20,7 @@ export function uniqueName(existingItems: string[], reference: string) {
 export function insertAt(string_: string, sub: string, pos: number) {
   return `${string_.slice(0, pos)}${sub}${string_.slice(pos)}`;
 }
+
+export function stripQuotes(string_: string) {
+  return string_.replace(/["']+/g, '');
+}

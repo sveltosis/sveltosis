@@ -79,6 +79,11 @@ const handleVariableDeclaration: InstanceHandler<VariableDeclaration> = (json, n
 
   if (init?.type === 'CallExpression' && (init?.callee as Identifier)?.name === 'getContext') {
     parseGetContext(json, node);
+  } else if (
+    init?.type === 'CallExpression' &&
+    (init?.callee as Identifier)?.name === 'createEventDispatcher'
+  ) {
+    // ignore
   } else {
     parseReferences(json, node);
   }

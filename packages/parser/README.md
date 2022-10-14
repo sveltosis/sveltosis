@@ -86,7 +86,7 @@ The goal is to support as much of Svelte's syntax as possible, but features list
 | [getContext](https://svelte.dev/docs#run-time-svelte-getcontext) | `ready` | -
 | [hasContext](https://svelte.dev/docs#run-time-svelte-hascontext) | todo | -
 | [getAllContexts](https://svelte.dev/docs#run-time-svelte-getallcontexts) | todo | -
-| [createEventDispatcher](https://svelte.dev/docs#run-time-svelte-createeventdispatcher) | todo | -
+| [createEventDispatcher](https://svelte.dev/docs#run-time-svelte-createeventdispatcher) | `ready` | -
 | [store](https://svelte.dev/docs#run-time-svelte-store) | todo | -
 
 </div>

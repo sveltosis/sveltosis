@@ -89,7 +89,7 @@ export function parseElement(json: SveltosisComponent, node: TemplateNode) {
         case 'EventHandler': {
           let object: { code: string; arguments: string[] } = { code: '', arguments: [] };
 
-          if (attribute.expression.type === 'ArrowTypeFunction') {
+          if (attribute.expression?.type === 'ArrowTypeFunction') {
             const expression = attribute.expression as ArrowFunctionExpression;
 
             object = {
@@ -98,9 +98,14 @@ export function parseElement(json: SveltosisComponent, node: TemplateNode) {
                 (a) => (a as Identifier).name,
               ),
             };
-          } else {
+          } else if (attribute.expression) {
             object = {
               code: generate(attribute.expression),
+              arguments: [],
+            };
+          } else {
+            object = {
+              code: `props.on${upperFirst(attribute.name)}`,
               arguments: [],
             };
           }

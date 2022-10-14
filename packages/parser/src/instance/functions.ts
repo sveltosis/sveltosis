@@ -9,8 +9,6 @@ export function parseFunctions(json: SveltosisComponent, node: FunctionDeclarati
 
   const arguments_ = node.params?.map((parameter) => generate(parameter)) ?? [];
 
-  console.log({ arguments_ });
-
   let dispatchEventName;
 
   walk(node, {

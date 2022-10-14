@@ -35,7 +35,6 @@ export function parseHasContext(json: SveltosisComponent, node: VariableDeclarat
     if (arguments?.length) {
       const argument = arguments_[0] as SimpleLiteral;
 
-      console.log({ name, argument });
       const generatedArgument = generate(argument);
 
       json.context.get[stripQuotes(generatedArgument)] = {

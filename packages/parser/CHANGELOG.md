@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0](https://github.com/sveltosis/sveltosis/compare/@sveltosis/parser@0.4.1...@sveltosis/parser@0.5.0) (2022-10-14)
+
+
+### Features
+
+* **parser:** createEventDispatcher ([d3b84d3](https://github.com/sveltosis/sveltosis/commit/d3b84d394b65815e0916129a5274cfbdc065d67b))
+* **parser:** hasContext ([8f89dfa](https://github.com/sveltosis/sveltosis/commit/8f89dfa27cff3f02c193820121c883c5386d1d57))
+
+
+
+
+
 ## [0.4.1](https://github.com/sveltosis/sveltosis/compare/@sveltosis/parser@0.4.0...@sveltosis/parser@0.4.1) (2022-10-13)
 
 

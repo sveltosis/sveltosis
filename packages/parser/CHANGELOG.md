@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/sveltosis/sveltosis/compare/@sveltosis/parser@0.5.1...@sveltosis/parser@0.6.0) (2022-10-18)
+
+
+### Features
+
+* **parser:** svelte:component and svelte:element ([caba6b5](https://github.com/sveltosis/sveltosis/commit/caba6b516dbfb1fa87604c7db7f813abc2e871aa))
+
+
+
+
+
 ## [0.5.1](https://github.com/sveltosis/sveltosis/compare/@sveltosis/parser@0.5.0...@sveltosis/parser@0.5.1) (2022-10-15)
 
 

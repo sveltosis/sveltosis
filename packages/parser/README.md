@@ -71,8 +71,8 @@ The goal is to support as much of Svelte's syntax as possible, but features list
  | [transition:fn](https://svelte.dev/docs#template-syntax-element-directives-transition-fn) | todo | -
  | [slot](https://svelte.dev/docs#template-syntax-slot) | `ready` | -
  | [\<svelte:self>](https://svelte.dev/docs#template-syntax-svelte-self) | todo | -
- | [\<svelte:component>](https://svelte.dev/docs#template-syntax-svelte-component) | todo | -
- | [\<svelte:element>](https://svelte.dev/docs#template-syntax-svelte-element) | todo | -
+ | [\<svelte:component>](https://svelte.dev/docs#template-syntax-svelte-component) | `ready` | -
+ | [\<svelte:element>](https://svelte.dev/docs#template-syntax-svelte-element) | `ready` | -
  | [\<svelte:window>](https://svelte.dev/docs#template-syntax-svelte-window) | todo | -
  | [\<svelte:body>](https://svelte.dev/docs#template-syntax-svelte-body) | todo | -
  | [\<svelte:head>](https://svelte.dev/docs#template-syntax-svelte-head) | todo | -

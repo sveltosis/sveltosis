@@ -13,12 +13,14 @@ interface AttributeShorthand {
   expression: Identifier;
 }
 
+const SPECIAL_ELEMENTS = new Set(['svelte:component', 'svelte:element']);
+
 export function parseElement(json: SveltosisComponent, node: TemplateNode) {
   const mitosisNode = createMitosisNode();
-  const nodeReference = uniqueName(Object.keys(json.refs), node.name);
   mitosisNode.name = node.name;
 
   const useReference = () => {
+    const nodeReference = uniqueName(Object.keys(json.refs), node.name);
     if (!Object.keys(json.refs).includes(nodeReference)) {
       json.refs[nodeReference] = { argument: '', typeParameter: '' };
 
@@ -29,6 +31,21 @@ export function parseElement(json: SveltosisComponent, node: TemplateNode) {
 
     return nodeReference;
   };
+
+  /* 
+    Parse special elements such as svelte:component and svelte:element
+  */
+  if (SPECIAL_ELEMENTS.has(node.name)) {
+    const expression = generate(node.expression || node.tag);
+
+    let prefix = 'state';
+
+    if (json.props[expression]) {
+      prefix = 'props';
+    }
+
+    mitosisNode.name = `${prefix}.${expression}`;
+  }
 
   if (node.attributes?.length) {
     for (const attribute of node.attributes as Element['attributes']) {

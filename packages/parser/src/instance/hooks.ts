@@ -6,9 +6,8 @@ function parseHookBody(node: ExpressionStatement, stripCurlyBraces = true) {
 
   let code = generate((arguments_[0] as BaseFunction).body);
 
-  if (stripCurlyBraces && code?.trim().length) {
+  if (stripCurlyBraces && code?.trim().length && code[0] === '{' && code[code.length - 1] === '}')
     code = code.slice(1, -1);
-  }
 
   return code;
 }

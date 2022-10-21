@@ -1,6 +1,6 @@
 {
   "name": "@sveltosis/parser",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "type": "module",
   "description": "Write svelte components once and compile to any framework",
   "main": "dist/index.js",

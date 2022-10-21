@@ -1,7 +1,7 @@
+import babel from '@babel/core';
 import generate from '@babel/generator';
 import * as parser from '@babel/parser';
 import * as types from '@babel/types';
-import traverse from '@babel/traverse';
 
 import { pickBy, some } from 'lodash';
 
@@ -56,7 +56,7 @@ export function collectTypes(string_: string, json: SveltosisComponent) {
     plugins: ['typescript'],
   });
 
-  traverse(ast, {
+  babel.traverse(ast, {
     enter(path) {
       // alias or interface (e.g. type Props = { } or interface Props {} )
       if (types.isTSTypeAliasDeclaration(path.node) || types.isTSInterfaceDeclaration(path.node)) {

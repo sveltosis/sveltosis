@@ -12,7 +12,7 @@
     "./package.json": "./package.json",
     ".": {
       "import": "./dist/index.js",
-      "default": "./dist/index.cjs"
+      "default": "./dist/index.umd.cjs"
     }
   },
   "types": "dist/index.d.ts",
@@ -20,8 +20,8 @@
     "dist"
   ],
   "scripts": {
-    "dev": "tsup --watch",
-    "build": "tsup",
+    "dev": "vite",
+    "build": "vite build",
     "lint": "run-p lint:*",
     "lint:types": "tsc",
     "lint:js": "eslint .",
@@ -53,25 +53,12 @@
     "pug": "^3.0.2",
     "stylus": "^0.59.0",
     "sugarss": "^4.0.1",
-    "tsup": "6.2.3",
     "typescript": "4.8.2",
-    "vite": "3.0.9",
+    "vite": "^3.1.8",
+    "vite-plugin-dts": "^1.6.6",
     "vitest": "0.23.0"
   },
   "sideEffects": false,
-  "tsup": {
-    "entry": [
-      "src/index.ts"
-    ],
-    "format": [
-      "esm",
-      "cjs"
-    ],
-    "dts": true,
-    "splitting": true,
-    "clean": true,
-    "replaceNodeEnv": false
-  },
   "peerDependencies": {
     "svelte": "^3.50.0",
     "svelte-preprocess": "^4.10.7"

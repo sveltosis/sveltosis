@@ -1,4 +1,5 @@
 import { walk } from 'svelte/compiler';
+import { generate } from 'astring';
 
 import { parseAfterUpdate, parseOnDestroy, parseOnMount } from './hooks';
 import { parseFunctions } from './functions';
@@ -38,35 +39,40 @@ const handleMemberExpression: InstanceHandler<ExpressionStatement> = (json, node
 };
 
 const handleExpressionStatement: InstanceHandler<ExpressionStatement> = (json, node, parent) => {
-  if (node.expression.type !== 'CallExpression') {
-    return;
-  }
+  if (node.expression.type === 'CallExpression') {
+    if (node.expression.callee.type === 'MemberExpression') {
+      handleMemberExpression(json, node, parent);
+      return;
+    }
 
-  if (node.expression.callee.type === 'MemberExpression') {
-    handleMemberExpression(json, node, parent);
-    return;
-  }
+    const callee = node.expression.callee as Identifier;
 
-  const callee = node.expression.callee as Identifier;
+    switch (callee.name) {
+      case 'setContext': {
+        parseSetContext(json, node);
+        break;
+      }
+      case 'onMount': {
+        parseOnMount(json, node);
+        break;
+      }
+      case 'onDestroy': {
+        parseOnDestroy(json, node);
+        break;
+      }
+      case 'onAfterUpdate': {
+        parseAfterUpdate(json, node);
+        break;
+      }
+    }
 
-  switch (callee.name) {
-    case 'setContext': {
-      parseSetContext(json, node);
-      break;
-    }
-    case 'onMount': {
-      parseOnMount(json, node);
-      break;
-    }
-    case 'onDestroy': {
-      parseOnDestroy(json, node);
-      break;
-    }
-    case 'onAfterUpdate': {
-      parseAfterUpdate(json, node);
-      break;
-    }
     // No default
+  } else if (parent?.type === 'Program') {
+    const onMountCode = json.hooks.onMount?.code || '';
+
+    json.hooks.onMount = {
+      code: `${onMountCode}\n${generate(node)};\n`,
+    };
   }
 };
 

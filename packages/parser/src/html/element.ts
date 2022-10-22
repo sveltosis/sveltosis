@@ -155,6 +155,14 @@ export function parseElement(json: SveltosisComponent, node: TemplateNode) {
             }
           }
 
+          if (name !== 'ref' && name !== 'group' && name !== 'this') {
+            const onChangeCode = `${binding} = event.target.value`;
+            mitosisNode.bindings['onChange'] = {
+              code: onChangeCode,
+              arguments: ['event'],
+            };
+          }
+
           mitosisNode.bindings[name] = {
             code: binding,
           };

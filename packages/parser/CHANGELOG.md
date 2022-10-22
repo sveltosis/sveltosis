@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.6](https://github.com/sveltosis/sveltosis/compare/@sveltosis/parser@0.6.5...@sveltosis/parser@0.6.6) (2022-10-22)
+
+
+### Bug Fixes
+
+* **parser:** attributes ([078b795](https://github.com/sveltosis/sveltosis/commit/078b7954bab7efc63ed80bc13a89c079da0822d4))
+* **parser:** checkbox and radio onChange ([c735e7d](https://github.com/sveltosis/sveltosis/commit/c735e7d50e0e8799b9c7b1f3f6089bf3c7e18dc8))
+* **parser:** event dispatcher ([507f28a](https://github.com/sveltosis/sveltosis/commit/507f28a71814e62ef89343a6279c2fccd3f879cd))
+
+
+
+
+
 ## [0.6.5](https://github.com/sveltosis/sveltosis/compare/@sveltosis/parser@0.6.4...@sveltosis/parser@0.6.5) (2022-10-22)
 
 

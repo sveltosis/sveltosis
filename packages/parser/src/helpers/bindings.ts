@@ -56,10 +56,13 @@ export function processBindings(json: SveltosisComponent, node: MitosisNode) {
   } else if (Object.prototype.hasOwnProperty.call(node.bindings, 'this')) {
     name = 'ref';
     binding = node.bindings.this?.code ?? '';
-  } else if (Object.prototype.hasOwnProperty.call(node.bindings, 'onChange') && (node.properties.type === 'checkbox' || node.properties.type === 'radio')) {
-      target = 'event.target.checked';
-      binding = node.bindings.onChange?.code.split('=')[0] ?? '';
-    }
+  } else if (
+    Object.prototype.hasOwnProperty.call(node.bindings, 'onChange') &&
+    node.properties.type === 'checkbox'
+  ) {
+    target = 'event.target.checked';
+    binding = node.bindings.onChange?.code.split('=')[0] ?? '';
+  }
 
   let onChangeCode = `${binding} = ${target}`;
 

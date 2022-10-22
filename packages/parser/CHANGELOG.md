@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.4](https://github.com/sveltosis/sveltosis/compare/@sveltosis/parser@0.6.3...@sveltosis/parser@0.6.4) (2022-10-22)
+
+
+### Bug Fixes
+
+* **parser:** bindings ([fba2b63](https://github.com/sveltosis/sveltosis/commit/fba2b6371cebe0b273c7be1730ada91a75d8d6bb))
+
+
+
+
+
 ## [0.6.3](https://github.com/sveltosis/sveltosis/compare/@sveltosis/parser@0.6.2...@sveltosis/parser@0.6.3) (2022-10-21)
 
 **Note:** Version bump only for package @sveltosis/parser

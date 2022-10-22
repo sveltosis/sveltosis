@@ -31,10 +31,8 @@ export function parseFunctions(json: SveltosisComponent, node: FunctionDeclarati
   let code = generate(node);
 
   if (dispatchEventName) {
-    code = code.replace(
-      `dispatch(${dispatchEventName},`,
-      `props.on${capitalize(stripQuotes(dispatchEventName))}(`,
-    );
+    const regex = new RegExp(`dispatch\\(${dispatchEventName},?`);
+    code = code.replace(regex, `props.on${capitalize(stripQuotes(dispatchEventName))}(`);
   }
 
   json.state[id.name] = {

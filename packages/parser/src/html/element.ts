@@ -89,7 +89,10 @@ export function parseElement(json: SveltosisComponent, node: TemplateNode) {
 
               break;
             }
-            // No default
+            default: {
+              const name = attribute.name;
+              mitosisNode.bindings[name] = { code: attribute.value.toString() };
+            }
           }
 
           break;

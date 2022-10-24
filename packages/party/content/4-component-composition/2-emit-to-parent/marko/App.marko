@@ -1,0 +1,21 @@
+import AnswerButton from "./AnswerButton.svelte";
+
+class {
+  onAnswerNo = function onAnswerNo() {
+    this.state.canCome = false;
+  };
+  onAnswerYes = function onAnswerYes() {
+    this.state.canCome = true;
+  };
+
+  onCreate() {
+    this.state = { canCome: true };
+  }
+}
+
+<p>Can I come ?</p>
+<AnswerButton
+  on-yes( => component.onAnswerYes)
+  on-no( => component.onAnswerNo)
+></AnswerButton>
+<p style="font-size: 50px;">${state.canCome ? '😀' : '😥'}</p>

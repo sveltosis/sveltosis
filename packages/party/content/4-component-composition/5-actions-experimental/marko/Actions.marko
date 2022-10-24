@@ -1,0 +1,46 @@
+class {
+  onClick = function onClick(node, args) {
+    console.log("Mounted", node);
+    return {
+      update() {
+        console.log("Updated", args);
+      },
+
+      destroy() {
+        console.log("Destroyed", node);
+      },
+    };
+  };
+
+  onCreate() {
+    this.state = { buttonText: "Click Me", actionHandler0: null };
+  }
+
+  get button0() {
+    return this.getEl("button0");
+  }
+
+  onMount() {
+    if (this.button0) {
+      this.state.actionHandler0 = onClick(this.button0, this.state.buttonText);
+    }
+  }
+
+  onRender() {
+    if (!this.button0 && this.state.actionHandler0) {
+      this.state.actionHandler0?.destroy();
+      this.state.actionHandler0 = null;
+    } else if (this.button0 && !this.state.actionHandler0) {
+      if (this.button0) {
+        this.state.actionHandler0 = onClick(
+          this.button0,
+          this.state.buttonText
+        );
+      }
+    }
+
+    this.state.actionHandler0?.update(this.state.buttonText);
+  }
+}
+
+<button key="button0">${state.buttonText}</button>

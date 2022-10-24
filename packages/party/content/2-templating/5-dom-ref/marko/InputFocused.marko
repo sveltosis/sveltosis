@@ -1,0 +1,11 @@
+class {
+  get inputElement() {
+    return this.getEl("inputElement");
+  }
+
+  onMount() {
+    this.inputElement.focus();
+  }
+}
+
+<input key="inputElement" />

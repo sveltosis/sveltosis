@@ -1,0 +1,9 @@
+class {
+  onCreate(input) {
+    this.state = { focus: true };
+  }
+}
+
+<input
+  class=(`form-input ${input.disabled ? 'input.disabled' : ''} ${state.focus ? 'state.focus' : ''}`)
+/>

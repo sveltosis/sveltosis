@@ -1,0 +1,13 @@
+class {
+  onCreate() {
+    this.state = { isAvailable: false };
+  }
+}
+
+<input
+  id="is-available"
+  type="checkbox"
+  on-input(event => state.isAvailable = event.target.checked)
+  checked=(state.isAvailable)
+/>
+<label for="is-available">Is available</label>

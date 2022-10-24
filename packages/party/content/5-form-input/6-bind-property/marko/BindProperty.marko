@@ -1,0 +1,10 @@
+class {
+  onCreate() {
+    this.state = { value: "hello" };
+  }
+}
+
+<input
+  on-input(event => state.value = event.target.state.value)
+  value=(state.value)
+/>

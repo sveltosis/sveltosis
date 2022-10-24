@@ -1,0 +1,11 @@
+class {
+  onCreate() {
+    this.state = { name: "John" };
+  }
+
+  onMount() {
+    this.state.name = "Jane";
+  }
+}
+
+<h1>Hello ${state.name}</h1>

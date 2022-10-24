@@ -1,0 +1,16 @@
+class {
+  onCreate() {
+    this.state = { selectedColorId: 2, colors: [null, null, null, null] };
+  }
+}
+
+<select
+  on-change(event => state.selectedColorId = event.target.value)
+  value=(state.selectedColorId)
+>
+  <for|color| of=(state.colors)>
+    <option value=(color.id) disabled=(color.isDisabled)>
+      ${color.text}
+    </option>
+  </for>
+</select>

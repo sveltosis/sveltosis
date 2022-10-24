@@ -1,0 +1,11 @@
+class {
+  get doubleCount() {
+    return this.state.count * 2;
+  }
+
+  onCreate() {
+    this.state = { count: 10 };
+  }
+}
+
+<div>${component.doubleCount}</div>

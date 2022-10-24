@@ -1,0 +1,11 @@
+class {
+  onCreate() {
+    this.state = { pageTitle: "" };
+  }
+
+  onMount() {
+    this.state.pageTitle = document.title;
+  }
+}
+
+<p>Page title is: ${state.pageTitle}</p>

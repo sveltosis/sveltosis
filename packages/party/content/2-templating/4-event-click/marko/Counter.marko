@@ -1,0 +1,12 @@
+class {
+  incrementCount = function incrementCount() {
+    this.state.count = this.state.count + 1;
+  };
+
+  onCreate() {
+    this.state = { count: 0 };
+  }
+}
+
+<p>Counter: ${state.count}</p>
+<button on-click( => component.incrementCount)>+1</button>

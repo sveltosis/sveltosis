@@ -1,3 +1,4 @@
+import { isAssignmentExpression, isIdentifier, isUpdateExpression } from '@babel/types';
 import { generate } from 'astring';
 import type { CallExpression, FunctionDeclaration, Identifier } from 'estree';
 import { capitalize } from 'lodash';
@@ -10,6 +11,8 @@ export function parseFunctions(json: SveltosisComponent, node: FunctionDeclarati
   const arguments_ = node.params?.map((parameter) => generate(parameter)) ?? [];
 
   let dispatchEventName;
+
+  let code = generate(node);
 
   walk(node, {
     enter(node) {
@@ -24,11 +27,32 @@ export function parseFunctions(json: SveltosisComponent, node: FunctionDeclarati
           }
           break;
         }
+        case 'UpdateExpression': {
+          if (isUpdateExpression(node) && isIdentifier(node.argument)) {
+            let argument = node.argument.name;
+            if (node.operator === '++') {
+              code = code.replace('++', ` = ${argument} + 1`);
+            } else if (node.operator === '--') {
+              code = code.replace('--', ` = ${argument} - 1`);
+            }
+          }
+          break;
+        }
+        case 'AssignmentExpression': {
+          if (isAssignmentExpression(node) && isIdentifier(node.left)) {
+            let argument = node.left.name;
+
+            if (node.operator === '+=') {
+              code = code.replace('+=', `= ${argument} +`);
+            } else if (node.operator === '-=') {
+              code = code.replace('-=', `= ${argument} -`);
+            }
+          }
+          break;
+        }
       }
     },
   });
-
-  let code = generate(node);
 
   if (dispatchEventName) {
     const regex = new RegExp(`dispatch\\(${dispatchEventName},?`);

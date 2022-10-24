@@ -1,0 +1,11 @@
+class {
+  onCreate() {
+    this.state = { text: "Hello World" };
+  }
+}
+
+<p>${state.text}</p>
+<input
+  on-input(event => state.text = event.target.value)
+  value=(state.text)
+/>

@@ -1,0 +1,11 @@
+class {
+  clickYes = function clickYes() {
+    this.input.onYes();
+  };
+  clickNo = function clickNo() {
+    this.input.onNo();
+  };
+}
+
+<button on-click( => component.clickYes)>YES</button>
+<button on-click( => component.clickNo)>NO</button>

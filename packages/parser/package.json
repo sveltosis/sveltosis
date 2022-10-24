@@ -25,7 +25,7 @@
     "lint": "run-p lint:*",
     "lint:types": "tsc",
     "lint:js": "eslint .",
-    "prepublishOnly": "pnpm build",
+    "prepublishOnly": "yarn build",
     "test": "vitest"
   },
   "devDependencies": {

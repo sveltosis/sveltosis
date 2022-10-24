@@ -1,0 +1,23 @@
+class {
+  onCreate() {
+    this.state = { picked: "red" };
+  }
+}
+
+<div>Picked: ${state.picked}</div>
+<input
+  id="blue-pill"
+  type="radio"
+  value="blue"
+  checked=(state.picked === 'blue')
+  on-input(event => state.picked = event.target.value)
+/>
+<label for="blue-pill">Blue pill</label>
+<input
+  id="red-pill"
+  type="radio"
+  value="red"
+  checked=(state.picked === 'red')
+  on-input(event => state.picked = event.target.value)
+/>
+<label for="red-pill">Red pill</label>

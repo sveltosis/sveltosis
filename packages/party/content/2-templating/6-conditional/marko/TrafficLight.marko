@@ -1,0 +1,21 @@
+class {
+  get light() {
+    return this.state.TRAFFIC_LIGHTS[this.state.lightIndex];
+  }
+  toggleLight = function toggleLight() {
+    this.state.lightIndex = this.state.lightIndex === 0 ? 1 : 0;
+  };
+
+  onCreate() {
+    this.state = { TRAFFIC_LIGHTS: ["red", "green"], lightIndex: 0 };
+  }
+}
+
+<button on-click( => component.toggleLight)>Toggle light</button>
+<p>Light is: ${component.light}</p>
+<p>
+  You must
+
+  <if(component.light === 'red')> <span>STOP</span></if>
+  <else><span>GO</span></else>
+</p>

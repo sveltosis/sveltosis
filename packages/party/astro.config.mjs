@@ -16,13 +16,9 @@ export default defineConfig({
 					name: 'prebuild',
 					run: ['node', 'prebuild.js'],
 					condition: (file) => {
-						console.log({ file });
 						return file.indexOf('/party/sveltosis/') > 0 && file.indexOf('.svelte') > 0;
 					},
 					startup: false,
-					onFileChanged: () => {
-						console.log('file changed');
-					},
 					delay: 50,
 				},
 			]),

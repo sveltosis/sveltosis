@@ -18,5 +18,4 @@ function UserProfile(props) {
       </p>
     </>;
 }
-
 export default UserProfile;

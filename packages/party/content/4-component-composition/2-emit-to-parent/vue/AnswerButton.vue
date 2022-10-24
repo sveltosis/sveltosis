@@ -9,7 +9,6 @@ const props = defineProps(["onYes", "onNo"]);
 function clickYes() {
   props.onYes();
 }
-
 function clickNo() {
   props.onNo();
 }

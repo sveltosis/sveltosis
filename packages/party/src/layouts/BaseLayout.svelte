@@ -10,7 +10,7 @@
 		<title>Sveltosis Party</title>
 		<link rel="icon" href="/favicon.png" />
 		<link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-		<meta name="description" content={`Web component JS frameworks overview by their syntax and features: ${FRAMEWORKS.map((f) => f.title).join(', ')}`} />
+		<meta name="description" content="Write Svelte components once and compile to any framework" />
 		<style>
 			* {
 				scrollbar-color: rgba(255, 255, 255, 0.25) rgba(0, 0, 0, 0);
@@ -113,6 +113,9 @@
 										<li>
 											<a href={`#${section.id}`} class="inline-block w-full py-1.5 px-4 text-white opacity-50 hover:bg-gray-800 rounded hover:opacity-100 transition-opacity">
 												{section.title}
+												{#if section.experimental}
+													<span class="text-xs text-gray-400">experimental</span>
+												{/if}
 											</a>
 										</li>
 									{/each}

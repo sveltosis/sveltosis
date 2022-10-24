@@ -1,17 +1,13 @@
 import { Show, createSignal } from "solid-js";
-
 function TrafficLight(props) {
   const [TRAFFIC_LIGHTS, setTRAFFIC_LIGHTS] = createSignal(["red", "green"]);
   const [lightIndex, setLightIndex] = createSignal(0);
-
   function light() {
     return TRAFFIC_LIGHTS()[lightIndex()];
   }
-
   function toggleLight() {
     setLightIndex(lightIndex() === 0 ? 1 : 0);
   }
-
   return <>
       <button onClick={() => toggleLight}>Toggle light</button>
       <p>
@@ -26,5 +22,4 @@ function TrafficLight(props) {
       </p>
     </>;
 }
-
 export default TrafficLight;

@@ -1,5 +1,4 @@
 import { onMount, createSignal } from "solid-js";
-
 function PageTitle(props) {
   const [pageTitle, setPageTitle] = createSignal("");
   onMount(() => {
@@ -10,5 +9,4 @@ function PageTitle(props) {
       {pageTitle()}
     </p>;
 }
-
 export default PageTitle;

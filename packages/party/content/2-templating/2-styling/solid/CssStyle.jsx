@@ -4,5 +4,4 @@ function CssStyle(props) {
       <button style="font-size: 10rem;">I am a button</button>
     </>;
 }
-
 export default CssStyle;

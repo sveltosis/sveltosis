@@ -1,5 +1,4 @@
 import { onMount } from "solid-js";
-
 function InputFocused(props) {
   let inputElement;
   onMount(() => {
@@ -7,5 +6,4 @@ function InputFocused(props) {
   });
   return <input ref={inputElement} />;
 }
-
 export default InputFocused;

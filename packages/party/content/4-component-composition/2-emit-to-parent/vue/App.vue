@@ -14,7 +14,6 @@ const canCome = ref(true);
 function onAnswerNo() {
   canCome.value = false;
 }
-
 function onAnswerYes() {
   canCome.value = true;
 }

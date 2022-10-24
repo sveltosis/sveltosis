@@ -1,5 +1,4 @@
 import { createSignal } from "solid-js";
-
 function IsAvailable(props) {
   const [isAvailable, setIsAvailable] = createSignal(false);
   return <>
@@ -7,5 +6,4 @@ function IsAvailable(props) {
       <label for="is-available">Is available</label>
     </>;
 }
-
 export default IsAvailable;

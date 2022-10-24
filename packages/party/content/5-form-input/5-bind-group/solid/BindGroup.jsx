@@ -1,5 +1,4 @@
 import { createSignal } from "solid-js";
-
 function BindGroup(props) {
   const [tortilla, setTortilla] = createSignal("Plain");
   const [fillings, setFillings] = createSignal([]);
@@ -23,5 +22,4 @@ function BindGroup(props) {
       </p>
     </div>;
 }
-
 export default BindGroup;

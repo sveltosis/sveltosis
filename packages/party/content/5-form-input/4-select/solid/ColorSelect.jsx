@@ -1,5 +1,4 @@
 import { For, createSignal } from "solid-js";
-
 function ColorSelect(props) {
   const [selectedColorId, setSelectedColorId] = createSignal(2);
   const [colors, setColors] = createSignal([null, null, null, null]);
@@ -7,7 +6,6 @@ function ColorSelect(props) {
       <For each={colors()}>
         {(color, _index) => {
         const index = _index();
-
         return <option value={color.id} disabled={color.isDisabled}>
               {color.text}
             </option>;
@@ -15,5 +13,4 @@ function ColorSelect(props) {
       </For>
     </select>;
 }
-
 export default ColorSelect;

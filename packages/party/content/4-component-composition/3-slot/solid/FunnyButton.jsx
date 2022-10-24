@@ -3,5 +3,4 @@ function FunnyButton(props) {
       <Slot></Slot>
     </button>;
 }
-
 export default FunnyButton;

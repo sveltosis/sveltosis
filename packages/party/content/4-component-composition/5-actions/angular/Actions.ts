@@ -16,7 +16,6 @@ export default class Actions {
       update() {
         console.log("Updated", args);
       },
-
       destroy() {
         console.log("Destroyed", node);
       },

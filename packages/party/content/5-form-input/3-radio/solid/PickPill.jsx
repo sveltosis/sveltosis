@@ -1,5 +1,4 @@
 import { createSignal } from "solid-js";
-
 function PickPill(props) {
   const [picked, setPicked] = createSignal("red");
   return <>
@@ -13,5 +12,4 @@ function PickPill(props) {
       <label for="red-pill">Red pill</label>
     </>;
 }
-
 export default PickPill;

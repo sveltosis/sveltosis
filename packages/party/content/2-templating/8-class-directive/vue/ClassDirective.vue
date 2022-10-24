@@ -16,17 +16,13 @@ const focus = ref(true);
 
 function _classStringToObject(str) {
   const obj = {};
-
   if (typeof str !== "string") {
     return obj;
   }
-
   const classNames = str.trim().split(/\s+/);
-
   for (const name of classNames) {
     obj[name] = true;
   }
-
   return obj;
 }
 </script>

@@ -3,6 +3,8 @@ import path from 'path';
 
 const CONTENT_DIR = path.resolve('content');
 
+const EXPERIMENTAL_IDS = ['actions'];
+
 export default async function generateContentTree() {
 	const tree = [];
 
@@ -20,9 +22,11 @@ export default async function generateContentTree() {
 
 		for (const subSectionDir of subSectionDirs) {
 			const subSectionDirTitle = dirNameToTitle(subSectionDir);
+			const id = subSectionDir.split('-').splice(1).join('-');
 			treeNode.sections.push({
-				id: subSectionDir.split('-').splice(1).join('-'),
+				id,
 				title: subSectionDirTitle,
+				experimental: EXPERIMENTAL_IDS.includes(id),
 			});
 		}
 

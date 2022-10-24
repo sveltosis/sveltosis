@@ -1,12 +1,9 @@
 import { createSignal } from "solid-js";
-
 function Counter(props) {
   const [count, setCount] = createSignal(0);
-
   function incrementCount() {
     setCount(count() + 1);
   }
-
   return <>
       <p>
         Counter:
@@ -15,5 +12,4 @@ function Counter(props) {
       <button onClick={() => incrementCount}>+1</button>
     </>;
 }
-
 export default Counter;

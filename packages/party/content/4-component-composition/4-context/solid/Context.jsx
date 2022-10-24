@@ -1,6 +1,5 @@
 import { useContext, createSignal } from "solid-js";
 import { Dynamic } from "solid-js/web";
-
 function Context(props) {
   const [activeTab, setActiveTab] = createSignal(0);
   const disabled = useContext("disabled");
@@ -11,5 +10,4 @@ function Context(props) {
       </div>
     </Dynamic>;
 }
-
 export default Context;

@@ -35,7 +35,6 @@ function onClick(node, args) {
     update() {
       console.log("Updated", args);
     },
-
     destroy() {
       console.log("Destroyed", node);
     },

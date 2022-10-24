@@ -1,7 +1,7 @@
 const { sveltosis } = require('@sveltosis/parser');
 
 module.exports = {
-	files: 'sveltosis//**/*',
+	files: 'sveltosis/**/*',
 	dest: 'output',
 	targets: ['react', 'vue', 'angular', 'qwik', 'marko', 'solid'],
 	parser: sveltosis,

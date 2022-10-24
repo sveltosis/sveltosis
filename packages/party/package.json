@@ -32,7 +32,6 @@
     "@angular/core": "^14.1.2",
     "@angular/router": "^14.1.2",
     "@astrojs/markdown-component": "^1.0.1",
-    "@astrojs/netlify": "^1.2.0",
     "@astrojs/svelte": "^1.0.0",
     "@astrojs/tailwind": "^1.0.0",
     "@babel/eslint-parser": "^7.18.9",

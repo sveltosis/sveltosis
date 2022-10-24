@@ -31,10 +31,12 @@ export function preventNameCollissions(
     }
   }
 
-  return {
-    code: output,
-    arguments: argumentsOutput,
-  };
+  return argumentsOutput?.length
+    ? {
+        code: output,
+        arguments: argumentsOutput,
+      }
+    : { code: output };
 }
 
 function prependProperties(json: SveltosisComponent, input: string) {
@@ -75,7 +77,6 @@ function addPropertiesAndStateToNode(json: SveltosisComponent, node: MitosisNode
     if (Object.prototype.hasOwnProperty.call(node.bindings, key)) {
       node.bindings[key] = {
         code: addPropertiesAndState(json, node.bindings[key]?.code ?? ''),
-        arguments: node.bindings[key]?.arguments ?? undefined,
         type: node.bindings[key]?.type,
       };
     }

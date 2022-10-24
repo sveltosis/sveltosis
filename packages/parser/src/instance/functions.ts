@@ -8,8 +8,6 @@ import { stripQuotes } from '../helpers/string';
 export function parseFunctions(json: SveltosisComponent, node: FunctionDeclaration) {
   const id = node.id as Identifier;
 
-  const arguments_ = node.params?.map((parameter) => generate(parameter)) ?? [];
-
   let dispatchEventName;
 
   let code = generate(node);
@@ -29,7 +27,7 @@ export function parseFunctions(json: SveltosisComponent, node: FunctionDeclarati
         }
         case 'UpdateExpression': {
           if (isUpdateExpression(node) && isIdentifier(node.argument)) {
-            let argument = node.argument.name;
+            const argument = node.argument.name;
             if (node.operator === '++') {
               code = code.replace('++', ` = ${argument} + 1`);
             } else if (node.operator === '--') {
@@ -40,7 +38,7 @@ export function parseFunctions(json: SveltosisComponent, node: FunctionDeclarati
         }
         case 'AssignmentExpression': {
           if (isAssignmentExpression(node) && isIdentifier(node.left)) {
-            let argument = node.left.name;
+            const argument = node.left.name;
 
             if (node.operator === '+=') {
               code = code.replace('+=', `= ${argument} +`);
@@ -60,7 +58,6 @@ export function parseFunctions(json: SveltosisComponent, node: FunctionDeclarati
   }
 
   json.state[id.name] = {
-    arguments: arguments_,
     code,
     type: 'function',
   };

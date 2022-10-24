@@ -14,8 +14,7 @@
     "lint:fix": "eslint . --fix",
     "prettier": "prettier --ignore-path .gitignore --plugin-search-dir=. . --check",
     "prettier:fix": "prettier --ignore-path .gitignore --plugin-search-dir=. --write .",
-    "format": "yarn run prettier:fix && yarn run lint:fix",
-    "prepare": "husky install"
+    "format": "yarn run prettier:fix && yarn run lint:fix"
   },
   "repository": {
     "type": "git",
@@ -33,6 +32,7 @@
     "@angular/core": "^14.1.2",
     "@angular/router": "^14.1.2",
     "@astrojs/markdown-component": "^1.0.1",
+    "@astrojs/netlify": "^1.2.0",
     "@astrojs/svelte": "^1.0.0",
     "@astrojs/tailwind": "^1.0.0",
     "@babel/eslint-parser": "^7.18.9",
@@ -62,7 +62,6 @@
     "esm": "^3.2.25",
     "fs-extra": "^10.1.0",
     "glob": "^8.0.3",
-    "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "lodash.kebabcase": "^4.1.1",
     "micache": "^2.4.1",

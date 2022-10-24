@@ -19,3 +19,6 @@ packages/fiddle/build/
 !**/.yarn/versions
 
 fiddle-sveltekit
+
+# Local Netlify folder
+.netlify

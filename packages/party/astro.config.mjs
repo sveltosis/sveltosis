@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
+import netlify from '@astrojs/netlify/functions';
 import svelte from '@astrojs/svelte';
 import { run } from 'vite-plugin-run';
 
@@ -9,6 +10,8 @@ import FullReload from 'vite-plugin-full-reload';
 export default defineConfig({
 	// https://docs.astro.build/en/reference/configuration-reference/
 	integrations: [tailwind(), svelte()],
+	output: 'server',
+	adapter: netlify(),
 	vite: {
 		plugins: [
 			run([

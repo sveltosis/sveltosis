@@ -33,7 +33,7 @@
     "prettier": "^2.7.1"
   },
   "lint-staged": {
-    "packages/**/*.ts{,x}": "eslint --fix",
+    "packages/parser/**/*.ts{,x}": "eslint --fix",
     "{packages,docs}/**/*.{js,jsx,ts,tsx,json,md,html}": "prettier --write"
   }
 }

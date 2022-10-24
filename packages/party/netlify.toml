@@ -1,0 +1,3 @@
+[build]
+  command = "yarn workspace @sveltosis/party build"
+  publish = "packages/party/dist"

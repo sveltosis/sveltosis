@@ -75,11 +75,16 @@
 		<header class="backdrop-blur bg-gray-900/80 border-b border-gray-700">
 			<div class="px-4 sm:px-6 lg:px-8">
 				<div class="flex justify-between items-center py-3">
-					<a class="font-semibold text-lg flex items-center space-x-3" href="#reactivity">
-						<img src="/framework/svelte.svg" alt="logo" class="w-5 h-5" />
-						<span>Sveltosis Examples</span>
-						<small class="text-xs">inspired by component-party.dev</small>
-					</a>
+					<span class="flex items-center">
+						<a class="inline-flex font-semibold text-lg flex items-center space-x-3" href="#reactivity">
+							<img src="/framework/svelte.svg" alt="logo" class="w-5 h-5" />
+							<span>Sveltosis Party</span>
+						</a>
+						<span class="text-xs ml-2">
+							inspired by
+							<a class="underline" href="https://component-party.dev" target="_blank" rel="noreferrer">component-party.dev</a>
+						</span>
+					</span>
 					<span class="hidden lg:flex text-sm"> Sveltosis is in development, please report bugs and share feedback </span>
 					<div>
 						<a href="https://github.com/sveltosis/sveltosis" title="Contribute on Github" target="_blank" rel="noopener noreferrer">

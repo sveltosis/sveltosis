@@ -5,7 +5,7 @@ const { id, size = 20, subtitle = true } = Astro.props;
 
 const framework = FRAMEWORKS.find((f) => f.id === id);
 
-const baseURL = import.meta.env.MODE === 'development' ? '' : 'https://raw.githubusercontent.com/sveltosis/packages/party/main/public/';
+const baseURL = import.meta.env.MODE === 'development' ? '' : 'https://raw.githubusercontent.com/sveltosis/sveltosis/main/packages/party/public/';
 ---
 
 <div class="flex items-center space-x-1">

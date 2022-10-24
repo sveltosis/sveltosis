@@ -1,4 +1,4 @@
-[Sveltosis Examples]
+[Sveltosis Party]
 
 > Write Svelte components once and compile to any framework
 

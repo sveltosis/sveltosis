@@ -1,31 +1,37 @@
-<div align="center">
-  <h1>@sveltosis/parser</h1>
-</div>
+<h1>@sveltosis/parser</h1>
 
-<p align="center">
+<p>
 <b>
   Still in development
   </b>
 </p>
-<p align="center">
+<p>
   A Svelte parser that compiles to Mitosis JSON, allowing you to write Svelte components once and compile to every framework. 
 </p>
-<p align="center">
+<p>
  Powered by 
   <a href="https://github.com/BuilderIO/mitosis">Mitosis</a>
-  </p>
+</p>
+
 <br>
 
 ---
-
-<p align="center">
-  <p align="center">
-    Try our  <a href="https://try.sveltosis.dev/"><b>interactive fiddle</b></a>
-  </p>
+<br>
+<p>
+    Try our <a href="https://try.sveltosis.dev/">
+      <b>interactive fiddle</b>
+    </a>
 </p>
 
+<p>
+    See examples on <a href="https://party.sveltosis.dev/">
+      <b>Sveltosis party</b>
+    </a>
+</p>
+
+
 <br>
-<p align="center">
+<p>
   <a href="https://github.com/prettier/prettier"><img alt="code style: prettier" src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg" /></a>
   <a href="https://github.com/BuilderIO/mitosis/pulls"><img alt="PRs Welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" /></a>
   <a href="https://github.com/BuilderIO/mitosis"><img alt="License" src="https://img.shields.io/github/license/BuilderIO/mitosis" /></a>
@@ -40,12 +46,11 @@ The goal is to support as much of Svelte's syntax as possible, but features list
 
 <br>
 
-<div align="center">
 
-| Feature | Status | Preview |
-| - | - | - |
+| Feature | Status |
+| - | - |
 | [typescript]() | `ready` | - 
-| [props](https://svelte.dev/docs#component-format-script-1-export-creates-a-component-prop) | `ready` | - 
+| [props](https://svelte.dev/docs#component-format-script-1-export-creates-a-component-prop) | `ready` | https://party.sveltosis.dev/#props 
 | [assignments](https://svelte.dev/docs#component-format-script-2-assignments-are-reactive) | `ready` | -
 | [reactive statements](https://svelte.dev/docs#component-format-script-3-$-marks-a-statement-as-reactive) | `ready`| -
 | [script context module](https://svelte.dev/docs#component-format-script-context-module) | todo | -
@@ -89,4 +94,3 @@ The goal is to support as much of Svelte's syntax as possible, but features list
 | [createEventDispatcher](https://svelte.dev/docs#run-time-svelte-createeventdispatcher) | `ready` | -
 | [store](https://svelte.dev/docs#run-time-svelte-store) | todo | -
 
-</div>

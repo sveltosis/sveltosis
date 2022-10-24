@@ -1,34 +1,37 @@
-<div align="center">
   <h1>
   Sveltosis
   </h1>
-</div>
 
 <br>
 
-<p align="center">
-<b>
+<p>
+  <b>
   Still in development
   </b>
 </p>
-<p align="center">
+<p>
   A Svelte parser that compiles to Mitosis JSON, allowing you to write Svelte components once and compile to every framework. 
 </p>
-<p align="center">
+<p>
  Powered by 
   <a href="https://github.com/BuilderIO/mitosis">Mitosis</a>
 </p>
 
 ---
 
-<p align="center">
-  <p align="center">
+<p>
+  <p>
     Try our  <a href="https://try.sveltosis.dev/"><b>interactive fiddle</b></a>
+  </p>
+  <p>
+    See examples at <a href="https://party.sveltosis.dev/">
+    <b>Sveltosis party</b>
+    </a>
   </p>
 </p>
 
 <br>
-<p align="center">
+<p>
   <a href="https://github.com/prettier/prettier"><img alt="code style: prettier" src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg" /></a>
   <a href="https://github.com/BuilderIO/mitosis/pulls"><img alt="PRs Welcome" src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" /></a>
   <a href="https://github.com/BuilderIO/mitosis"><img alt="License" src="https://img.shields.io/github/license/BuilderIO/mitosis" /></a>
@@ -38,9 +41,7 @@
 
 <br>
 
-<br>
-
-<div align="center">
+<div>
 
   | Package | Status | README |
   | - | - | - |

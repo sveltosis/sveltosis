@@ -6,7 +6,7 @@
     "npm": "99999999.9.9"
   },
   "dependencies": {
-    "@builder.io/mitosis": "^0.0.72",
+    "@builder.io/mitosis": "^0.0.76",
     "@builder.io/sdk": "^1.1.20",
     "@emotion/react": "^11.9.3",
     "@material-ui/core": "^4.12.4",

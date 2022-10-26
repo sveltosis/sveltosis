@@ -559,14 +559,14 @@
     "@babel/helper-validator-identifier" "^7.19.1"
     to-fast-properties "^2.0.0"
 
-"@builder.io/mitosis-cli@^0.0.32-6":
-  version "0.0.32"
-  resolved "https://registry.yarnpkg.com/@builder.io/mitosis-cli/-/mitosis-cli-0.0.32.tgz#e9074b0fd916b1d5630924442b006c0772673dcd"
-  integrity sha512-ad/3WBi5Hy5Bk0XRpKmlvNG7JzTB87MnYR8i35Irk2Q/WSvBWUUPi3O3fMXaNUODPweDtkDES1SyyXU152B9fg==
+"@builder.io/mitosis-cli@^0.0.34":
+  version "0.0.34"
+  resolved "https://registry.yarnpkg.com/@builder.io/mitosis-cli/-/mitosis-cli-0.0.34.tgz#a5e84a7a7c8e27ed812488c1efc80422e78f2cf2"
+  integrity sha512-J+IjAJYEscfEqhf4SnB1Wjy9ixiCWvdIGXmlG/vLOc9cTInCs0RaPMhZKqAS5Ec2bDrCDVukrGXx6NRCXcb/QQ==
   dependencies:
     "@babel/core" "^7.17.8"
     "@babel/preset-typescript" "^7.16.7"
-    "@builder.io/mitosis" "0.0.73"
+    "@builder.io/mitosis" "0.0.75"
     "@vue/compiler-sfc" "^3.1.5"
     babel-preset-solid "^1.3.13"
     chalk "^4.1.0"
@@ -586,37 +586,10 @@
     vue-template-es2015-compiler "^1.9.1"
     vue-template-validator "^1.1.5"
 
-"@builder.io/mitosis-cli@^0.0.33":
-  version "0.0.33"
-  resolved "https://registry.yarnpkg.com/@builder.io/mitosis-cli/-/mitosis-cli-0.0.33.tgz#982c89cb9d521efae77de88327fc8fe34d21d3b3"
-  integrity sha512-MwuJ0+KLiE9Bgg0kKxY4EWSeqV6xfS5np6x5G8CLNWxqCWAvH9wXJonMMDKpNRusqWKyCI999DukqN14wQqXeg==
-  dependencies:
-    "@babel/core" "^7.17.8"
-    "@babel/preset-typescript" "^7.16.7"
-    "@builder.io/mitosis" "0.0.74"
-    "@vue/compiler-sfc" "^3.1.5"
-    babel-preset-solid "^1.3.13"
-    chalk "^4.1.0"
-    debug "^4.3.4"
-    dedent "^0.7.0"
-    esbuild "^0.12.16"
-    fast-glob "^3.2.11"
-    fp-ts "^2.12.2"
-    fs-extra "^9.1.0"
-    globby "^11.0.2"
-    gluegun latest
-    html-minifier "^4.0.0"
-    json5 "^2.2.1"
-    lodash "^4.17.21"
-    micromatch "^4.0.4"
-    parse5 "^3.0.3"
-    vue-template-es2015-compiler "^1.9.1"
-    vue-template-validator "^1.1.5"
-
-"@builder.io/mitosis@0.0.73":
-  version "0.0.73"
-  resolved "https://registry.yarnpkg.com/@builder.io/mitosis/-/mitosis-0.0.73.tgz#f1812c1dbd529f19d33fcb00a9272d4aac920eb3"
-  integrity sha512-hNEJqDmMTLVR3ACYrcp/d+F6FrN9MFowlRdCHg1bpni6AGuriu4b1Z4Ucd7M40kKKc1T3erntjcPl8mRGgIKNg==
+"@builder.io/mitosis@0.0.75":
+  version "0.0.75"
+  resolved "https://registry.yarnpkg.com/@builder.io/mitosis/-/mitosis-0.0.75.tgz#c79108eaebf7369a6b7e7758a5372143c2d0f7c9"
+  integrity sha512-T1kkMVnOjgVOl7wQx9NobBecKiXJbUu4fJY0doIjYpWrSDhpAkrDhGc2BSFGMYyz1wTJweLk0kTRL5H1XqnvsQ==
   dependencies:
     "@angular/compiler" "^11.2.11"
     "@babel/core" "7.14.5"
@@ -645,13 +618,13 @@
     prettier-plugin-svelte "^2.7.0"
     svelte "^3.30.0"
     traverse "^0.6.6"
-    typescript "^4.7.3"
+    typescript "^4.8.4"
     vue "~2.6"
 
-"@builder.io/mitosis@0.0.74", "@builder.io/mitosis@^0.0.74":
-  version "0.0.74"
-  resolved "https://registry.yarnpkg.com/@builder.io/mitosis/-/mitosis-0.0.74.tgz#567df88143953076ad0cfd88e08fa5203378f525"
-  integrity sha512-Zjow/ski0Y7HQPIPz2JfKuLwvAIoRL8XMHnkiggXZKGGdixzS+/we4xAdZ4jPnnGvDOilesnE7RaS2Dd+yBMSw==
+"@builder.io/mitosis@^0.0.76":
+  version "0.0.76"
+  resolved "https://registry.yarnpkg.com/@builder.io/mitosis/-/mitosis-0.0.76.tgz#e06ad82ae0a0d878f1ea39d07ebe74e3fac5845b"
+  integrity sha512-alG1trB9Bv/G5rFDAAkWNscbYYRB9PSdUJy8csbghE3hT4ZWJ2KwCkBD+KvXbx01hUoi/lNdmuhO3mQenqYsnw==
   dependencies:
     "@angular/compiler" "^11.2.11"
     "@babel/core" "7.14.5"
@@ -680,42 +653,7 @@
     prettier-plugin-svelte "^2.7.0"
     svelte "^3.30.0"
     traverse "^0.6.6"
-    typescript "^4.7.3"
-    vue "~2.6"
-
-"@builder.io/mitosis@^0.0.72":
-  version "0.0.72"
-  resolved "https://registry.yarnpkg.com/@builder.io/mitosis/-/mitosis-0.0.72.tgz#d46aa77e1d832af2155b4591681b7c83183bebbc"
-  integrity sha512-hlcQ/t7X6+LGbYf2I3kw3vqEs/c+L5u7N+mwqXM+F+vk48Yl+wa+D9t2/nqi5e6+cOU87te00LF0pyD5s5hHgQ==
-  dependencies:
-    "@angular/compiler" "^11.2.11"
-    "@babel/core" "7.14.5"
-    "@babel/generator" "^7.14.3"
-    "@babel/plugin-proposal-class-properties" "^7.13.0"
-    "@babel/plugin-syntax-decorators" "^7.12.1"
-    "@babel/plugin-syntax-jsx" "^7.12.1"
-    "@babel/plugin-transform-react-jsx" "^7.13.12"
-    "@babel/preset-typescript" "^7.13.0"
-    "@builder.io/react" "^1.1.50"
-    "@marko/compiler" "^5.22.4"
-    "@marko/translator-default" "^5.21.4"
-    axios "^0.21.0"
-    axios-cache-adapter "^2.5.0"
-    csstype "^3.0.4"
-    dedent "^0.7.0"
-    fp-ts "^2.11.10"
-    globby "^11.0.2"
-    hash-sum "^2.0.0"
-    json5 "^2.1.3"
-    liquidjs "9.6.0"
-    lodash "^4.17.20"
-    marko "^5.21.7"
-    object-hash "^2.0.3"
-    prettier-plugin-marko "^1.2.2"
-    prettier-plugin-svelte "^2.7.0"
-    svelte "^3.30.0"
-    traverse "^0.6.6"
-    typescript "^4.7.3"
+    typescript "^4.8.4"
     vue "~2.6"
 
 "@builder.io/qwik@0.10.0":
@@ -14646,7 +14584,7 @@ typedarray@~0.0.5:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.7.tgz#799207136a37f3b3efb8c66c40010d032714dc73"
   integrity sha512-ueeb9YybpjhivjbHP2LdFDAjbS948fGEPj+ACAMs4xCMmh72OCOMQWBQKlaN4ZNQ04yfLSDLSx1tGRIoWimObQ==
 
-typescript@*, "typescript@^3 || ^4", typescript@^4.7.3, typescript@^4.7.4, typescript@~4.8.4:
+typescript@*, "typescript@^3 || ^4", typescript@^4.7.4, typescript@^4.8.4, typescript@~4.8.4:
   version "4.8.4"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.8.4.tgz#c464abca159669597be5f96b8943500b238e60e6"
   integrity sha512-QCh+85mCy+h0IGff8r5XWzOVSbBO+KfeYrMQh7NJ58QujwcE22u+NUSmUxqF+un70P9GXKxa2HCNiTTMJknyjQ==

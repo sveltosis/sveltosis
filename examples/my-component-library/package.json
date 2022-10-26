@@ -37,7 +37,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@builder.io/mitosis": "^0.0.72",
-		"@builder.io/mitosis-cli": "^0.0.32-6"
+		"@builder.io/mitosis": "^0.0.76",
+		"@builder.io/mitosis-cli": "^0.0.34"
 	}
 }

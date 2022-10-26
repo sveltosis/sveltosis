@@ -1,14 +1,14 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 
 @Component({
-  selector: "input-hello, InputHello",
-  template: `
-    <div>
-      <p>{{text}}</p>
-      <input (input)="text = $event.target.value" [value]="text" />
-    </div>
-  `,
+	selector: 'input-hello, InputHello',
+	template: `
+		<div>
+			<p>{{ text }}</p>
+			<input (input)="text = $event.target.value" [attr.value]="text" />
+		</div>
+	`,
 })
 export default class InputHello {
-  text = "Hello World";
+	text = 'Hello World';
 }

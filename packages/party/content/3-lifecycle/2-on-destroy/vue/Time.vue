@@ -1,9 +1,9 @@
 <template></template>
 
 <script setup lang="ts">
-import { onUnMounted } from "vue";
+import { onUnmounted } from 'vue';
 
-onMounted(() => {
-  console.log("onUnmount");
+onUnmounted(() => {
+	console.log('onUnmount');
 });
 </script>

@@ -1,5 +1,5 @@
 <template>
-	<div>Is disabled? {{ disabled }}</div>
+  <div>Is disabled? {{ disabled }}</div>
 </template>
 
 <script setup lang="ts">

@@ -4,6 +4,6 @@
 import { onUnmounted } from 'vue';
 
 onUnmounted(() => {
-	console.log('onUnmount');
+  console.log('onUnmount');
 });
 </script>

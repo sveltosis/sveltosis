@@ -1,4 +1,4 @@
-import babel from '@babel/core';
+import * as babel from '@babel/core';
 import generate from '@babel/generator';
 import * as parser from '@babel/parser';
 import * as types from '@babel/types';
@@ -48,38 +48,47 @@ function getScriptContent(markup: string, module: boolean): string {
 }
 
 export function collectTypes(string_: string, json: SveltosisComponent) {
+  const module = getScriptContent(string_, true); // module
   const instance = getScriptContent(string_, false); // instance
-  // let module = getScriptContent(string_, true); // module (todo)
 
-  const ast = parser.parse(instance, {
-    sourceType: 'module',
-    plugins: ['typescript'],
-  });
+  function traverse(script_: string) {
+    const ast = parser.parse(script_, {
+      sourceType: 'module',
+      plugins: ['typescript'],
+    });
 
-  babel.traverse(ast, {
-    enter(path) {
-      // alias or interface (e.g. type Props = { } or interface Props {} )
-      if (types.isTSTypeAliasDeclaration(path.node) || types.isTSInterfaceDeclaration(path.node)) {
-        json.types = [...(json.types ?? []), generate(path.node).code];
-        path.skip();
-      } else if (types.isTSTypeAnnotation(path.node)) {
-        // add to actual ref
-        const reference = generate(path.parent).code;
-        const type = generate(path.node.typeAnnotation).code;
+    babel.traverse(ast, {
+      enter(path) {
+        // alias or interface (e.g. type Props = { } or interface Props {} )
+        if (
+          types.isTSTypeAliasDeclaration(path.node) ||
+          types.isTSInterfaceDeclaration(path.node)
+        ) {
+          json.types = [...(json.types ?? []), generate(path.node).code];
+          path.skip();
+        } else if (types.isTSTypeAnnotation(path.node)) {
+          // add to actual ref
+          const reference = generate(path.parent).code;
+          const type = generate(path.node.typeAnnotation).code;
 
-        // add to ref
-        if (Object.prototype.hasOwnProperty.call(json.refs, reference)) {
-          json.refs[reference].typeParameter = type;
+          // add to ref
+          if (Object.prototype.hasOwnProperty.call(json.refs, reference)) {
+            json.refs[reference].typeParameter = type;
+          }
+
+          // temp add to prop object.
+          // after having finished traversing, we'll create the prop type declaration
+          if (Object.prototype.hasOwnProperty.call(json.props, reference)) {
+            json.props[reference].type = type;
+          }
         }
+      },
+    });
+  }
 
-        // temp add to prop object.
-        // after having finished traversing, we'll create the prop type declaration
-        if (Object.prototype.hasOwnProperty.call(json.props, reference)) {
-          json.props[reference].type = type;
-        }
-      }
-    },
-  });
+  traverse(module);
+
+  traverse(instance);
 
   // add prop type declaration to json.types and set the propsTypeRef
   if (some(json.props, (property) => !!property.type)) {

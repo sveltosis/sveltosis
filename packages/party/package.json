@@ -82,11 +82,6 @@
     "vite-plugin-full-reload": "^1.0.4",
     "vite-plugin-run": "^0.2.0"
   },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx,vue,svelte}": [
-      "prettier --write"
-    ]
-  },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^5.38.0",
     "@typescript-eslint/parser": "^5.38.0",

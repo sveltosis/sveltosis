@@ -15,9 +15,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, ref } from "vue";
 
-const TRAFFIC_LIGHTS = ref(['red', 'green']);
+const TRAFFIC_LIGHTS = ref(["red", "green"]);
 const lightIndex = ref(0);
 
 const light = computed(() => {

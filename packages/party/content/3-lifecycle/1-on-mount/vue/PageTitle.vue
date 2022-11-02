@@ -3,9 +3,9 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { onMounted, ref } from 'vue';
 
-const pageTitle = ref("");
+const pageTitle = ref('');
 
 onMounted(() => {
   pageTitle.value = document.title;

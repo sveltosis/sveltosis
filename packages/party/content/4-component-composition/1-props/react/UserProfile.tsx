@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 
 export default function UserProfile(props: any) {
   return (
@@ -13,11 +13,11 @@ export default function UserProfile(props: any) {
       </p>
       <p>
         My favourite colors are
-        {props.favouriteColors.join(", ")}!
+        {props.favouriteColors.join(', ')}!
       </p>
       <p>
         I am
-        {props.isAvailable ? "available" : "not available"}
+        {props.isAvailable ? 'available' : 'not available'}
       </p>
     </>
   );

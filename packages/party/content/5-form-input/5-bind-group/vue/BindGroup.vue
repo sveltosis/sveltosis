@@ -58,8 +58,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref } from 'vue';
 
-const tortilla = ref("Plain");
+const tortilla = ref('Plain');
 const fillings = ref([]);
 </script>

@@ -1,8 +1,8 @@
-import * as React from "react";
-import { useState, useEffect } from "react";
+import * as React from 'react';
+import { useState, useEffect } from 'react';
 
 export default function PageTitle(props: any) {
-  const [pageTitle, setPageTitle] = useState(() => "");
+  const [pageTitle, setPageTitle] = useState(() => '');
 
   useEffect(() => {
     setPageTitle(document.title);

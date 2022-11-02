@@ -1,7 +1,7 @@
 <template></template>
 
 <script setup lang="ts">
-import { onUpdated } from "vue";
+import { onUpdated } from 'vue';
 
-onUpdated(() => console.log("updated"));
+onUpdated(() => console.log('updated'));
 </script>

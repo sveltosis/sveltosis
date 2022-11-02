@@ -1,11 +1,11 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 
 @Component({
-  selector: "traffic-light, TrafficLight",
+  selector: 'traffic-light, TrafficLight',
   template: `
     <div>
-      <button (click)="toggleLight">Toggle light</button>
-      <p>Light is: {{light}}</p>
+      <button (click)="(toggleLight)">Toggle light</button>
+      <p>Light is: {{ light }}</p>
       <p>
         You must
 
@@ -15,7 +15,7 @@ import { Component } from "@angular/core";
   `,
 })
 export default class TrafficLight {
-  TRAFFIC_LIGHTS = ["red", "green"];
+  TRAFFIC_LIGHTS = ['red', 'green'];
   lightIndex = 0;
   get light() {
     return this.TRAFFIC_LIGHTS[this.lightIndex];

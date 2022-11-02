@@ -1,8 +1,8 @@
-import * as React from "react";
-import { useState } from "react";
+import * as React from 'react';
+import { useState } from 'react';
 
 export default function PickPill(props: any) {
-  const [picked, setPicked] = useState(() => "red");
+  const [picked, setPicked] = useState(() => 'red');
 
   return (
     <>
@@ -14,7 +14,7 @@ export default function PickPill(props: any) {
         id="blue-pill"
         type="radio"
         value="blue"
-        checked={picked === "blue"}
+        checked={picked === 'blue'}
         onChange={(event) => setPicked(event.target.value)}
       />
       <label for="blue-pill">Blue pill</label>
@@ -22,7 +22,7 @@ export default function PickPill(props: any) {
         id="red-pill"
         type="radio"
         value="red"
-        checked={picked === "red"}
+        checked={picked === 'red'}
         onChange={(event) => setPicked(event.target.value)}
       />
       <label for="red-pill">Red pill</label>

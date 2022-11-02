@@ -1,23 +1,21 @@
-import { Component, ViewChild, ElementRef } from "@angular/core";
+import { Component, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
-  selector: "actions, Actions",
-  template: `
-    <button #button0>{{buttonText}}</button>
-  `,
+  selector: 'actions, Actions',
+  template: ` <button #button0>{{ buttonText }}</button> `,
 })
 export default class Actions {
-  @ViewChild("button0") button0: ElementRef;
+  @ViewChild('button0') button0: ElementRef;
 
-  buttonText = "Click Me";
+  buttonText = 'Click Me';
   onClick = function onClick(node, args) {
-    console.log("Mounted", node);
+    console.log('Mounted', node);
     return {
       update() {
-        console.log("Updated", args);
+        console.log('Updated', args);
       },
       destroy() {
-        console.log("Destroyed", node);
+        console.log('Destroyed', node);
       },
     };
   };
@@ -25,10 +23,7 @@ export default class Actions {
 
   ngOnInit() {
     if (this.button0.nativeElement) {
-      this.actionHandler0 = this.onClick(
-        this.button0.nativeElement,
-        this.buttonText
-      );
+      this.actionHandler0 = this.onClick(this.button0.nativeElement, this.buttonText);
     }
   }
 
@@ -38,10 +33,7 @@ export default class Actions {
       this.actionHandler0 = null;
     } else if (this.button0.nativeElement && !this.actionHandler0) {
       if (this.button0.nativeElement) {
-        this.actionHandler0 = this.onClick(
-          this.button0.nativeElement,
-          this.buttonText
-        );
+        this.actionHandler0 = this.onClick(this.button0.nativeElement, this.buttonText);
       }
     }
 

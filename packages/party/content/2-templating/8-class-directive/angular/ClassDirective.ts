@@ -1,13 +1,11 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input } from '@angular/core';
 
 const defaultProps = {};
 
 @Component({
-  selector: "class-directive, ClassDirective",
+  selector: 'class-directive, ClassDirective',
   template: `
-    <input
-      [class]="\`form-input \${disabled ? 'disabled' : ''} \${focus ? 'focus' : ''}\`"
-    />
+    <input [class]="\`form-input \${disabled ? 'disabled' : ''} \${focus ? 'focus' : ''}\`" />
   `,
 })
 export default class ClassDirective {

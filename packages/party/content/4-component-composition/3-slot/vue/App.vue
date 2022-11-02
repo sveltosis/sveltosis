@@ -3,5 +3,5 @@
 </template>
 
 <script setup lang="ts">
-import FunnyButton from "./FunnyButton.svelte";
+import FunnyButton from './FunnyButton.svelte';
 </script>

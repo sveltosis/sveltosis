@@ -1,4 +1,4 @@
-import { Fragment, component$, h, useStylesScoped$ } from "@builder.io/qwik";
+import { Fragment, component$, h, useStylesScoped$ } from '@builder.io/qwik';
 export const CssStyle = component$((props) => {
   useStylesScoped$(STYLES);
   return (

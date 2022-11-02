@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref } from 'vue';
 
-const colors = ref(["red", "green", "blue"]);
+const colors = ref(['red', 'green', 'blue']);
 </script>

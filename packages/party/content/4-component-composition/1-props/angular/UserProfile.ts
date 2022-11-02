@@ -1,15 +1,15 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input } from '@angular/core';
 
 const defaultProps = {};
 
 @Component({
-  selector: "user-profile, UserProfile",
+  selector: 'user-profile, UserProfile',
   template: `
     <div>
-      <p>My name is {{name}} !</p>
-      <p>My age is {{age}} !</p>
-      <p>My favourite colors are {{favouriteColors.join(', ')}} !</p>
-      <p>I am {{isAvailable ? 'available' : 'not available'}}</p>
+      <p>My name is {{ name }} !</p>
+      <p>My age is {{ age }} !</p>
+      <p>My favourite colors are {{ favouriteColors.join(', ') }} !</p>
+      <p>I am {{ isAvailable ? 'available' : 'not available' }}</p>
     </div>
   `,
 })

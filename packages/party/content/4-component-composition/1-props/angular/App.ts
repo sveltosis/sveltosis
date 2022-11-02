@@ -1,9 +1,9 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 
-import UserProfile from "./UserProfile.svelte";
+import UserProfile from './UserProfile.svelte';
 
 @Component({
-  selector: "app, App",
+  selector: 'app, App',
   template: `
     <user-profile
       name="John"

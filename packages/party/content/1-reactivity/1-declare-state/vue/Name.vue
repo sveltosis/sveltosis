@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref } from 'vue';
 
-const name = ref("John");
+const name = ref('John');
 </script>

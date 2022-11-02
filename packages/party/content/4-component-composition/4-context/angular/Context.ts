@@ -1,13 +1,11 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 
 @Component({
-  selector: "context, Context",
-  template: `
-    <div>Is disabled? {{disabled}}</div>
-  `,
+  selector: 'context, Context',
+  template: ` <div>Is disabled? {{ disabled }}</div> `,
 })
 export default class Context {
   activeTab = 0;
 
-  constructor(public disabled: "disabled") {}
+  constructor(public disabled: 'disabled') {}
 }

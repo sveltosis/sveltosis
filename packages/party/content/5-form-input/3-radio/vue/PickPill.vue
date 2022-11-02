@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref } from 'vue';
 
-const picked = ref("red");
+const picked = ref('red');
 </script>

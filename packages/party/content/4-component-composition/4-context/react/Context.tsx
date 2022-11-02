@@ -1,10 +1,10 @@
-import * as React from "react";
-import { useState, useContext } from "react";
+import * as React from 'react';
+import { useState, useContext } from 'react';
 
 export default function Context(props: any) {
   const [activeTab, setActiveTab] = useState(() => 0);
 
-  const disabled = useContext("disabled");
+  const disabled = useContext('disabled');
 
   return (
     <Context.Provider value={activeTab}>

@@ -1,11 +1,11 @@
-import { Output, EventEmitter, Component } from "@angular/core";
+import { Output, EventEmitter, Component } from '@angular/core';
 
 @Component({
-  selector: "answer-button, AnswerButton",
+  selector: 'answer-button, AnswerButton',
   template: `
     <div>
-      <button (click)="clickYes">YES</button>
-      <button (click)="clickNo">NO</button>
+      <button (click)="(clickYes)">YES</button>
+      <button (click)="(clickNo)">NO</button>
     </div>
   `,
 })

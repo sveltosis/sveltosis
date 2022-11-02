@@ -1,7 +1,7 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 
 @Component({
-  selector: "funny-button, FunnyButton",
+  selector: 'funny-button, FunnyButton',
   template: `
     <button
       style="

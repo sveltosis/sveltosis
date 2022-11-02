@@ -1,8 +1,8 @@
-import * as React from "react";
-import { useState } from "react";
+import * as React from 'react';
+import { useState } from 'react';
 
 export default function Colors(props: any) {
-  const [colors, setColors] = useState(() => ["red", "green", "blue"]);
+  const [colors, setColors] = useState(() => ['red', 'green', 'blue']);
 
   return (
     <ul>

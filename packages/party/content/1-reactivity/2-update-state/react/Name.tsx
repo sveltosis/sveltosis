@@ -1,11 +1,11 @@
-import * as React from "react";
-import { useState, useEffect } from "react";
+import * as React from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Name(props: any) {
-  const [name, setName] = useState(() => "John");
+  const [name, setName] = useState(() => 'John');
 
   useEffect(() => {
-    setName("Jane");
+    setName('Jane');
   }, []);
 
   return (

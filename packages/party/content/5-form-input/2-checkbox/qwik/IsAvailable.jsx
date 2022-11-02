@@ -1,4 +1,4 @@
-import { Fragment, component$, h, useStore } from "@builder.io/qwik";
+import { Fragment, component$, h, useStore } from '@builder.io/qwik';
 export const IsAvailable = component$((props) => {
   const state = useStore({ isAvailable: false });
   return (

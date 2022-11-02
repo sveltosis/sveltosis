@@ -20,9 +20,10 @@ This project requires Node.js to be `v14.0.0` or higher, because we use new Java
 ## 🧑‍💻 Contributors
 
 This project exists thanks to all the people who contribute and wouldn't be possible without the following two projects.
+
 - [Component Party](https://github.com/matschik/component-party) (this example site is a modified copy)
 - [Mitosis](https://github.com/BuilderIO/mitosis) (Builder.io)
 
 ## ⚖️ License
 
-MIT. 
+MIT.

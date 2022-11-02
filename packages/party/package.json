@@ -8,6 +8,7 @@
     "dev": "astro dev",
     "prebuild": "rimraf ./output && rimraf ./content && mitosis build -c mitosis.config.cjs && node prebuild.js",
     "build": "astro build",
+    "postbuild": "yarn prettier:fix",
     "preview": "astro preview",
     "progression": "node scripts/progress.js",
     "lint": "eslint .",

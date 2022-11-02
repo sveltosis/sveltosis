@@ -1,6 +1,6 @@
-import { Fragment, component$, h, useStore } from "@builder.io/qwik";
+import { Fragment, component$, h, useStore } from '@builder.io/qwik';
 export const PickPill = component$((props) => {
-  const state = useStore({ picked: "red" });
+  const state = useStore({ picked: 'red' });
   return (
     <Fragment>
       <div>Picked: {state.picked}</div>
@@ -9,7 +9,7 @@ export const PickPill = component$((props) => {
         type="radio"
         value="blue"
         checked={(() => {
-          state.picked === "blue";
+          state.picked === 'blue';
         })()}
         onChange$={(event) => (state.picked = event.target.value)}
       ></input>
@@ -19,7 +19,7 @@ export const PickPill = component$((props) => {
         type="radio"
         value="red"
         checked={(() => {
-          state.picked === "red";
+          state.picked === 'red';
         })()}
         onChange$={(event) => (state.picked = event.target.value)}
       ></input>

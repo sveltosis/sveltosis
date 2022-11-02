@@ -1,13 +1,11 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 
 @Component({
-  selector: "time, Time",
-  template: `
-    <div></div>
-  `,
+  selector: 'time, Time',
+  template: ` <div></div> `,
 })
 export default class Time {
   ngOnDestroy() {
-    console.log("onUnmount");
+    console.log('onUnmount');
   }
 }

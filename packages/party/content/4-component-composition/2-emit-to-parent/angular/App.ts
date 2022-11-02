@@ -1,14 +1,14 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 
-import AnswerButton from "./AnswerButton.svelte";
+import AnswerButton from './AnswerButton.svelte';
 
 @Component({
-  selector: "app, App",
+  selector: 'app, App',
   template: `
     <div>
       <p>Can I come ?</p>
-      <answer-button (yes)="onAnswerYes" (no)="onAnswerNo"></answer-button>
-      <p style="font-size: 50px">{{canCome ? '😀' : '😥'}}</p>
+      <answer-button (yes)="(onAnswerYes)" (no)="(onAnswerNo)"></answer-button>
+      <p style="font-size: 50px">{{ canCome ? '😀' : '😥' }}</p>
     </div>
   `,
 })

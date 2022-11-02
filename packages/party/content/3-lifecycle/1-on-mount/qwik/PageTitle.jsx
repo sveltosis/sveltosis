@@ -1,12 +1,6 @@
-import {
-  Fragment,
-  component$,
-  h,
-  useClientEffect$,
-  useStore,
-} from "@builder.io/qwik";
+import { Fragment, component$, h, useClientEffect$, useStore } from '@builder.io/qwik';
 export const PageTitle = component$((props) => {
-  const state = useStore({ pageTitle: "" });
+  const state = useStore({ pageTitle: '' });
   useClientEffect$(() => {
     state.pageTitle = document.title;
   });

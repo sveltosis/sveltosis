@@ -1,12 +1,14 @@
-import { onMount, createSignal } from "solid-js";
+import { onMount, createSignal } from 'solid-js';
 function Name(props) {
-  const [name, setName] = createSignal("John");
+  const [name, setName] = createSignal('John');
   onMount(() => {
-    setName("Jane");
+    setName('Jane');
   });
-  return <h1>
+  return (
+    <h1>
       Hello
       {name()}
-    </h1>;
+    </h1>
+  );
 }
 export default Name;

@@ -1,11 +1,11 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 
 @Component({
-  selector: "counter, Counter",
+  selector: 'counter, Counter',
   template: `
     <div>
-      <p>Counter: {{count}}</p>
-      <button (click)="incrementCount">+1</button>
+      <p>Counter: {{ count }}</p>
+      <button (click)="(incrementCount)">+1</button>
     </div>
   `,
 })

@@ -1,16 +1,16 @@
-import { onMount, on, createEffect, createSignal } from "solid-js";
+import { onMount, on, createEffect, createSignal } from 'solid-js';
 function Actions(props) {
-  const [buttonText, setButtonText] = createSignal("Click Me");
+  const [buttonText, setButtonText] = createSignal('Click Me');
   const [actionHandler0, setActionHandler0] = createSignal(null);
   function onClick(node, args) {
-    console.log("Mounted", node);
+    console.log('Mounted', node);
     return {
       update() {
-        console.log("Updated", args);
+        console.log('Updated', args);
       },
       destroy() {
-        console.log("Destroyed", node);
-      }
+        console.log('Destroyed', node);
+      },
     };
   }
   let button0;

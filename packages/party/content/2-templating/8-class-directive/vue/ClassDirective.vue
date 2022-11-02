@@ -1,22 +1,20 @@
 <template>
   <input
     :class="
-      _classStringToObject(
-        `form-input ${disabled ? 'disabled' : ''} ${focus ? 'focus' : ''}`
-      )
+      _classStringToObject(`form-input ${disabled ? 'disabled' : ''} ${focus ? 'focus' : ''}`)
     "
   />
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref } from 'vue';
 
 const props = withDefaults(defineProps<undefined>(), {});
 const focus = ref(true);
 
 function _classStringToObject(str) {
   const obj = {};
-  if (typeof str !== "string") {
+  if (typeof str !== 'string') {
     return obj;
   }
   const classNames = str.trim().split(/\s+/);

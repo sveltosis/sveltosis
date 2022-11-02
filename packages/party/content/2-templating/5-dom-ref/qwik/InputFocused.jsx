@@ -1,10 +1,4 @@
-import {
-  Fragment,
-  component$,
-  h,
-  useClientEffect$,
-  useRef,
-} from "@builder.io/qwik";
+import { Fragment, component$, h, useClientEffect$, useRef } from '@builder.io/qwik';
 export const InputFocused = component$((props) => {
   const inputElement = useRef();
   useClientEffect$(() => {

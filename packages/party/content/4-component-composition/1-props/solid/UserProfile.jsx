@@ -1,5 +1,6 @@
 function UserProfile(props) {
-  return <>
+  return (
+    <>
       <p>
         My name is
         {props.name}!
@@ -10,12 +11,13 @@ function UserProfile(props) {
       </p>
       <p>
         My favourite colors are
-        {props.favouriteColors.join(", ")}!
+        {props.favouriteColors.join(', ')}!
       </p>
       <p>
         I am
-        {props.isAvailable ? "available" : "not available"}
+        {props.isAvailable ? 'available' : 'not available'}
       </p>
-    </>;
+    </>
+  );
 }
 export default UserProfile;

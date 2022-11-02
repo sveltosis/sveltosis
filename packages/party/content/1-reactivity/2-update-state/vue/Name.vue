@@ -3,11 +3,11 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { onMounted, ref } from 'vue';
 
-const name = ref("John");
+const name = ref('John');
 
 onMounted(() => {
-  name.value = "Jane";
+  name.value = 'Jane';
 });
 </script>

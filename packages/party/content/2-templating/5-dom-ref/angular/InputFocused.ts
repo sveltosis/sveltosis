@@ -1,13 +1,11 @@
-import { Component, ViewChild, ElementRef } from "@angular/core";
+import { Component, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
-  selector: "input-focused, InputFocused",
-  template: `
-    <input #inputElement />
-  `,
+  selector: 'input-focused, InputFocused',
+  template: ` <input #inputElement /> `,
 })
 export default class InputFocused {
-  @ViewChild("inputElement") inputElement: ElementRef;
+  @ViewChild('inputElement') inputElement: ElementRef;
 
   ngOnInit() {
     this.inputElement.nativeElement.focus();

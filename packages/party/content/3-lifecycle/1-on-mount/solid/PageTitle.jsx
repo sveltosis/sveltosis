@@ -1,12 +1,14 @@
-import { onMount, createSignal } from "solid-js";
+import { onMount, createSignal } from 'solid-js';
 function PageTitle(props) {
-  const [pageTitle, setPageTitle] = createSignal("");
+  const [pageTitle, setPageTitle] = createSignal('');
   onMount(() => {
     setPageTitle(document.title);
   });
-  return <p>
+  return (
+    <p>
       Page title is:
       {pageTitle()}
-    </p>;
+    </p>
+  );
 }
 export default PageTitle;

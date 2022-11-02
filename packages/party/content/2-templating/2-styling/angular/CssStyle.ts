@@ -1,7 +1,7 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 
 @Component({
-  selector: "css-style, CssStyle",
+  selector: 'css-style, CssStyle',
   template: `
     <div>
       <h1 class="title">I am red</h1>

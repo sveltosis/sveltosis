@@ -1,13 +1,11 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 
 @Component({
-  selector: "page-title, PageTitle",
-  template: `
-    <p>Page title is: {{pageTitle}}</p>
-  `,
+  selector: 'page-title, PageTitle',
+  template: ` <p>Page title is: {{ pageTitle }}</p> `,
 })
 export default class PageTitle {
-  pageTitle = "";
+  pageTitle = '';
 
   ngOnInit() {
     this.pageTitle = document.title;

@@ -1,5 +1,5 @@
-import * as React from "react";
-import { useState } from "react";
+import * as React from 'react';
+import { useState } from 'react';
 
 export default function ColorSelect(props: any) {
   const [selectedColorId, setSelectedColorId] = useState(() => 2);
@@ -7,10 +7,7 @@ export default function ColorSelect(props: any) {
   const [colors, setColors] = useState(() => [null, null, null, null]);
 
   return (
-    <select
-      onChange={(event) => setSelectedColorId(event.target.value)}
-      value={selectedColorId}
-    >
+    <select onChange={(event) => setSelectedColorId(event.target.value)} value={selectedColorId}>
       {colors?.map((color) => (
         <option value={color.id} disabled={color.isDisabled}>
           {color.text}

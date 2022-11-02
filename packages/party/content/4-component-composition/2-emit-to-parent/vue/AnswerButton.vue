@@ -4,7 +4,7 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps(["onYes", "onNo"]);
+const props = defineProps(['onYes', 'onNo']);
 
 function clickYes() {
   props.onYes();

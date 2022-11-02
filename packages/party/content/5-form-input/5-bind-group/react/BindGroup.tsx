@@ -1,8 +1,8 @@
-import * as React from "react";
-import { useState } from "react";
+import * as React from 'react';
+import { useState } from 'react';
 
 export default function BindGroup(props: any) {
-  const [tortilla, setTortilla] = useState(() => "Plain");
+  const [tortilla, setTortilla] = useState(() => 'Plain');
 
   const [fillings, setFillings] = useState(() => []);
 
@@ -11,19 +11,19 @@ export default function BindGroup(props: any) {
       <input
         type="radio"
         value="Plain"
-        checked={tortilla === "Plain"}
+        checked={tortilla === 'Plain'}
         onChange={(event) => setTortilla(event.target.value)}
       />
       <input
         type="radio"
         value="Whole wheat"
-        checked={tortilla === "Whole wheat"}
+        checked={tortilla === 'Whole wheat'}
         onChange={(event) => setTortilla(event.target.value)}
       />
       <input
         type="radio"
         value="Spinach"
-        checked={tortilla === "Spinach"}
+        checked={tortilla === 'Spinach'}
         onChange={(event) => setTortilla(event.target.value)}
       />
       <br />
@@ -31,41 +31,41 @@ export default function BindGroup(props: any) {
       <input
         type="checkbox"
         value="Rice"
-        checked={fillings.includes("Rice")}
+        checked={fillings.includes('Rice')}
         onChange={(event) =>
           event.target.checked
             ? fillings.push(event.target.value)
-            : fillings.splice(fillings.indexOf("Rice"), 1)
+            : fillings.splice(fillings.indexOf('Rice'), 1)
         }
       />
       <input
         type="checkbox"
         value="Beans"
-        checked={fillings.includes("Beans")}
+        checked={fillings.includes('Beans')}
         onChange={(event) =>
           event.target.checked
             ? fillings.push(event.target.value)
-            : fillings.splice(fillings.indexOf("Beans"), 1)
+            : fillings.splice(fillings.indexOf('Beans'), 1)
         }
       />
       <input
         type="checkbox"
         value="Cheese"
-        checked={fillings.includes("Cheese")}
+        checked={fillings.includes('Cheese')}
         onChange={(event) =>
           event.target.checked
             ? fillings.push(event.target.value)
-            : fillings.splice(fillings.indexOf("Cheese"), 1)
+            : fillings.splice(fillings.indexOf('Cheese'), 1)
         }
       />
       <input
         type="checkbox"
         value="Guac (extra)"
-        checked={fillings.includes("Guac (extra)")}
+        checked={fillings.includes('Guac (extra)')}
         onChange={(event) =>
           event.target.checked
             ? fillings.push(event.target.value)
-            : fillings.splice(fillings.indexOf("Guac (extra)"), 1)
+            : fillings.splice(fillings.indexOf('Guac (extra)'), 1)
         }
       />
       <p>

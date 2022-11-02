@@ -1,5 +1,5 @@
-import * as React from "react";
-import { useRef, useEffect } from "react";
+import * as React from 'react';
+import { useRef, useEffect } from 'react';
 
 export default function InputFocused(props: any) {
   const inputElement = useRef<any>(null);

@@ -1,4 +1,4 @@
-import { onMount } from "solid-js";
+import { onMount } from 'solid-js';
 function InputFocused(props) {
   let inputElement;
   onMount(() => {

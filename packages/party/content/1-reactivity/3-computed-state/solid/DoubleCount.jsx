@@ -1,4 +1,4 @@
-import { createSignal } from "solid-js";
+import { createSignal } from 'solid-js';
 function DoubleCount(props) {
   const [count, setCount] = createSignal(10);
   function doubleCount() {

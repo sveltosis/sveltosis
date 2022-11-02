@@ -1,18 +1,18 @@
-import * as React from "react";
-import { useState, useRef, useEffect } from "react";
+import * as React from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 export default function Actions(props: any) {
   const button0 = useRef(null);
-  const [buttonText, setButtonText] = useState(() => "Click Me");
+  const [buttonText, setButtonText] = useState(() => 'Click Me');
 
   function onClick(node, args) {
-    console.log("Mounted", node);
+    console.log('Mounted', node);
     return {
       update() {
-        console.log("Updated", args);
+        console.log('Updated', args);
       },
       destroy() {
-        console.log("Destroyed", node);
+        console.log('Destroyed', node);
       },
     };
   }

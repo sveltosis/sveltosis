@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.11](https://github.com/sveltosis/sveltosis/compare/@sveltosis/parser@0.6.10...@sveltosis/parser@0.6.11) (2022-11-02)
+
+### Bug Fixes
+
+- babel import and collect types from module ([9ae964a](https://github.com/sveltosis/sveltosis/commit/9ae964a2f7cd0527cf62361a9f68e87985724de8))
+
 ## [0.6.10](https://github.com/sveltosis/sveltosis/compare/@sveltosis/parser@0.6.9...@sveltosis/parser@0.6.10) (2022-10-26)
 
 **Note:** Version bump only for package @sveltosis/parser

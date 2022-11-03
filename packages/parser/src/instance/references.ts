@@ -22,8 +22,10 @@ function isPropertyOrStateReference(index: string) {
 export function parseReferences(json: SveltosisComponent, node: VariableDeclaration) {
   const declaration = node.declarations[0];
   let code: string[] | Record<string, string> | string;
+  let type: any = 'property';
 
-  if (declaration?.init?.type === 'ArrayExpression') {
+  switch (declaration?.init?.type) {
+  case 'ArrayExpression': {
     code = declaration.init.elements.map((element) => {
       return getParsedValue(json, element as Expression);
     });
@@ -41,7 +43,10 @@ export function parseReferences(json: SveltosisComponent, node: VariableDeclarat
       };
       return;
     }
-  } else if (declaration?.init?.type === 'ObjectExpression') {
+  
+  break;
+  }
+  case 'ObjectExpression': {
     const properties = declaration.init.properties.map((element) => {
       const element_ = element as Property;
       return {
@@ -53,12 +58,23 @@ export function parseReferences(json: SveltosisComponent, node: VariableDeclarat
     for (const item of properties) {
       Object.assign(code, { [item.key]: item.value });
     }
-  } else {
+  
+  break;
+  }
+  case 'FunctionExpression': {
+    declaration.init.id = declaration.id as Identifier;
+    code = generate(declaration.init);
+    type = 'function';
+  
+  break;
+  }
+  default: {
     code = (declaration?.init as SimpleLiteral)?.value as string;
+  }
   }
 
   json.state[(declaration.id as Identifier).name] = {
     code,
-    type: 'property',
+    type,
   };
 }

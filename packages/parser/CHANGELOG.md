@@ -3,27 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [0.6.20](https://github.com/sveltosis/sveltosis/compare/@sveltosis/parser@0.6.19...@sveltosis/parser@0.6.20) (2022-11-07)
-
+## [0.6.21](https://github.com/sveltosis/sveltosis/compare/@sveltosis/parser@0.6.20...@sveltosis/parser@0.6.21) (2022-11-07)
 
 ### Bug Fixes
 
-* **parser:** event handlers ([ec6d746](https://github.com/sveltosis/sveltosis/commit/ec6d74658791e64ce585f4890ac65279e5e35b40))
+- **parser:** object expressions ([2842981](https://github.com/sveltosis/sveltosis/commit/284298138902b1b3a9dd123a3c0ce7cc6027f929))
 
+## [0.6.20](https://github.com/sveltosis/sveltosis/compare/@sveltosis/parser@0.6.19...@sveltosis/parser@0.6.20) (2022-11-07)
 
+### Bug Fixes
 
-
+- **parser:** event handlers ([ec6d746](https://github.com/sveltosis/sveltosis/commit/ec6d74658791e64ce585f4890ac65279e5e35b40))
 
 ## [0.6.19](https://github.com/sveltosis/sveltosis/compare/@sveltosis/parser@0.6.18...@sveltosis/parser@0.6.19) (2022-11-07)
 
-
 ### Bug Fixes
 
-* event handlers ([4535633](https://github.com/sveltosis/sveltosis/commit/4535633242957f42e57d12743d0888dccf58fa85))
-
-
-
-
+- event handlers ([4535633](https://github.com/sveltosis/sveltosis/commit/4535633242957f42e57d12743d0888dccf58fa85))
 
 ## [0.6.18](https://github.com/sveltosis/sveltosis/compare/@sveltosis/parser@0.6.17...@sveltosis/parser@0.6.18) (2022-11-07)
 

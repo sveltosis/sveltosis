@@ -119,8 +119,17 @@ export function parseElement(json: SveltosisComponent, node: TemplateNode) {
               ),
             };
           } else if (attribute.expression) {
+            let code = generate(attribute.expression);
+
+            if (
+              !attribute.expression.arguments?.length &&
+              !attribute.expression.body?.arguments?.length
+            ) {
+              code += '(event)';
+            }
+
             object = {
-              code: generate(attribute.expression) + '(event)',
+              code,
               arguments: ['event'],
             };
           } else {

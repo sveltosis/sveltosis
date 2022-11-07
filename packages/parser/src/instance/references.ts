@@ -7,12 +7,22 @@ import type {
   SimpleLiteral,
   Expression,
   Pattern,
+  ObjectExpression,
 } from 'estree';
+import { parseObjectExpression } from '../helpers/expressions';
 
-function getParsedValue(json: SveltosisComponent, element: Expression | Pattern) {
-  return element.type === 'Identifier'
-    ? element.name
-    : ((element as SimpleLiteral).value as string);
+export function getParsedValue(json: SveltosisComponent, element: Expression | Pattern) {
+  switch (element.type) {
+    case 'Identifier': {
+      return element.name;
+    }
+    case 'ObjectExpression': {
+      return parseObjectExpression(json, element as ObjectExpression);
+    }
+    default: {
+      return (element as SimpleLiteral).value as string;
+    }
+  }
 }
 
 function isPropertyOrStateReference(index: string) {
@@ -47,19 +57,7 @@ export function parseReferences(json: SveltosisComponent, node: VariableDeclarat
       break;
     }
     case 'ObjectExpression': {
-      const properties = declaration.init.properties.map((element) => {
-        const element_ = element as Property;
-        return {
-          key: generate(element_.key),
-          value: getParsedValue(json, element_.value),
-        };
-      });
-
-      code = {};
-      for (const item of properties) {
-        Object.assign(code, { [item.key]: item.value });
-      }
-
+      code = parseObjectExpression(json, declaration.init);
       break;
     }
     case 'FunctionExpression': {

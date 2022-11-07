@@ -125,7 +125,7 @@ export function parseElement(json: SveltosisComponent, node: TemplateNode) {
             };
           } else {
             object = {
-              code: `props.on${upperFirst(attribute.name)}`,
+              code: `() => props.on${upperFirst(attribute.name)}()`,
               arguments: [],
             };
           }

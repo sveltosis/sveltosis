@@ -120,8 +120,8 @@ export function parseElement(json: SveltosisComponent, node: TemplateNode) {
             };
           } else if (attribute.expression) {
             object = {
-              code: generate(attribute.expression),
-              arguments: [],
+              code: generate(attribute.expression) + '(event)',
+              arguments: ['event'],
             };
           } else {
             object = {

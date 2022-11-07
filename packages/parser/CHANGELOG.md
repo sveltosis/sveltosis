@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.7.0](https://github.com/sveltosis/sveltosis/compare/@sveltosis/parser@0.6.22...@sveltosis/parser@0.7.0) (2022-11-07)
+
+### Features
+
+- **parser:** module exports ([931cbe5](https://github.com/sveltosis/sveltosis/commit/931cbe5b54340459036268ce915c1c7c30ed5a19))
+
 ## [0.6.22](https://github.com/sveltosis/sveltosis/compare/@sveltosis/parser@0.6.21...@sveltosis/parser@0.6.22) (2022-11-07)
 
 ### Bug Fixes

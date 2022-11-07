@@ -45,7 +45,7 @@ function prependProperties(json: SveltosisComponent, input: string) {
   const propertyKeys = Object.keys(json.props);
 
   for (const property of propertyKeys) {
-    const regex = new RegExp(`(props.)?${property}\\b`, 'g');
+    const regex = new RegExp(`(?<!\\.)\\b(props\\.)?${property}\\b`, 'g');
     if (regex.test(output)) {
       output = output.replace(regex, `props.${property}`);
     }
@@ -57,7 +57,7 @@ function prependState(json: SveltosisComponent, input: string) {
   let output = input;
   const stateKeys = Object.keys(json.state);
   for (const state of stateKeys) {
-    const regex = new RegExp(`(state.)?${state}\\b(?!(\\s+)?\\()`, 'g');
+    const regex = new RegExp(`(?<!\\.)\\b(state\\.)?${state}\\b(?!(\\s+)?\\()`, 'g');
     if (regex.test(output)) {
       output = output.replace(regex, `state.${state}`);
     }

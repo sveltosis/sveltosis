@@ -14,7 +14,7 @@ import type { Ast, TemplateNode } from 'svelte/types/compiler/interfaces';
 export function parseHtml(ast: Ast, json: SveltosisComponent) {
   // todo: should filter children and check if just 1 has length
   const html =
-    ast.html.children?.length === 2 && ast.html.children[0].raw.trim().length === 0
+    ast.html.children?.length === 2 && ast.html.children[0].raw?.trim().length === 0
       ? ast.html.children[1]
       : ast.html;
 

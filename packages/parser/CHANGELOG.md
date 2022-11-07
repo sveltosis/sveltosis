@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.1](https://github.com/sveltosis/sveltosis/compare/@sveltosis/parser@0.7.0...@sveltosis/parser@0.7.1) (2022-11-07)
+
+### Bug Fixes
+
+- **parser:** setContext ([3e417d6](https://github.com/sveltosis/sveltosis/commit/3e417d6c167feddad710e8bf36d885df5a43927d))
+
 # [0.7.0](https://github.com/sveltosis/sveltosis/compare/@sveltosis/parser@0.6.22...@sveltosis/parser@0.7.0) (2022-11-07)
 
 ### Features

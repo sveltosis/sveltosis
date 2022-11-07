@@ -2,6 +2,7 @@ import { parse, preprocess } from 'svelte/compiler';
 import preprocessor from 'svelte-preprocess';
 import { omit } from 'lodash';
 
+import { parseModule } from './module';
 import { parseInstance } from './instance';
 import { parseCss } from './css';
 import { parseHtml } from './html';
@@ -33,6 +34,7 @@ function mapAstToMitosisJson(
     style: undefined,
   };
 
+  parseModule(ast, json);
   parseInstance(ast, json);
   parseHtml(ast, json);
   parseCss(ast, json);

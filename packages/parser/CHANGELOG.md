@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.6.19](https://github.com/sveltosis/sveltosis/compare/@sveltosis/parser@0.6.18...@sveltosis/parser@0.6.19) (2022-11-07)
+
+
+### Bug Fixes
+
+* event handlers ([4535633](https://github.com/sveltosis/sveltosis/commit/4535633242957f42e57d12743d0888dccf58fa85))
+
+
+
+
+
 ## [0.6.18](https://github.com/sveltosis/sveltosis/compare/@sveltosis/parser@0.6.17...@sveltosis/parser@0.6.18) (2022-11-07)
 
 ### Bug Fixes

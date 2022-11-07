@@ -132,6 +132,12 @@ export function parseElement(json: SveltosisComponent, node: TemplateNode) {
 
           mitosisNode.bindings[`on${upperFirst(attribute.name)}`] = object;
 
+          // add event handlers as props (e.g. props.onClick)
+          json.props = {
+            ...json.props,
+            [`on${upperFirst(attribute.name)}`]: { default: () => ({}) },
+          };
+
           break;
         }
         case 'Binding': {

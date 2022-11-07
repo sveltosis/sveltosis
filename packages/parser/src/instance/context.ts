@@ -64,7 +64,7 @@ export function parseSetContext(json: SveltosisComponent, node: ExpressionStatem
 
       json.context.set[key.value as string] = {
         name: generate(key) as string,
-        ref: value.name,
+        ref: generate(value),
       };
     }
   }

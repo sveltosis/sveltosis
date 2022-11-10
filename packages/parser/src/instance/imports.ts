@@ -20,7 +20,10 @@ export function parseImports(json: SveltosisComponent, node: ImportDeclaration) 
 
   // only add imports which are actually used
   if (Object.keys(imports).length > 0) {
-    json.imports = [...json.imports, { imports, path: source as string }];
+    json.imports = [
+      ...json.imports,
+      { imports, path: (source as string).replace('.svelte', '.lite') },
+    ];
     // TODO: if import source already exist, combine them
     // e.g. import { lowercase } from 'lodash';
     // e.g. import { uppercase } from 'lodash';

@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.3](https://github.com/sveltosis/sveltosis/compare/@sveltosis/parser@0.7.2...@sveltosis/parser@0.7.3) (2022-11-11)
+
+
+### Bug Fixes
+
+* **parser:** class mustache tag ([808a1b9](https://github.com/sveltosis/sveltosis/commit/808a1b9c5654067791cc6ccfb819e1fdc84ad672))
+* **parser:** component imports ([3917ca9](https://github.com/sveltosis/sveltosis/commit/3917ca90ec41b0e7f0b426a74c789237b6c3ee06))
+* **parser:** some regex issues ([f811f2c](https://github.com/sveltosis/sveltosis/commit/f811f2c4dd534b855aef81bbf1826e9f507d4bff))
+
+
+
+
+
 ## [0.7.2](https://github.com/sveltosis/sveltosis/compare/@sveltosis/parser@0.7.1...@sveltosis/parser@0.7.2) (2022-11-07)
 
 ### Bug Fixes

@@ -59,7 +59,7 @@ export function parseElement(json: SveltosisComponent, node: TemplateNode) {
               if (attribute.name === 'class' && mitosisNode.bindings.class?.code?.length) {
                 mitosisNode.bindings.class.code = insertAt(
                   mitosisNode.bindings.class.code,
-                  `${value.data} `,
+                  ` ${value.data} `,
                   1,
                 );
               } else {
@@ -71,7 +71,15 @@ export function parseElement(json: SveltosisComponent, node: TemplateNode) {
             case 'MustacheTag': {
               const value: MustacheTag = attribute.value[0];
               const expression = value.expression as Identifier;
-              const code = generate(expression);
+              let code = generate(expression);
+
+              if (attribute.name === 'class') {
+                code = mitosisNode.bindings.class?.code?.length ? insertAt(
+                    mitosisNode.bindings.class.code,
+                    ' ${' + code + '}',
+                    mitosisNode.bindings.class.code.length - 1,
+                  ) : '`${' + code + '}`';
+              }
 
               mitosisNode.bindings[attribute.name] = {
                 code,
@@ -204,7 +212,7 @@ export function parseElement(json: SveltosisComponent, node: TemplateNode) {
           }
 
           // if class code is already defined (meaning there is more than 1 conditional class declaration)
-          // append it to the string instead instead of assigning it
+          // append it to the string instead of assigning it
           if (
             mitosisNode.bindings.class &&
             Object.prototype.hasOwnProperty.call(mitosisNode.bindings.class, 'code') &&

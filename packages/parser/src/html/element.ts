@@ -74,11 +74,13 @@ export function parseElement(json: SveltosisComponent, node: TemplateNode) {
               let code = generate(expression);
 
               if (attribute.name === 'class') {
-                code = mitosisNode.bindings.class?.code?.length ? insertAt(
-                    mitosisNode.bindings.class.code,
-                    ' ${' + code + '}',
-                    mitosisNode.bindings.class.code.length - 1,
-                  ) : '`${' + code + '}`';
+                code = mitosisNode.bindings.class?.code?.length
+                  ? insertAt(
+                      mitosisNode.bindings.class.code,
+                      ' ${' + code + '}',
+                      mitosisNode.bindings.class.code.length - 1,
+                    )
+                  : '`${' + code + '}`';
               }
 
               mitosisNode.bindings[attribute.name] = {
@@ -133,7 +135,7 @@ export function parseElement(json: SveltosisComponent, node: TemplateNode) {
               !attribute.expression.arguments?.length &&
               !attribute.expression.body?.arguments?.length
             ) {
-              code += '(event)';
+              code = code.replace(/\(\)/g, '(event)');
             }
 
             object = {

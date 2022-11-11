@@ -7,7 +7,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-import AnswerButton from './AnswerButton.svelte';
+import AnswerButton from './AnswerButton.vue';
 
 const canCome = ref(true);
 

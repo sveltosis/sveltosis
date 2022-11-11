@@ -3,9 +3,7 @@ export const ClassDirective = component$((props) => {
   const state = useStore({ focus: true });
   return (
     <input
-      class={`form-input ${props.disabled ? 'props.disabled' : ''} ${
-        state.focus ? 'state.focus' : ''
-      }`}
+      class={`form-input ${props.disabled ? 'disabled' : ''} ${state.focus ? 'focus' : ''}`}
     ></input>
   );
 });

@@ -1,7 +1,12 @@
 import { Fragment, component$, h, useStore } from '@builder.io/qwik';
 export const ColorSelect = component$((props) => {
   const state = useStore({
-    colors: [null, null, null, null],
+    colors: [
+      { id: 1, text: 'red' },
+      { id: 2, text: 'blue' },
+      { id: 3, text: 'green' },
+      { id: 4, isDisabled: true, text: 'gray' },
+    ],
     selectedColorId: 2,
   });
   return (

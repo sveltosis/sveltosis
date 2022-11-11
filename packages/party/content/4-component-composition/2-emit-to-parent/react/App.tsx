@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
-import AnswerButton from './AnswerButton.svelte';
+import AnswerButton from './AnswerButton.lite';
 
 export default function App(props: any) {
   const [canCome, setCanCome] = useState(() => true);

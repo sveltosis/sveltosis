@@ -1,4 +1,4 @@
-import AnswerButton from './AnswerButton.svelte';
+import AnswerButton from './AnswerButton';
 import { Fragment, component$, h, useStore } from '@builder.io/qwik';
 export const onAnswerNo = function onAnswerNo(props, state) {
   state.canCome = false;

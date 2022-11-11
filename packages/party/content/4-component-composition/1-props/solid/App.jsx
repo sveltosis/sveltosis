@@ -1,4 +1,4 @@
-import UserProfile from './UserProfile.svelte';
+import UserProfile from './UserProfile.jsx';
 function App(props) {
   return (
     <UserProfile

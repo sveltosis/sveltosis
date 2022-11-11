@@ -1,4 +1,4 @@
-import FunnyButton from './FunnyButton.svelte';
+import FunnyButton from './FunnyButton.jsx';
 function App(props) {
   return <FunnyButton>Click me!</FunnyButton>;
 }

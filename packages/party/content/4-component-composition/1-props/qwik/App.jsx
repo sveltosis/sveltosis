@@ -1,4 +1,4 @@
-import UserProfile from './UserProfile.svelte';
+import UserProfile from './UserProfile';
 import { Fragment, component$, h } from '@builder.io/qwik';
 export const App = component$((props) => {
   return (

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import UserProfile from './UserProfile.svelte';
+import UserProfile from './UserProfile.lite';
 
 export default function App(props: any) {
   return (

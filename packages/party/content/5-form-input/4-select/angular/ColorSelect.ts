@@ -14,5 +14,10 @@ import { Component } from '@angular/core';
 })
 export default class ColorSelect {
   selectedColorId = 2;
-  colors = [null, null, null, null];
+  colors = [
+    { id: 1, text: 'red' },
+    { id: 2, text: 'blue' },
+    { id: 3, text: 'green' },
+    { id: 4, text: 'gray', isDisabled: true },
+  ];
 }

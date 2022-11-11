@@ -1,5 +1,5 @@
 import { createSignal } from 'solid-js';
-import AnswerButton from './AnswerButton.svelte';
+import AnswerButton from './AnswerButton.jsx';
 function App(props) {
   const [canCome, setCanCome] = createSignal(true);
   function onAnswerNo() {

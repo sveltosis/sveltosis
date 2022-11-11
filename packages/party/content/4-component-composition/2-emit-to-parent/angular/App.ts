@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 
-import AnswerButton from './AnswerButton.svelte';
-
 @Component({
   selector: 'app, App',
   template: `

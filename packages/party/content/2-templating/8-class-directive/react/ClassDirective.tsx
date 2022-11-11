@@ -5,9 +5,7 @@ export default function ClassDirective(props: any) {
   const [focus, setFocus] = useState(() => true);
 
   return (
-    <input
-      className={`form-input ${props.disabled ? 'props.disabled' : ''} ${focus ? 'focus' : ''}`}
-    />
+    <input className={`form-input ${props.disabled ? 'disabled' : ''} ${focus ? 'focus' : ''}`} />
   );
 }
 

@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 
-import UserProfile from './UserProfile.svelte';
-
 @Component({
   selector: 'app, App',
   template: `

@@ -12,5 +12,10 @@
 import { ref } from 'vue';
 
 const selectedColorId = ref(2);
-const colors = ref([null, null, null, null]);
+const colors = ref([
+  { id: 1, text: 'red' },
+  { id: 2, text: 'blue' },
+  { id: 3, text: 'green' },
+  { id: 4, text: 'gray', isDisabled: true },
+]);
 </script>

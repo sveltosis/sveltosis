@@ -130,13 +130,13 @@ const AlphaPreviewMessage = () => (
         fontSize: 15,
       }}
     >
-      Sveltosis is in development, please{' '}
+      Sveltosis is now part of
       <TextLink
         css={{ color: 'inherit', textDecoration: 'underline' }}
-        href="https://github.com/sveltosis/sveltosis/issues"
+        href="https://mitosis.builder.io/"
         target="_blank"
       >
-        report bugs and share feedback
+        Mitosis
       </TextLink>
     </Alert>
   </ThemeProvider>

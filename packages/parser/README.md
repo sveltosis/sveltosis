@@ -1,10 +1,6 @@
 <h1>@sveltosis/parser</h1>
 
-<p>
-<b>
-  Still in development
-  </b>
-</p>
+### Sveltosis has been merged into [Mitosis](https://github.com/BuilderIO/mitosis). Further development will be done there, so please use that instead now.
 <p>
   A Svelte parser that compiles to Mitosis JSON, allowing you to write Svelte components once and compile to every framework. 
 </p>

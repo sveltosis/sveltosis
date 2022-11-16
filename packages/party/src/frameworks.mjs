@@ -113,24 +113,24 @@ export default [
       ].filter((x) => x);
     },
   },
-  {
-    id: 'solid',
-    title: 'SolidJS',
-    img: 'framework/solid.svg',
-    eslint: {
-      files: ['**/solid/*.jsx'],
-      plugins: ['solid'],
-      extends: ['eslint:recommended', 'plugin:solid/recommended'],
-    },
-    playgroundURL: 'https://playground.solidjs.com/',
-    documentationURL: 'https://www.solidjs.com/',
-    filesSorter(files) {
-      return [
-        files.find(({ fileName }) => fileName === 'App.jsx'),
-        ...(files.filter(({ fileName }) => fileName !== 'App.jsx') || []),
-      ].filter((x) => x);
-    },
-  },
+  // {
+  //   id: 'solid',
+  //   title: 'SolidJS',
+  //   img: 'framework/solid.svg',
+  //   eslint: {
+  //     files: ['**/solid/*.jsx'],
+  //     plugins: ['solid'],
+  //     extends: ['eslint:recommended', 'plugin:solid/recommended'],
+  //   },
+  //   playgroundURL: 'https://playground.solidjs.com/',
+  //   documentationURL: 'https://www.solidjs.com/',
+  //   filesSorter(files) {
+  //     return [
+  //       files.find(({ fileName }) => fileName === 'App.jsx'),
+  //       ...(files.filter(({ fileName }) => fileName !== 'App.jsx') || []),
+  //     ].filter((x) => x);
+  //   },
+  // },
   {
     id: 'qwik',
     title: 'Qwik',

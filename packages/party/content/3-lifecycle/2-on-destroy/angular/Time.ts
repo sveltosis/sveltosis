@@ -1,11 +1,21 @@
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'time, Time',
-  template: ` <div></div> `,
+  template: ` <ng-container></ng-container> `,
 })
-export default class Time {
+export class Time {
   ngOnDestroy() {
     console.log('onUnmount');
   }
 }
+
+@NgModule({
+  declarations: [Time],
+  imports: [BrowserModule],
+  exports: [Time],
+})
+export class TimeModule {}

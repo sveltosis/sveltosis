@@ -1,3 +1,6 @@
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
 import { Component } from '@angular/core';
 
 @Component({
@@ -12,7 +15,7 @@ import { Component } from '@angular/core';
     </select>
   `,
 })
-export default class ColorSelect {
+export class ColorSelect {
   selectedColorId = 2;
   colors = [
     { id: 1, text: 'red' },
@@ -21,3 +24,10 @@ export default class ColorSelect {
     { id: 4, text: 'gray', isDisabled: true },
   ];
 }
+
+@NgModule({
+  declarations: [ColorSelect],
+  imports: [BrowserModule],
+  exports: [ColorSelect],
+})
+export class ColorSelectModule {}

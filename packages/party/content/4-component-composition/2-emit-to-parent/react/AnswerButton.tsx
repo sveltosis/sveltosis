@@ -11,8 +11,8 @@ export default function AnswerButton(props: any) {
 
   return (
     <>
-      <button onClick={(event) => clickYes}> YES </button>
-      <button onClick={(event) => clickNo}> NO </button>
+      <button onClick={(event) => clickYes(event)}> YES </button>
+      <button onClick={(event) => clickNo(event)}> NO </button>
     </>
   );
 }

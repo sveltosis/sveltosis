@@ -1,5 +1,5 @@
 <template>
-  <button @click="toggleLight">Toggle light</button>
+  <button @click="toggleLight($event)">Toggle light</button>
   <p>Light is: {{ light }}</p>
   <p>
     You must

@@ -5,7 +5,7 @@ export const ColorSelect = component$((props) => {
       { id: 1, text: 'red' },
       { id: 2, text: 'blue' },
       { id: 3, text: 'green' },
-      { id: 4, isDisabled: true, text: 'gray' },
+      { id: 4, text: 'gray', isDisabled: true },
     ],
     selectedColorId: 2,
   });

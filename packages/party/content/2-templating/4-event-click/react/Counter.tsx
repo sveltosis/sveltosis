@@ -14,7 +14,7 @@ export default function Counter(props: any) {
         Counter:
         {count}
       </p>
-      <button onClick={(event) => incrementCount}>+1</button>
+      <button onClick={(event) => incrementCount(event)}>+1</button>
     </>
   );
 }

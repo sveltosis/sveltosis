@@ -12,8 +12,8 @@ export const App = component$((props) => {
     <Fragment>
       <p>Can I come ?</p>
       <AnswerButton
-        onYes$={(event) => state.onAnswerYes}
-        onNo$={(event) => state.onAnswerNo}
+        onYes$={(event) => state.onAnswerYes(event)}
+        onNo$={(event) => state.onAnswerNo(event)}
       ></AnswerButton>
       <p style="font-size: 50px;">{state.canCome ? '😀' : '😥'}</p>
     </Fragment>

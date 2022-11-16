@@ -1,6 +1,6 @@
 <template>
   <p>Can I come ?</p>
-  <answer-button @yes="onAnswerYes" @no="onAnswerNo"></answer-button>
+  <answer-button @yes="onAnswerYes($event)" @no="onAnswerNo($event)"></answer-button>
   <p style="font-size: 50px">{{ canCome ? '😀' : '😥' }}</p>
 </template>
 

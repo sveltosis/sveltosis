@@ -1,3 +1,6 @@
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
 import { Component } from '@angular/core';
 
 @Component({
@@ -27,49 +30,40 @@ import { Component } from '@angular/core';
       <input
         type="checkbox"
         value="Rice"
-        [attr.checked]="fillings.includes('Rice')"
-        (input)="
-          $event.target.checked
-            ? fillings.push($event.target.value)
-            : fillings.splice(fillings.indexOf('Rice'), 1)
-        "
+        [attr.checked]="fillings === 'Rice'"
+        (input)="fillings = $event.target.value"
       />
       <input
         type="checkbox"
         value="Beans"
-        [attr.checked]="fillings.includes('Beans')"
-        (input)="
-          $event.target.checked
-            ? fillings.push($event.target.value)
-            : fillings.splice(fillings.indexOf('Beans'), 1)
-        "
+        [attr.checked]="fillings === 'Beans'"
+        (input)="fillings = $event.target.value"
       />
       <input
         type="checkbox"
         value="Cheese"
-        [attr.checked]="fillings.includes('Cheese')"
-        (input)="
-          $event.target.checked
-            ? fillings.push($event.target.value)
-            : fillings.splice(fillings.indexOf('Cheese'), 1)
-        "
+        [attr.checked]="fillings === 'Cheese'"
+        (input)="fillings = $event.target.value"
       />
       <input
         type="checkbox"
         value="Guac (extra)"
-        [attr.checked]="fillings.includes('Guac (extra)')"
-        (input)="
-          $event.target.checked
-            ? fillings.push($event.target.value)
-            : fillings.splice(fillings.indexOf('Guac (extra)'), 1)
-        "
+        [attr.checked]="fillings === 'Guac (extra)'"
+        (input)="fillings = $event.target.value"
       />
       <p>Tortilla: {{ tortilla }}</p>
       <p>Fillings: {{ fillings }}</p>
     </div>
   `,
 })
-export default class BindGroup {
+export class BindGroup {
   tortilla = 'Plain';
   fillings = [];
 }
+
+@NgModule({
+  declarations: [BindGroup],
+  imports: [BrowserModule],
+  exports: [BindGroup],
+})
+export class BindGroupModule {}

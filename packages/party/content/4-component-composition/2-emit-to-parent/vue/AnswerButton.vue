@@ -1,6 +1,6 @@
 <template>
-  <button @click="clickYes">YES</button>
-  <button @click="clickNo">NO</button>
+  <button @click="clickYes($event)">YES</button>
+  <button @click="clickNo($event)">NO</button>
 </template>
 
 <script setup lang="ts">

@@ -1,16 +1,19 @@
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'app, App',
   template: `
-    <div>
+    <ng-container>
       <p>Can I come ?</p>
-      <answer-button (yes)="(onAnswerYes)" (no)="(onAnswerNo)"></answer-button>
+      <AnswerButton (yes)="onAnswerYes($event)" (no)="onAnswerNo($event)"></AnswerButton>
       <p style="font-size: 50px">{{ canCome ? '😀' : '😥' }}</p>
-    </div>
+    </ng-container>
   `,
 })
-export default class App {
+export class App {
   canCome = true;
   onAnswerNo = function onAnswerNo() {
     this.canCome = false;
@@ -19,3 +22,10 @@ export default class App {
     this.canCome = true;
   };
 }
+
+@NgModule({
+  declarations: [App],
+  imports: [BrowserModule, AnswerButtonModule],
+  exports: [App],
+})
+export class AppModule {}

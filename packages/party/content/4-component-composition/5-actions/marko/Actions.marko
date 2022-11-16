@@ -21,7 +21,10 @@ class {
 
   onMount() {
     if (this.button0) {
-      this.state.actionHandler0 = onClick(this.button0, this.state.buttonText);
+      this.state.actionHandler0 = this.onClick(
+        this.button0,
+        this.state.buttonText
+      );
     }
   }
 
@@ -31,7 +34,7 @@ class {
       this.state.actionHandler0 = null;
     } else if (this.button0 && !this.state.actionHandler0) {
       if (this.button0) {
-        this.state.actionHandler0 = onClick(
+        this.state.actionHandler0 = this.onClick(
           this.button0,
           this.state.buttonText
         );

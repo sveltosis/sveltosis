@@ -1,3 +1,6 @@
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
 import { Component, Input } from '@angular/core';
 
 const defaultProps = {};
@@ -5,17 +8,24 @@ const defaultProps = {};
 @Component({
   selector: 'user-profile, UserProfile',
   template: `
-    <div>
+    <ng-container>
       <p>My name is {{ name }} !</p>
       <p>My age is {{ age }} !</p>
       <p>My favourite colors are {{ favouriteColors.join(', ') }} !</p>
       <p>I am {{ isAvailable ? 'available' : 'not available' }}</p>
-    </div>
+    </ng-container>
   `,
 })
-export default class UserProfile {
+export class UserProfile {
   @Input() name: any;
   @Input() age: any;
   @Input() favouriteColors: any;
   @Input() isAvailable: any;
 }
+
+@NgModule({
+  declarations: [UserProfile],
+  imports: [BrowserModule],
+  exports: [UserProfile],
+})
+export class UserProfileModule {}

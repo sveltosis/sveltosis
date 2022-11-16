@@ -9,7 +9,7 @@ export const TrafficLight = component$((props) => {
   const state = useStore({ TRAFFIC_LIGHTS: ['red', 'green'], lightIndex: 0 });
   return (
     <Fragment>
-      <button onClick$={(event) => state.toggleLight}>Toggle light</button>
+      <button onClick$={(event) => state.toggleLight(event)}>Toggle light</button>
       <p>Light is: {light(props, state)}</p>
       <p>
         You must

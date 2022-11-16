@@ -1,6 +1,6 @@
 <template>
   <p>Counter: {{ count }}</p>
-  <button @click="incrementCount">+1</button>
+  <button @click="incrementCount($event)">+1</button>
 </template>
 
 <script setup lang="ts">

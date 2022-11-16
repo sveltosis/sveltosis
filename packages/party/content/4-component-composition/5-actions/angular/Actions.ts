@@ -1,10 +1,13 @@
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
 import { Component, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'actions, Actions',
   template: ` <button #button0>{{ buttonText }}</button> `,
 })
-export default class Actions {
+export class Actions {
   @ViewChild('button0') button0: ElementRef;
 
   buttonText = 'Click Me';
@@ -40,3 +43,10 @@ export default class Actions {
     this.actionHandler0?.update(this.buttonText);
   }
 }
+
+@NgModule({
+  declarations: [Actions],
+  imports: [BrowserModule],
+  exports: [Actions],
+})
+export class ActionsModule {}

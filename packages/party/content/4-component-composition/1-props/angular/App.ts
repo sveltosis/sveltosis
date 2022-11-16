@@ -1,3 +1,6 @@
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
 import { Component } from '@angular/core';
 
 @Component({
@@ -11,4 +14,11 @@ import { Component } from '@angular/core';
     ></user-profile>
   `,
 })
-export default class App {}
+export class App {}
+
+@NgModule({
+  declarations: [App],
+  imports: [BrowserModule, UserProfileModule],
+  exports: [App],
+})
+export class AppModule {}

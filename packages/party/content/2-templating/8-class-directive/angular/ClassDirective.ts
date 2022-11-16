@@ -1,3 +1,6 @@
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
 import { Component, Input } from '@angular/core';
 
 const defaultProps = {};
@@ -8,8 +11,15 @@ const defaultProps = {};
     <input [class]="\`form-input \${disabled ? 'disabled' : ''} \${focus ? 'focus' : ''}\`" />
   `,
 })
-export default class ClassDirective {
+export class ClassDirective {
   @Input() disabled: any;
 
   focus = true;
 }
+
+@NgModule({
+  declarations: [ClassDirective],
+  imports: [BrowserModule],
+  exports: [ClassDirective],
+})
+export class ClassDirectiveModule {}

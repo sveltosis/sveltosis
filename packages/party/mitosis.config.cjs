@@ -1,11 +1,7 @@
-const { sveltosis } = require('@sveltosis/parser');
-
 module.exports = {
   files: 'sveltosis/**/*',
   dest: 'output',
-  targets: ['react', 'vue', 'angular', 'qwik', 'marko', 'solid'],
-  parser: sveltosis,
-  extension: 'svelte',
+  targets: ['react', 'vue', 'angular', 'qwik', 'marko'],
   options: {
     react: {
       typescript: true,

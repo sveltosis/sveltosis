@@ -9,8 +9,8 @@ export const AnswerButton = component$((props) => {
   const state = {};
   return (
     <Fragment>
-      <button onClick$={(event) => state.clickYes}> YES </button>
-      <button onClick$={(event) => state.clickNo}> NO </button>
+      <button onClick$={(event) => state.clickYes(event)}> YES </button>
+      <button onClick$={(event) => state.clickNo(event)}> NO </button>
     </Fragment>
   );
 });

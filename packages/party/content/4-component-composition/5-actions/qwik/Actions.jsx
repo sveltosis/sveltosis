@@ -23,7 +23,7 @@ export const Actions = component$((props) => {
   const state = useStore({ actionHandler0: null, buttonText: 'Click Me' });
   useClientEffect$(() => {
     if (button0) {
-      state.actionHandler0 = onClick(button0, state.buttonText);
+      state.actionHandler0 = state.onClick(button0, state.buttonText);
     }
   });
   useWatch$(({ track }) => {
@@ -32,7 +32,7 @@ export const Actions = component$((props) => {
       state.actionHandler0 = null;
     } else if (button0 && !state.actionHandler0) {
       if (button0) {
-        state.actionHandler0 = onClick(button0, state.buttonText);
+        state.actionHandler0 = state.onClick(button0, state.buttonText);
       }
     }
   });

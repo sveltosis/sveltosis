@@ -1,9 +1,12 @@
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'pick-pill, PickPill',
   template: `
-    <div>
+    <ng-container>
       <div>Picked: {{ picked }}</div>
       <input
         id="blue-pill"
@@ -21,9 +24,16 @@ import { Component } from '@angular/core';
         (input)="picked = $event.target.value"
       />
       <label for="red-pill">Red pill</label>
-    </div>
+    </ng-container>
   `,
 })
-export default class PickPill {
+export class PickPill {
   picked = 'red';
 }
+
+@NgModule({
+  declarations: [PickPill],
+  imports: [BrowserModule],
+  exports: [PickPill],
+})
+export class PickPillModule {}

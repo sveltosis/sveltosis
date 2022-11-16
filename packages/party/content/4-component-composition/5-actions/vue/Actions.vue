@@ -17,7 +17,7 @@ onMounted(() => {
 });
 
 watch(
-  () => [button0],
+  () => [button0.value],
   ([button0]) => {
     if (!button0.value && actionHandler0.value) {
       actionHandler0.value?.destroy();
@@ -28,12 +28,14 @@ watch(
       }
     }
   },
+  { immediate: true },
 );
 watch(
-  () => [buttonText],
+  () => [buttonText.value],
   ([buttonText]) => {
     actionHandler0.value?.update(buttonText.value);
   },
+  { immediate: true },
 );
 function onClick(node, args) {
   console.log('Mounted', node);

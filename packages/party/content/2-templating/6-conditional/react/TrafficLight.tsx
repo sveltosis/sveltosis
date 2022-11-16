@@ -16,7 +16,7 @@ export default function TrafficLight(props: any) {
 
   return (
     <>
-      <button onClick={(event) => toggleLight}>Toggle light</button>
+      <button onClick={(event) => toggleLight(event)}>Toggle light</button>
       <p>
         Light is:
         {light()}

@@ -31,42 +31,26 @@ export default function BindGroup(props: any) {
       <input
         type="checkbox"
         value="Rice"
-        checked={fillings.includes('Rice')}
-        onChange={(event) =>
-          event.target.checked
-            ? fillings.push(event.target.value)
-            : fillings.splice(fillings.indexOf('Rice'), 1)
-        }
+        checked={fillings === 'Rice'}
+        onChange={(event) => setFillings(event.target.value)}
       />
       <input
         type="checkbox"
         value="Beans"
-        checked={fillings.includes('Beans')}
-        onChange={(event) =>
-          event.target.checked
-            ? fillings.push(event.target.value)
-            : fillings.splice(fillings.indexOf('Beans'), 1)
-        }
+        checked={fillings === 'Beans'}
+        onChange={(event) => setFillings(event.target.value)}
       />
       <input
         type="checkbox"
         value="Cheese"
-        checked={fillings.includes('Cheese')}
-        onChange={(event) =>
-          event.target.checked
-            ? fillings.push(event.target.value)
-            : fillings.splice(fillings.indexOf('Cheese'), 1)
-        }
+        checked={fillings === 'Cheese'}
+        onChange={(event) => setFillings(event.target.value)}
       />
       <input
         type="checkbox"
         value="Guac (extra)"
-        checked={fillings.includes('Guac (extra)')}
-        onChange={(event) =>
-          event.target.checked
-            ? fillings.push(event.target.value)
-            : fillings.splice(fillings.indexOf('Guac (extra)'), 1)
-        }
+        checked={fillings === 'Guac (extra)'}
+        onChange={(event) => setFillings(event.target.value)}
       />
       <p>
         Tortilla:

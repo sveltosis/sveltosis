@@ -613,6 +613,33 @@
     vue-template-es2015-compiler "^1.9.1"
     vue-template-validator "^1.1.5"
 
+"@builder.io/mitosis-cli@^0.0.39":
+  version "0.0.39"
+  resolved "https://registry.yarnpkg.com/@builder.io/mitosis-cli/-/mitosis-cli-0.0.39.tgz#3ea27b70789d80088c343d3b22b0910a060b3042"
+  integrity sha512-I5wafdCFb1jockWf9UdC2grOa7OySqKev4i5zC3CToyDoqqDWj7XbKSvMCwYk+DGwF/jHMKRohCZUwKr3m3l0Q==
+  dependencies:
+    "@babel/core" "^7.17.8"
+    "@babel/preset-typescript" "^7.16.7"
+    "@builder.io/mitosis" "0.0.81"
+    "@vue/compiler-sfc" "^3.1.5"
+    babel-preset-solid "^1.3.13"
+    chalk "^4.1.0"
+    debug "^4.3.4"
+    dedent "^0.7.0"
+    esbuild "^0.12.16"
+    fast-glob "^3.2.11"
+    fp-ts "^2.12.2"
+    fs-extra "^9.1.0"
+    globby "^11.0.2"
+    gluegun latest
+    html-minifier "^4.0.0"
+    json5 "^2.2.1"
+    lodash "^4.17.21"
+    micromatch "^4.0.4"
+    parse5 "^3.0.3"
+    vue-template-es2015-compiler "^1.9.1"
+    vue-template-validator "^1.1.5"
+
 "@builder.io/mitosis@0.0.75":
   version "0.0.75"
   resolved "https://registry.yarnpkg.com/@builder.io/mitosis/-/mitosis-0.0.75.tgz#c79108eaebf7369a6b7e7758a5372143c2d0f7c9"
@@ -679,6 +706,48 @@
     prettier-plugin-marko "^1.2.2"
     prettier-plugin-svelte "^2.7.0"
     svelte "^3.30.0"
+    traverse "^0.6.6"
+    typescript "^4.8.4"
+    vue "~2.6"
+
+"@builder.io/mitosis@0.0.81", "@builder.io/mitosis@^0.0.81":
+  version "0.0.81"
+  resolved "https://registry.yarnpkg.com/@builder.io/mitosis/-/mitosis-0.0.81.tgz#94e365e2b5be2e489178383001a9cce76ed78d68"
+  integrity sha512-ZuWCXBRT7iCMJaBZDxd8pe3oHFMDa+au8hfwxUJYvceLMyibLlogP9trbDwhxEq9LoOiF4li4dnx1pw1ZIhOhw==
+  dependencies:
+    "@angular/compiler" "^11.2.11"
+    "@babel/core" "7.14.5"
+    "@babel/generator" "^7.14.3"
+    "@babel/plugin-proposal-class-properties" "^7.13.0"
+    "@babel/plugin-syntax-decorators" "^7.12.1"
+    "@babel/plugin-syntax-jsx" "^7.12.1"
+    "@babel/plugin-transform-react-jsx" "^7.13.12"
+    "@babel/preset-typescript" "^7.13.0"
+    "@builder.io/react" "^1.1.50"
+    "@marko/compiler" "^5.22.4"
+    "@marko/translator-default" "^5.21.4"
+    astring "^1.8.3"
+    axios "^0.21.0"
+    axios-cache-adapter "^2.5.0"
+    coffeescript "^2.7.0"
+    csstype "^3.0.4"
+    dedent "^0.7.0"
+    fp-ts "^2.11.10"
+    globby "^11.0.2"
+    hash-sum "^2.0.0"
+    ignore-loader "^0.1.2"
+    json5 "^2.1.3"
+    liquidjs "9.6.0"
+    lodash "^4.17.20"
+    marko "^5.21.7"
+    module "^1.2.5"
+    object-hash "^2.0.3"
+    postcss-load-config "^4.0.1"
+    prettier-plugin-marko "^1.2.2"
+    prettier-plugin-svelte "^2.7.0"
+    sass "^1.56.1"
+    svelte "^3.30.0"
+    svelte-preprocess "^4.10.7"
     traverse "^0.6.6"
     typescript "^4.8.4"
     vue "~2.6"
@@ -4553,7 +4622,7 @@ check-error@^1.0.2:
   resolved "https://registry.yarnpkg.com/check-error/-/check-error-1.0.2.tgz#574d312edd88bb5dd8912e9286dd6c0aed4aac82"
   integrity sha512-BrgHpW9NURQgzoNyjfq0Wu6VFO6D7IZEmJNdtgNqpzGG8RuNFHt2jQxWlAs4HMe119chBnv+34syEZtc6IhLtA==
 
-chokidar@^3.4.1, chokidar@^3.5.1, chokidar@^3.5.3:
+"chokidar@>=3.0.0 <4.0.0", chokidar@^3.4.1, chokidar@^3.5.1, chokidar@^3.5.3:
   version "3.5.3"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.5.3.tgz#1cf37c8707b932bd1af1ae22c0432e2acd1903bd"
   integrity sha512-Dr3sfKRP6oTcjf2JmUmFJfeVMvXBdegxB0iVQ5eb2V10uFJUCAS8OByZdVAyVb8xXNz3GjjTgj9kLWsZTqE6kw==
@@ -8039,6 +8108,11 @@ image-size@~0.5.0:
   version "0.5.5"
   resolved "https://registry.yarnpkg.com/image-size/-/image-size-0.5.5.tgz#09dfd4ab9d20e29eb1c3e80b8990378df9e3cb9c"
   integrity sha512-6TDAlDPZxUFCv+fuOkIoXT/V/f3Qbq8e37p+YOiYrUv3v9cc3/6x78VdfPgFVaB9dZYeLUfKgHRebpkm/oP2VQ==
+
+immutable@^4.0.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/immutable/-/immutable-4.1.0.tgz#f795787f0db780183307b9eb2091fcac1f6fafef"
+  integrity sha512-oNkuqVTA8jqG1Q6c+UglTOD1xhC1BtjKI7XkCXRkZHrN5m18/XsnUp8Q89GkQO/z+0WjonSvl0FLhDYftp46nQ==
 
 import-fresh@^3.0.0, import-fresh@^3.1.0, import-fresh@^3.2.1:
   version "3.3.0"
@@ -11970,6 +12044,14 @@ postcss-load-config@^3.0.1, postcss-load-config@^3.1.4:
     lilconfig "^2.0.5"
     yaml "^1.10.2"
 
+postcss-load-config@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/postcss-load-config/-/postcss-load-config-4.0.1.tgz#152383f481c2758274404e4962743191d73875bd"
+  integrity sha512-vEJIc8RdiBRu3oRAI0ymerOn+7rPuMvRXslTvZUKZonDHFIczxztIyJ1urxM1x9JXEikvpWWTUUqal5j/8QgvA==
+  dependencies:
+    lilconfig "^2.0.5"
+    yaml "^2.1.1"
+
 postcss-nested@6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/postcss-nested/-/postcss-nested-6.0.0.tgz#1572f1984736578f360cffc7eb7dca69e30d1735"
@@ -13206,6 +13288,15 @@ sass-formatter@^0.7.5:
   dependencies:
     suf-log "^2.5.3"
 
+sass@^1.56.1:
+  version "1.56.1"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.56.1.tgz#94d3910cd468fd075fa87f5bb17437a0b617d8a7"
+  integrity sha512-VpEyKpyBPCxE7qGDtOcdJ6fFbcpOM+Emu7uZLxVrkX8KVU/Dp5UF7WLvzqRuUhB6mqqQt1xffLoG+AndxTZrCQ==
+  dependencies:
+    chokidar ">=3.0.0 <4.0.0"
+    immutable "^4.0.0"
+    source-map-js ">=0.6.2 <2.0.0"
+
 sax@^1.2.4, sax@~1.2.4:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
@@ -13557,7 +13648,7 @@ sort-keys@^4.0.0:
   dependencies:
     is-plain-obj "^2.0.0"
 
-source-map-js@^1.0.1, source-map-js@^1.0.2:
+"source-map-js@>=0.6.2 <2.0.0", source-map-js@^1.0.1, source-map-js@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.0.2.tgz#adbc361d9c62df380125e7f161f71c826f1e490c"
   integrity sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==

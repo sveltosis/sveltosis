@@ -7,7 +7,7 @@ export const Counter = component$((props) => {
   return (
     <Fragment>
       <p>Counter: {state.count}</p>
-      <button onClick$={(event) => state.incrementCount}>+1</button>
+      <button onClick$={(event) => state.incrementCount(event)}>+1</button>
     </Fragment>
   );
 });

@@ -11,6 +11,7 @@ export const CssStyle = component$((props) => {
 export default CssStyle;
 export const STYLES = `
 
+
 	.title {
 		color: red;
 	}

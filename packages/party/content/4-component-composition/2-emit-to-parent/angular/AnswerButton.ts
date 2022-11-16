@@ -1,15 +1,18 @@
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
 import { Output, EventEmitter, Component } from '@angular/core';
 
 @Component({
   selector: 'answer-button, AnswerButton',
   template: `
-    <div>
-      <button (click)="(clickYes)">YES</button>
-      <button (click)="(clickNo)">NO</button>
-    </div>
+    <ng-container>
+      <button (click)="clickYes($event)">YES</button>
+      <button (click)="clickNo($event)">NO</button>
+    </ng-container>
   `,
 })
-export default class AnswerButton {
+export class AnswerButton {
   @Output() onYes = new EventEmitter();
   @Output() onNo = new EventEmitter();
 
@@ -20,3 +23,10 @@ export default class AnswerButton {
     this.onNo.emit();
   };
 }
+
+@NgModule({
+  declarations: [AnswerButton],
+  imports: [BrowserModule],
+  exports: [AnswerButton],
+})
+export class AnswerButtonModule {}

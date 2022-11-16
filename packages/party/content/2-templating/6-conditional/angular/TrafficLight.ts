@@ -1,20 +1,23 @@
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'traffic-light, TrafficLight',
   template: `
-    <div>
-      <button (click)="(toggleLight)">Toggle light</button>
+    <ng-container>
+      <button (click)="toggleLight($event)">Toggle light</button>
       <p>Light is: {{ light }}</p>
       <p>
         You must
 
         <ng-container *ngIf="light === 'red'"><span>STOP</span></ng-container>
       </p>
-    </div>
+    </ng-container>
   `,
 })
-export default class TrafficLight {
+export class TrafficLight {
   TRAFFIC_LIGHTS = ['red', 'green'];
   lightIndex = 0;
   get light() {
@@ -24,3 +27,10 @@ export default class TrafficLight {
     this.lightIndex = this.lightIndex === 0 ? 1 : 0;
   };
 }
+
+@NgModule({
+  declarations: [TrafficLight],
+  imports: [BrowserModule],
+  exports: [TrafficLight],
+})
+export class TrafficLightModule {}

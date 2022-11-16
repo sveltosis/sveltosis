@@ -1,3 +1,6 @@
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
 import { Component } from '@angular/core';
 
 @Component({
@@ -10,6 +13,13 @@ import { Component } from '@angular/core';
     </ul>
   `,
 })
-export default class Colors {
+export class Colors {
   colors = ['red', 'green', 'blue'];
 }
+
+@NgModule({
+  declarations: [Colors],
+  imports: [BrowserModule],
+  exports: [Colors],
+})
+export class ColorsModule {}

@@ -1,3 +1,6 @@
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+
 import { Component } from '@angular/core';
 
 @Component({
@@ -21,4 +24,11 @@ import { Component } from '@angular/core';
     </button>
   `,
 })
-export default class FunnyButton {}
+export class FunnyButton {}
+
+@NgModule({
+  declarations: [FunnyButton],
+  imports: [BrowserModule, SlotModule],
+  exports: [FunnyButton],
+})
+export class FunnyButtonModule {}

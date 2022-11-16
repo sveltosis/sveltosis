@@ -1,5 +1,5 @@
 import * as React from 'react';
-import UserProfile from './UserProfile.lite';
+import UserProfile from './UserProfile.jsx';
 
 export default function App(props: any) {
   return (

@@ -32,42 +32,34 @@ export const BindGroup = component$((props) => {
       <input
         type="checkbox"
         value="Rice"
-        checked={state.fillings.includes('Rice')}
-        onChange$={(event) =>
-          event.target.checked
-            ? state.fillings.push(event.target.value)
-            : state.fillings.splice(state.fillings.indexOf('Rice'), 1)
-        }
+        checked={(() => {
+          state.fillings === 'Rice';
+        })()}
+        onChange$={(event) => (state.fillings = event.target.value)}
       ></input>
       <input
         type="checkbox"
         value="Beans"
-        checked={state.fillings.includes('Beans')}
-        onChange$={(event) =>
-          event.target.checked
-            ? state.fillings.push(event.target.value)
-            : state.fillings.splice(state.fillings.indexOf('Beans'), 1)
-        }
+        checked={(() => {
+          state.fillings === 'Beans';
+        })()}
+        onChange$={(event) => (state.fillings = event.target.value)}
       ></input>
       <input
         type="checkbox"
         value="Cheese"
-        checked={state.fillings.includes('Cheese')}
-        onChange$={(event) =>
-          event.target.checked
-            ? state.fillings.push(event.target.value)
-            : state.fillings.splice(state.fillings.indexOf('Cheese'), 1)
-        }
+        checked={(() => {
+          state.fillings === 'Cheese';
+        })()}
+        onChange$={(event) => (state.fillings = event.target.value)}
       ></input>
       <input
         type="checkbox"
         value="Guac (extra)"
-        checked={state.fillings.includes('Guac (extra)')}
-        onChange$={(event) =>
-          event.target.checked
-            ? state.fillings.push(event.target.value)
-            : state.fillings.splice(state.fillings.indexOf('Guac (extra)'), 1)
-        }
+        checked={(() => {
+          state.fillings === 'Guac (extra)';
+        })()}
+        onChange$={(event) => (state.fillings = event.target.value)}
       ></input>
       <p>Tortilla: {state.tortilla}</p>
       <p>Fillings: {state.fillings}</p>

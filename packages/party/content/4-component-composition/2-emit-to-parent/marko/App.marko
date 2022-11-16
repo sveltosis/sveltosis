@@ -15,7 +15,7 @@ class {
 
 <p>Can I come ?</p>
 <AnswerButton
-  on-yes(event => component.onAnswerYes)
-  on-no(event => component.onAnswerNo)
+  on-yes(event => component.onAnswerYes(event))
+  on-no(event => component.onAnswerNo(event))
 ></AnswerButton>
 <p style="font-size: 50px;">${state.canCome ? '😀' : '😥'}</p>
